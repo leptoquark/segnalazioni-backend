@@ -27,7 +27,7 @@ public class AppaltiServiceAdapterRestImpl implements AppaltiServiceAdapter {
 		
 		Mono<String> response = webClient
 							.get()
-							.uri(appaltiServiceUri+"/getSmartCig/{cig}", cig)
+							.uri(appaltiServiceUri+"/getSmartCig/{cig}", cig.trim())
 							.retrieve()
 							.bodyToMono(String.class);
 		
@@ -35,7 +35,6 @@ public class AppaltiServiceAdapterRestImpl implements AppaltiServiceAdapter {
 			ret = response.block();
 		} catch(WebClientException e) 
 		{
-			// La chiamata REST fallisce
 			e.printStackTrace();
 		}
 		return ret;

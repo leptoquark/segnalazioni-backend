@@ -29,7 +29,7 @@ public class SpringFoxConfig {
         return new ApiInfo(
           "REST API - Backend Segnalazioni", 
           "La api hanno lo scopo di fornire uno stratto di facciata per le complessità di integrazione dei servizi dell'ecosistema ANAC", 
-          "API TOS", 
+          "API", 
           "Terms of service", 
           new Contact("Claudio Biancalana", "", "c.biancalana@anticorruzione.it"), 
           "License of API", "API license URL", Collections.emptyList());
