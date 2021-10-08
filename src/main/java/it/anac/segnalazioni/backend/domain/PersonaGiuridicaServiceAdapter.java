@@ -1,9 +1,10 @@
 package it.anac.segnalazioni.backend.domain;
 
-import it.anac.segnalazioni.backend.model.pg.PersonaGiuridica;
+
+import it.anac.segnalazioni.backend.model.pg.PersoneGiuridiche;
 
 public interface PersonaGiuridicaServiceAdapter {
 	
-	public PersonaGiuridica getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike, int page, int size);
+	public PersoneGiuridiche getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike, int page, int size);
 
 }

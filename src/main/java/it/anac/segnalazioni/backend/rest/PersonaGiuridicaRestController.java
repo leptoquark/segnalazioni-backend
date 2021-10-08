@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.anac.segnalazioni.backend.domain.PersonaGiuridicaServiceAdapter;
-import it.anac.segnalazioni.backend.model.pg.PersonaGiuridica;
+import it.anac.segnalazioni.backend.model.pg.PersoneGiuridiche;
 import it.anac.segnalazioni.backend.model.protocollo.PersonaGiuridicaRequest;
 
 @RestController
@@ -18,7 +18,7 @@ public class PersonaGiuridicaRestController
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
 		
 	@PostMapping("/personagiuridica/")
-	public PersonaGiuridica getPGFromDenominazione(@RequestBody PersonaGiuridicaRequest pgr) 
+	public PersoneGiuridiche getPGFromDenominazione(@RequestBody PersonaGiuridicaRequest pgr) 
 	{
 		return personaGiuridicaService.
 				getPersonaGiuridicaFromDenominazioneLike(
