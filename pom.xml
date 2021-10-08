@@ -64,6 +64,12 @@
 		</dependency>
 	</dependencies>
 
+	<scm>
+	  <connection>scm:git:ssh://git@github.com:leptoquark/segnalazioni-backend.git</connection>
+	  <developerConnection>scm:git:ssh://git@github.com:leptoquark/segnalazioni-backend.git</developerConnection>
+	  <url>https://github.com/leptoquark/segnalazioni-backend/tree/main</url>
+	</scm>
+
 	<build>
 		<plugins>
 			<plugin>
