@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.anac.segnalazioni.backend.domain.PersonaGiuridicaServiceAdapter;
+import it.anac.segnalazioni.backend.model.pg.PersonaGiuridica;
 import it.anac.segnalazioni.backend.model.protocollo.PersonaGiuridicaRequest;
 
 @RestController
@@ -17,14 +18,12 @@ public class PersonaGiuridicaRestController
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
 		
 	@PostMapping("/personagiuridica/")
-	public String invio(@RequestBody PersonaGiuridicaRequest pgr) 
+	public PersonaGiuridica getPGFromDenominazione(@RequestBody PersonaGiuridicaRequest pgr) 
 	{
-		String ret = "";
-		ret = 
-			personaGiuridicaService.getPersonaGiuridicaFromDenominazioneLike(
+		return personaGiuridicaService.
+				getPersonaGiuridicaFromDenominazioneLike(
 					pgr.getDenominazioneLike(),
 					pgr.getPage(),
 					pgr.getSize());
-		return ret;
 	}
 }

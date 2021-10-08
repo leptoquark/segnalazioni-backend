@@ -3,6 +3,7 @@ package it.anac.segnalazioni.backend.rest;
 import org.springframework.web.reactive.function.client.*;
 
 import it.anac.segnalazioni.backend.domain.PersonaGiuridicaServiceAdapter;
+import it.anac.segnalazioni.backend.model.pg.PersonaGiuridica;
 import reactor.core.publisher.Mono;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -22,25 +23,25 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 	}
 
 	@Override
-	public String getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike, int page, int size) {
-		String ret = "";
+	public PersonaGiuridica getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike, int page, int size) {
+		PersonaGiuridica pg = null;
 		
-		Mono<String> response = webClient
+		Mono<PersonaGiuridica> response = webClient
 							.get()
 							.uri(personaGiuridicaServiceUri+"/denominazione/{denominazioneLike}?page={page}&size={size}",
 									denominazioneLike,
 									page,
 									size)
 							.retrieve()
-							.bodyToMono(String.class);
+							.bodyToMono(PersonaGiuridica.class);
 		
 		try {
-			ret = response.block();
+			pg = response.block();
 		} catch(WebClientException e) 
 		{
 			e.printStackTrace();
 		}
-		return ret;
+		return pg;
 	}
 	
 }
