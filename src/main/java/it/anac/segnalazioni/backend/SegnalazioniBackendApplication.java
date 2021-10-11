@@ -13,7 +13,7 @@ public class SegnalazioniBackendApplication
 {
 	@GetMapping("/")
 	public String home() {
-	    return "SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a>";
+	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a> ";
 	  }
 	
 	public static void main(String[] args) {
