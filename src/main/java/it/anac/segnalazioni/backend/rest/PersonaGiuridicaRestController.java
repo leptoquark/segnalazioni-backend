@@ -1,13 +1,12 @@
 package it.anac.segnalazioni.backend.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.anac.segnalazioni.backend.domain.PersonaGiuridicaServiceAdapter;
-import it.anac.segnalazioni.backend.model.protocollo.PersonaGiuridicaRequest;
 
 @RestController
 @RequestMapping(path="/ws")
@@ -16,13 +15,15 @@ public class PersonaGiuridicaRestController
 	@Autowired
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
 		
-	@PostMapping("/personagiuridica/")
-	public String getPGFromDenominazione(@RequestBody PersonaGiuridicaRequest pgr) 
+	@GetMapping("/personagiuridica/{denominazioneLike}?page={page}&pageSize={pageSize}")
+	public String getPGFromDenominazione(@PathVariable String denominazioneLike,
+										 @PathVariable int page,
+										 @PathVariable int pageSize) 
 	{
 		return personaGiuridicaService.
 				getPersonaGiuridicaFromDenominazioneLike(
-					pgr.getDenominazioneLike(),
-					pgr.getPage(),
-					pgr.getSize());
+					denominazioneLike,
+					page,
+					pageSize);
 	}
 }
