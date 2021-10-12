@@ -20,7 +20,7 @@ public class PersonaGiuridicaRestController
 {
 	@Autowired
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
-		
+	
 	@GetMapping("/personagiuridica/{denominazioneLike}")
 	public PersonaGiuridica[] getPGFromDenominazione(@PathVariable String denominazioneLike,
 										 @RequestParam(defaultValue = "0") int page,

@@ -42,6 +42,5 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 			e.printStackTrace();
 		}
 		return pg;
-	}
-	
+	}	
 }
