@@ -23,8 +23,9 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 
 	@Override
 	public String getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike, int page, int size) {
-		String pg = null;
 		
+		String pg = null;
+				
 		Mono<String> response = webClient
 							.get()
 							.uri(personaGiuridicaServiceUri+"/denominazione/{denominazioneLike}?page={page}&size={size}",

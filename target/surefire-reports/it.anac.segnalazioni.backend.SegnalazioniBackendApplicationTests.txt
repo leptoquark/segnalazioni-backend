@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: it.anac.segnalazioni.backend.SegnalazioniBackendApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.496 s - in it.anac.segnalazioni.backend.SegnalazioniBackendApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.961 s - in it.anac.segnalazioni.backend.SegnalazioniBackendApplicationTests

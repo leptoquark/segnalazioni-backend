@@ -1,5 +1,7 @@
 package it.anac.segnalazioni.backend.config;
 
+import java.util.function.Predicate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import it.anac.segnalazioni.backend.rest.security.JwtAuthenticationEntryPoint;
 import it.anac.segnalazioni.backend.rest.security.JwtRequestFilter;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 @EnableWebSecurity
@@ -56,6 +62,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui/**",
             "/authenticate"
     };
+    
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+            .select()
+            .apis(RequestHandlerSelectors.any())
+            .paths(PathSelectors.any())
+            .paths(Predicate.not(PathSelectors.regex("/error.*")))
+            .build();
+    }
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {

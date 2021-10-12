@@ -7,13 +7,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
+
 @SpringBootApplication
 @RestController
 public class SegnalazioniBackendApplication
 {
+	@ApiOperation("Pagina di avvio")
 	@GetMapping("/")
-	public String home() {
+	public String landingPage() {
 	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a> ";
+
 	  }
 	
 	public static void main(String[] args) {
