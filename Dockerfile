@@ -5,9 +5,9 @@ ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
 USER root
-COPY anticorruzione.cer $JAVA_HOME/jre/lib/security
+COPY anticorruzione.cer /usr/local/openjdk-11/lib/security
 RUN \
-    cd $JAVA_HOME/jre/lib/security \
+    cd /usr/local/openjdk-11/lib/security \
     && keytool -keystore cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias anticorruzione -file anticorruzione.cer
 
 ENTRYPOINT ["java","-jar","/app.jar"]
