@@ -21,7 +21,6 @@ it\anac\segnalazioni\backend\rest\security\JwtUserDetailsService.class
 it\anac\segnalazioni\backend\model\appalto\CPV.class
 it\anac\segnalazioni\backend\model\pg\Indirizzo.class
 it\anac\segnalazioni\backend\model\protocollo\ProtocolloRequest.class
-it\anac\segnalazioni\backend\model\pg\PersoneGiuridiche.class
 it\anac\segnalazioni\backend\model\pg\DatiIdentificativi.class
 it\anac\segnalazioni\backend\model\appalto\Incaricati.class
 it\anac\segnalazioni\backend\model\appalto\Pubblicazioni.class
