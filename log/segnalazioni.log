@@ -1,0 +1,49 @@
+2021-10-13 09:39:06.356  INFO 10192 --- [main] i.a.s.b.SegnalazioniBackendApplication   : Starting SegnalazioniBackendApplication using Java 14.0.2 on LAPTOP-6MBMBAG7 with PID 10192 (D:\omnia\eclipse-workspace\segnalazioni-backend\target\classes started by lepto in D:\omnia\eclipse-workspace\segnalazioni-backend)
+2021-10-13 09:39:06.359  INFO 10192 --- [main] i.a.s.b.SegnalazioniBackendApplication   : The following profiles are active: dev
+2021-10-13 09:39:07.192  INFO 10192 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2021-10-13 09:39:07.208  INFO 10192 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 MongoDB repository interfaces.
+2021-10-13 09:39:07.442  INFO 10192 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$17b58ee5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-13 09:39:07.485  INFO 10192 --- [main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-10-13 09:39:07.528  INFO 10192 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@20580d4e' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-13 09:39:07.531  INFO 10192 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-13 09:39:07.752  INFO 10192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-10-13 09:39:07.761  INFO 10192 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-13 09:39:07.762  INFO 10192 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-10-13 09:39:07.866  INFO 10192 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-13 09:39:07.866  INFO 10192 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1463 ms
+2021-10-13 09:39:08.862  INFO 10192 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@15371de2, org.springframework.security.web.context.SecurityContextPersistenceFilter@9880a15, org.springframework.security.web.header.HeaderWriterFilter@66a472b9, org.springframework.security.web.authentication.logout.LogoutFilter@6f112f70, it.anac.segnalazioni.backend.rest.security.JwtRequestFilter@517704, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3de88f64, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2493eec6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5503c7d, org.springframework.security.web.session.SessionManagementFilter@226e07e7, org.springframework.security.web.access.ExceptionTranslationFilter@15914bb5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2b9d4b0]
+2021-10-13 09:39:09.146  INFO 10192 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2021-10-13 09:39:09.399  INFO 10192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-10-13 09:39:09.690  INFO 10192 --- [main] i.a.s.b.SegnalazioniBackendApplication   : Started SegnalazioniBackendApplication in 3.666 seconds (JVM running for 4.319)
+2021-10-13 09:39:11.219  INFO 10192 --- [cluster-ClusterId{value='61668d1dff95d567c432d05a', description='null'}-127.0.0.1:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server 127.0.0.1:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70) ~[mongodb-driver-core-4.2.3.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:143) ~[mongodb-driver-core-4.2.3.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188) ~[mongodb-driver-core-4.2.3.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:144) ~[mongodb-driver-core-4.2.3.jar:na]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:589) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:549) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:597) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:333) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:648) ~[na:na]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:107) ~[mongodb-driver-core-4.2.3.jar:na]
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79) ~[mongodb-driver-core-4.2.3.jar:na]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65) ~[mongodb-driver-core-4.2.3.jar:na]
+	... 4 common frames omitted
+
+2021-10-13 09:39:38.630  INFO 10192 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-10-13 09:42:33.693  INFO 11268 --- [main] .s.b.SegnalazioniBackendApplicationTests : Starting SegnalazioniBackendApplicationTests using Java 14.0.2 on LAPTOP-6MBMBAG7 with PID 11268 (started by lepto in D:\omnia\eclipse-workspace\segnalazioni-backend)
+2021-10-13 09:42:33.694  INFO 11268 --- [main] .s.b.SegnalazioniBackendApplicationTests : The following profiles are active: dev
+2021-10-13 09:42:34.863  INFO 11268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2021-10-13 09:42:34.886  INFO 11268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 MongoDB repository interfaces.
+2021-10-13 09:42:35.325  INFO 11268 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$898fa6de] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-13 09:42:35.392  INFO 11268 --- [main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-10-13 09:42:35.458  INFO 11268 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1d3c112a' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-13 09:42:35.474  INFO 11268 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-13 09:42:37.406  INFO 11268 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7a62d697, org.springframework.security.web.context.SecurityContextPersistenceFilter@2570b316, org.springframework.security.web.header.HeaderWriterFilter@5b490d5e, org.springframework.security.web.authentication.logout.LogoutFilter@8549c5f, it.anac.segnalazioni.backend.rest.security.JwtRequestFilter@edbc2bf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@25464154, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2166c48a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e01796a, org.springframework.security.web.session.SessionManagementFilter@75b363c3, org.springframework.security.web.access.ExceptionTranslationFilter@fde487b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54941dfd]
+2021-10-13 09:42:38.108  INFO 11268 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2021-10-13 09:42:39.001  INFO 11268 --- [main] .s.b.SegnalazioniBackendApplicationTests : Started SegnalazioniBackendApplicationTests in 5.63 seconds (JVM running for 6.668)
