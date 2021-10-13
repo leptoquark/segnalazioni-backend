@@ -10,4 +10,4 @@ RUN \
     cd /usr/local/openjdk-11/lib/security \
     && keytool -keystore cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias anticorruzione -file anticorruzione.cer
 
-ENTRYPOINT ["java","-jar","-Dspring.profiles.active=premaster","/app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-jar","/app.jar"]
