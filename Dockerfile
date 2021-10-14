@@ -1,13 +1,13 @@
 FROM openjdk:11
 RUN adduser --system --group spring
+RUN mkdir customlibs
 USER spring:spring
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
-RUN mkdir customlibs
 COPY lib/protocollo-ws.jar customlibs/protocollo-ws.jar
 
-USER root
+
 COPY anticorruzione.cer /usr/local/openjdk-11/lib/security
 RUN \
     cd /usr/local/openjdk-11/lib/security \
