@@ -105,15 +105,11 @@ public class ProtocolloService {
     	ResponseType aux = client.registraProtocollo(registraProtocolloRequest);
 
     	ProtocolloResponse ret = new ProtocolloResponse();
-    	ret.setCodice(aux.getEsito());
+    	ret.setEsito(aux.getEsito());
     	ret.setMessaggio(aux.getDescrizioneEsito());
     	ret.setNumeroProtocollo(aux.getNumeroProtocollo());
-    	System.out.println(aux.getUrlDocumento());
-    	System.out.println(aux.getDataProtocollo());
-    	System.out.println(aux.getTipoProtocollo());
-    	System.out.println(aux.getUrlDocumento());
+    	ret.setData(aux.getDataProtocollo());
     	
     	return ret;
-    			
 	}
 }

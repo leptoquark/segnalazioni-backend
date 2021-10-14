@@ -1,15 +1,16 @@
 package it.anac.segnalazioni.backend.model.protocollo;
 
 public class ProtocolloResponse {
-	private String codice;
+	private String esito;
 	private String messaggio;
 	private String numeroProtocollo;
+	private String data;
 	
-	public String getCodice() {
-		return codice;
+	public String getEsito() {
+		return esito;
 	}
-	public void setCodice(String codice) {
-		this.codice = codice;
+	public void setEsito(String esito) {
+		this.esito = esito;
 	}
 	public String getMessaggio() {
 		return messaggio;
@@ -22,5 +23,11 @@ public class ProtocolloResponse {
 	}
 	public void setNumeroProtocollo(String numeroProtocollo) {
 		this.numeroProtocollo = numeroProtocollo;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
 	}
 }
