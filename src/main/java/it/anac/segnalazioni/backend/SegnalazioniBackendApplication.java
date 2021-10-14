@@ -19,7 +19,7 @@ public class SegnalazioniBackendApplication
     
 	private String getActiveProfiles()
 	{
-		String out = "Profilo:";
+		String out = "";
 	        for (String profileName : environment.getActiveProfiles()) {
 	            out = out +" " + profileName;
 	        }  
