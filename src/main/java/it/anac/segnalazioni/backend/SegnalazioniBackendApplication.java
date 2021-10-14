@@ -27,7 +27,7 @@ public class SegnalazioniBackendApplication
 	     return out;
 	}
 	
-	@Value("${segnalazione.versione}")
+	@Value("${segnalazioni.versione}")
     private String versione;
 	private String getVersion()
 	{
