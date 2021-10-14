@@ -29,6 +29,7 @@ public class SegnalazioniBackendApplication
 	
 	@Value("${segnalazioni.versione}")
     private String versione;
+	
 	private String getVersion()
 	{
 		return versione;
