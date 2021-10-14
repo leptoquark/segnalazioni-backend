@@ -38,5 +38,6 @@ it\anac\segnalazioni\backend\rest\AppaltiServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\rest\JwtAuthenticationController.class
 it\anac\segnalazioni\backend\model\pg\Stato.class
 it\anac\segnalazioni\backend\model\pg\Georef.class
+it\anac\segnalazioni\backend\model\protocollo\ProtocolloResponse.class
 it\anac\segnalazioni\backend\model\security\JwtResponse.class
 it\anac\segnalazioni\backend\SegnalazioniBackendApplication.class
