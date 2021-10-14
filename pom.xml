@@ -17,26 +17,7 @@
 		<java.version>11</java.version>
   		<cxf.version>2.2.3</cxf.version>
 	</properties>
-	
-  <!--dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-kubernetes-dependencies</artifactId>
-        <version>0.3.0.RELEASE</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Greenwich.RELEASE</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement-->
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -92,8 +73,6 @@
 		    <groupId>it.anac.segnalazioni.client.protocollo</groupId>
 		    <artifactId>protocollo-ws</artifactId>
 		    <version>1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/lib/protocollo-ws.jar</systemPath>
 		</dependency>
 	</dependencies>
 
@@ -104,7 +83,7 @@
 	</scm>
 
 	<build>
-		<plugins>
+		<plugins>	
 			<plugin>
 			  <groupId>org.springframework.boot</groupId>
 			  <artifactId>spring-boot-maven-plugin</artifactId>
