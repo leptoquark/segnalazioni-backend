@@ -4,12 +4,18 @@ USER spring:spring
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
-COPY lib/protocollo-ws.jar lib/protocollo-ws.jar
+RUN mkdir libs
+COPY lib/protocollo-ws.jar libs/protocollo-ws.jar
 
 USER root
 COPY anticorruzione.cer /usr/local/openjdk-11/lib/security
 RUN \
     cd /usr/local/openjdk-11/lib/security \
     && keytool -keystore cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias anticorruzione -file anticorruzione.cer
+    
+    
+    
+ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-cp","'app.jar:libs/*'","it.anac.segnalazioni.backend.SegnalazioniBackendApplication"]
 
-ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-jar","/app.jar"]
+
+#ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-jar","/app.jar"]
