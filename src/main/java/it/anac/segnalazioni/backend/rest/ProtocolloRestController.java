@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.anac.segnalazioni.backend.domain.ProtocolloService;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloRequest;
+import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
 
 @RestController
 @RequestMapping(path="/ws")
@@ -19,9 +20,9 @@ public class ProtocolloRestController
 	private ProtocolloService protocolloService;
 		
 	@PostMapping("/protocollo")
-	public String invio(@RequestBody ProtocolloRequest pr) 
+	public ProtocolloResponse invio(@RequestBody ProtocolloRequest pr) 
 	{
-		String ret = "";
+		ProtocolloResponse ret = new ProtocolloResponse();
 		try {
 			 ret = 
 				protocolloService.invio(

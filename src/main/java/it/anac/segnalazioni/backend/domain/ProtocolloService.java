@@ -9,6 +9,7 @@ import java.net.URL;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
 import it.anac.segnalazioni.client.protocollo.AssegnatarioType;
 import it.anac.segnalazioni.client.protocollo.DocumentoType;
 import it.anac.segnalazioni.client.protocollo.IdentificazioneType;
@@ -18,6 +19,7 @@ import it.anac.segnalazioni.client.protocollo.ProtocolloTypeDocumenti;
 import it.anac.segnalazioni.client.protocollo.ProtocolloWS;
 import it.anac.segnalazioni.client.protocollo.ProtocolloWS_Service;
 import it.anac.segnalazioni.client.protocollo.RegistraRequestType;
+import it.anac.segnalazioni.client.protocollo.ResponseType;
 
 @Service
 public class ProtocolloService {
@@ -48,17 +50,17 @@ public class ProtocolloService {
 	    return outputStream.toByteArray();
 	}
 		
-	public String invio(String identificazioneAoo,
-						String identificazioneUfficio,
-						String protocolloTipoProtocollo,
-						String protocolloOggetto,
-						String protocolloMittente,
-						String protocolloTipoDocumento,
-						String assegnatarioUfficio,
-						int    assegnatarioCompetenza,
-						String documentoTipoDocumento,
-						String documentoNomeFile,
-						String documentoUrlDocumento) throws MalformedURLException
+	public ProtocolloResponse invio(String identificazioneAoo,
+									String identificazioneUfficio,
+									String protocolloTipoProtocollo,
+									String protocolloOggetto,
+									String protocolloMittente,
+									String protocolloTipoDocumento,
+									String assegnatarioUfficio,
+									int    assegnatarioCompetenza,
+									String documentoTipoDocumento,
+									String documentoNomeFile,
+									String documentoUrlDocumento) throws MalformedURLException
 	{
 		
 		ProtocolloWS_Service service = new ProtocolloWS_Service();
@@ -99,8 +101,15 @@ public class ProtocolloService {
 	
     	registraProtocolloRequest.setIdentificazione(identificazione);
     	registraProtocolloRequest.setProtocollo(protocollo);
-    	    	    	
-    	return client.registraProtocollo(registraProtocolloRequest).getDescrizioneEsito();
+    	    	   
+    	ResponseType aux = client.registraProtocollo(registraProtocolloRequest);
+
+    	ProtocolloResponse ret = new ProtocolloResponse();
+    	ret.setCodice(aux.getEsito());
+    	ret.setMessaggio(aux.getDescrizioneEsito());
+    	ret.setNumeroProtocollo(aux.getNumeroProtocollo());
+    	
+    	return ret;
     			
 	}
 }
