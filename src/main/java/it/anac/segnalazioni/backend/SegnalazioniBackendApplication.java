@@ -20,11 +20,11 @@ public class SegnalazioniBackendApplication
 	private String getActiveProfiles()
 	{
 		String out = "";
-	        for (String profileName : environment.getActiveProfiles()) {
-	            out = out +" " + profileName;
-	        }  
+		
+	    for (String profileName : environment.getActiveProfiles())
+	            out = out +" " + profileName; 
 	        
-	     return out;
+	     return out.trim();
 	}
 	
 	@Value("${segnalazioni.versione}")

@@ -4,6 +4,9 @@ USER spring:spring
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
+RUN mkdir /lib/
+COPY lib/protocollo-ws.jar lib/protocollo-ws.jar
+
 USER root
 COPY anticorruzione.cer /usr/local/openjdk-11/lib/security
 RUN \
