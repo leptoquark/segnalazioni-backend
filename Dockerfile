@@ -4,7 +4,7 @@ USER spring:spring
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
-RUN mkdir libs
+RUN mkdir customlibs
 COPY lib/protocollo-ws.jar customlibs/protocollo-ws.jar
 
 USER root
