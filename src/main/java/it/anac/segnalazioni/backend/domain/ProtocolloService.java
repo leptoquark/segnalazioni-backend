@@ -108,6 +108,10 @@ public class ProtocolloService {
     	ret.setCodice(aux.getEsito());
     	ret.setMessaggio(aux.getDescrizioneEsito());
     	ret.setNumeroProtocollo(aux.getNumeroProtocollo());
+    	System.out.println(aux.getUrlDocumento());
+    	System.out.println(aux.getDataProtocollo());
+    	System.out.println(aux.getTipoProtocollo());
+    	System.out.println(aux.getUrlDocumento());
     	
     	return ret;
     			
