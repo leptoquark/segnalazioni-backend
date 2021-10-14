@@ -5,7 +5,7 @@ ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
 RUN mkdir libs
-COPY lib/protocollo-ws.jar libs/protocollo-ws.jar
+COPY lib/protocollo-ws.jar customlibs/protocollo-ws.jar
 
 USER root
 COPY anticorruzione.cer /usr/local/openjdk-11/lib/security
@@ -15,7 +15,7 @@ RUN \
     
     
     
-ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-cp","'app.jar:libs/*'","it.anac.segnalazioni.backend.SegnalazioniBackendApplication"]
+ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-cp","'app.jar:customlibs/*'","it.anac.segnalazioni.backend.SegnalazioniBackendApplication"]
 
 
 #ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-jar","/app.jar"]
