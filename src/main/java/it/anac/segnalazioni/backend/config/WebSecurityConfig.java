@@ -50,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
     private static final String[] AUTH_WHITELIST = {
-    		"/landing",
-    		"/landing/**",
+    		"/actuator",
+    		"/actuator/**",
             "/",
     		"/v2/api-docs",
             "/v3/api-docs",  

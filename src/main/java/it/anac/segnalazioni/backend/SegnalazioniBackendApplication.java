@@ -1,6 +1,7 @@
 package it.anac.segnalazioni.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -20,16 +21,23 @@ public class SegnalazioniBackendApplication
 	{
 		String out = "Profilo:";
 	        for (String profileName : environment.getActiveProfiles()) {
-	            out = " " + profileName;
+	            out = out +" " + profileName;
 	        }  
 	        
 	     return out;
 	}
 	
+	@Value("${protocollo.ws.utente}")
+    private String utente;
+	public String getTrack()
+	{
+		return utente;
+	}
+	
 	@GetMapping("/")
 	public String landingPage()
 	{
-	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a><br> "+getActiveProfiles();
+	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a><br> "+getActiveProfiles()+" - "+getTrack();
 	}
 	
 	public static void main(String[] args)
