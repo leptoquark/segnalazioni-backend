@@ -1,6 +1,7 @@
 package it.anac.segnalazioni.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ public class SegnalazioniBackendApplication
 	@Autowired
 	private Environment environment;
     
-	public String getActiveProfiles()
+	private String getActiveProfiles()
 	{
 		String out = "Profilo:";
 	        for (String profileName : environment.getActiveProfiles()) {
@@ -26,10 +27,17 @@ public class SegnalazioniBackendApplication
 	     return out;
 	}
 	
+	@Value("${segnalazione.versione}")
+    private String versione;
+	private String getVersion()
+	{
+		return versione;
+	}
+	
 	@GetMapping("/")
 	public String landingPage()
 	{
-	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a><br> "+getActiveProfiles();
+	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a><br>versione "+getVersion()+"@"+getActiveProfiles();
 	}
 	
 	public static void main(String[] args)
