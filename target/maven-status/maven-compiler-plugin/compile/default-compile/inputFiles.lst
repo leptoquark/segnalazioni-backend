@@ -22,6 +22,7 @@ D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazio
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\Classificazione.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\PersonaGiuridicaRestController.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\appalto\Bando.java
+D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\SubmissionRestController.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\domain\AppaltiServiceAdapter.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\appalto\CONDIZIONINEGOZIATA.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\security\JwtUserDetailsService.java
