@@ -352,7 +352,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </wsdl:binding>
   <wsdl:service name="protocolloWS">
     <wsdl:port binding="impl:protocolloWSSOAPSoapBinding" name="protocolloWSSOAP">
-      <wsdlsoap:address location="http://10.130.128.89:8080/eprot-protocollo-ws/protocolloWSSOAP"/>
+      <wsdlsoap:address location="https://pre-eprot.anticorruzione.it/eprot-protocollo-ws/protocolloWSSOAP"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

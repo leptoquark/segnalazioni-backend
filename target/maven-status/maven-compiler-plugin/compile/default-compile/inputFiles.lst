@@ -36,6 +36,7 @@ D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazio
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\PersonaGiuridicaServiceAdapterRestImpl.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\appalto\StazioneAppaltante.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\Localizzazione.java
+D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\HealthRestController.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\security\JwtAuthenticationEntryPoint.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\config\WebSecurityConfig.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\security\JwtRequest.java
