@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.anac.segnalazioni.backend.domain.ProtocolloService;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloRequest;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
 

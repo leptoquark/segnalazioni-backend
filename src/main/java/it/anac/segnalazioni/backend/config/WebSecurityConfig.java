@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     		"/actuator",
     		"/actuator/**",
     		"/health",
+    		"/comuni",
             "/",
     		"/v2/api-docs",
             "/v3/api-docs",  
