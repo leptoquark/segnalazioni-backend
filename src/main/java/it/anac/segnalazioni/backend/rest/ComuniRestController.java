@@ -2,6 +2,7 @@ package it.anac.segnalazioni.backend.rest;
 
 import java.io.IOException;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class ComuniRestController
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
+	@CrossOrigin(origins = "http://nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local")
 	@GetMapping("/comuni")
 	public String getComuni() throws IOException
 	{
