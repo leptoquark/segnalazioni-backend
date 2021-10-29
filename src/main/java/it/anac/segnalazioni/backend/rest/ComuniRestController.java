@@ -15,7 +15,6 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils; 
 
 @RestController
-@RequestMapping(path="/ws")
 public class ComuniRestController
 {
 	@Autowired
