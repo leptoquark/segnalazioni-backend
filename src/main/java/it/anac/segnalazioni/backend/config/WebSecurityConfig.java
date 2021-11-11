@@ -2,6 +2,7 @@ package it.anac.segnalazioni.backend.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,6 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
+	
+	@Value("${jwt.enable}")
+	private String jwtEnable;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -63,11 +67,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "root"
     };
     
-
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		
+		String[] auth = {"/*","/**"};
+		if (jwtEnable.equals("true"))
+			auth=AUTH_WHITELIST;
+
+		
 		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll().
+				.authorizeRequests().antMatchers(auth).permitAll().
 				anyRequest().authenticated().and().
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
