@@ -48,6 +48,7 @@ it\anac\segnalazioni\backend\model\appalto\Appalto.class
 it\anac\segnalazioni\backend\model\appalto\CONDIZIONINEGOZIATA.class
 it\anac\segnalazioni\backend\model\pg\Localizzazione.class
 it\anac\segnalazioni\backend\rest\AntivirusRestController.class
+it\anac\segnalazioni\backend\rest\AppaltiTestController.class
 it\anac\segnalazioni\backend\rest\JwtAuthenticationController.class
 it\anac\segnalazioni\backend\model\pg\Stato.class
 it\anac\segnalazioni\backend\model\security\JwtResponse.class

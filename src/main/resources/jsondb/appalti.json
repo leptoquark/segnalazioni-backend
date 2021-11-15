@@ -1,0 +1,75 @@
+{
+    "codice_risposta": "OK",
+    "stazione_appaltante": {
+        "INDIRIZZO": "VIA SAN FRANCESCO DI PAOLA",
+        "ISTAT_COMUNE": "019087004",
+        "ID_CENTRO_COSTO": "BB41A9B3-1CAF-474B-B543-C0EBDE57D29F",
+        "DENOMINAZIONE_CENTRO_COSTO": "UFFICIO TECNICO SOGIP",
+        "DENOMINAZIONE_AMMINISTRAZIONE_APPALTANTE": "SO.G.I.P. SRL UNIPERSONALE",
+        "CITTA": "ACIREALE",
+        "REGIONE": "SICILIA",
+        "CF_AMMINISTRAZIONE_APPALTANTE": "04015810874",
+        "SEZIONE_REGIONALE": "SEZIONE REGIONALE SICILIA",
+        "CODICE_AUSA": "0000217879"
+    },
+    "pubblicazioni": {
+        "DATA_CREAZIONE": "2016-04-26",
+        "DATA_ALBO": "",
+        "DATA_GURI": "",
+        "DATA_GUCE": "",
+        "DATA_PUBBLICAZIONE": "2016-04-26",
+        "LINK_SITO_COMMITTENTE": "",
+        "DATA_BORE": ""
+    },
+    "bando": {
+        "LUOGO_ISTAT": "",
+        "CIG_ACCORDO_QUADRO": "",
+        "STATO": "ATTIVO",
+        "TIPO_CIG": "SMARTCIG",
+        "COD_TIPO_SCELTA_CONTRAENTE": 24,
+        "OGGETTO_LOTTO": "FORNITURA DI RAM AGGIUNTIVA PER SERVER CENTRALE",
+        "OGGETTO_GARA": "FORNITURA DI RAM AGGIUNTIVA PER SERVER CENTRALE",
+        "CPV": [
+            {
+                "DESCRIZIONE_CPV": "",
+                "COD_CPV": "",
+                "FLAG_PREVALENTE": null
+            }
+        ],
+        "FLAG_ESCLUSO": 0,
+        "NUMERO_GARA": "XA31927D46",
+        "IMPORTO_LOTTO": 729.18,
+        "CONDIZIONI_NEGOZIATA": [
+            {
+                "ID_CONDIZIONE": null,
+                "DESCRIZIONE": ""
+            }
+        ],
+        "SETTORE": "",
+        "LUOGO_NUTS": "",
+        "CUP": [
+            {
+                "CUP": ""
+            }
+        ],
+        "N_LOTTI_COMPONENTI": 1,
+        "CIG": "XA31927D46",
+        "IMPORTO_COMPLESSIVO_GARA": 729.18,
+        "COD_MODALITA_REALIZZAZIONE": null,
+        "MODALITA_REALIZZAZIONE": "",
+        "MOTIVO_ESCLUSIONE": "",
+        "DATA_SCADENZA_OFFERTA": "",
+        "SIGLA_PROVINCIA": "",
+        "TIPO_SCELTA_CONTRAENTE": "AFFIDAMENTO DIRETTO",
+        "OGGETTO_PRINCIPALE_CONTRATTO": "FORNITURE"
+    },
+    "incaricati": [
+        {
+            "CODICE_FISCALE": "MSSSVT47D18A028E",
+            "COGNOME": "MESSINA",
+            "DESCRIZIONE_RUOLO": "RESPONSABILE DEL PROCEDIMENTO",
+            "NOME": "SALVATORE",
+            "COD_RUOLO": 7
+        }
+    ]
+}

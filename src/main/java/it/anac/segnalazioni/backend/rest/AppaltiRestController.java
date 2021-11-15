@@ -1,6 +1,7 @@
 package it.anac.segnalazioni.backend.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class AppaltiRestController
 	@Autowired
 	private AppaltiServiceAdapter appaltiService;
 		
+	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
 	@GetMapping("/appalti/{cig}")
 	public Appalto getAppaltoFromCIG(@PathVariable String cig)
 	{

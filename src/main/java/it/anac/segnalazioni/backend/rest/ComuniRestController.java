@@ -21,7 +21,7 @@ public class ComuniRestController
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
-	@CrossOrigin(origins = "http://nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local")
+	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
 	@GetMapping("/comuni")
 	public String getComuni() throws IOException
 	{

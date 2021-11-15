@@ -38,7 +38,7 @@ public class SegnalazioniBackendApplication
 	@GetMapping("/")
 	public String landingPage()
 	{
-	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/\">SWAGGER</a><br>Versione: "+getVersion()+"@"+getActiveProfiles();
+	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/index.html\">SWAGGER</a><br>Versione: "+getVersion()+"@"+getActiveProfiles();
 	}
 	
 	public static void main(String[] args)
