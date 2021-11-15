@@ -35,6 +35,11 @@ public class AppaltiRestController
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		
+		/* solo per demo */
+		if (appalto.stazione_appaltante.iSTAT_COMUNE.trim().equals("015065052"))
+			appalto.stazione_appaltante.iSTAT_COMUNE="SALERNO";
+		
 		return appalto;
 	}
 }
