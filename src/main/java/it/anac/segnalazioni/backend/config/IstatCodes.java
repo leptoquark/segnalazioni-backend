@@ -30,7 +30,7 @@ public class IstatCodes {
 	
 	public IstatCodes() throws FileNotFoundException, IOException, CsvException
 	{
-		FileReader fr = new FileReader(ResourceUtils.getFile("classpath:csvdb/istat.csv"));	
+		FileReader fr = new FileReader(ResourceUtils.getFile("classpath:istat.csv"));	
 		CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
 		  try(CSVReader reader = new CSVReaderBuilder(fr)
 		          .withCSVParser(csvParser)
