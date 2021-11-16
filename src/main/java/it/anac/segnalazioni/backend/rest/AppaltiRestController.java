@@ -11,7 +11,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.anac.segnalazioni.backend.config.IstatCodes;
 import it.anac.segnalazioni.backend.domain.AppaltiServiceAdapter;
 import it.anac.segnalazioni.backend.model.appalto.Appalto;
 
@@ -21,9 +20,6 @@ public class AppaltiRestController
 {
 	@Autowired
 	private AppaltiServiceAdapter appaltiService;
-	
-	 @Autowired
-	 private IstatCodes istat;
 		
 	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
 	@GetMapping("/appalti/{cig}")
@@ -34,12 +30,18 @@ public class AppaltiRestController
 		Appalto appalto = null;
 		try {
 			appalto = om.readValue(appaltiService.getAppaltoFromCIG(cig), Appalto.class);
-			String codice = (appalto.stazione_appaltante.iSTAT_COMUNE.trim().substring(2));
-			String comune = istat.getComuneFromIstatCode(codice);
-			appalto.stazione_appaltante.iSTAT_COMUNE=comune;			
 		} catch (JsonMappingException e) {
+			appalto = new Appalto();
+			appalto.codice_risposta="NOKCN";
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
+			appalto = new Appalto();
+			appalto.codice_risposta="NOKCN";
+			e.printStackTrace();
+		}
+		catch(Exception e) {
+			appalto = new Appalto();
+			appalto.codice_risposta="NOKCN";
 			e.printStackTrace();
 		}
 		return appalto;
