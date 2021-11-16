@@ -10,5 +10,6 @@ USER spring:spring
 
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
+COPY istat.csv istat.csv
 
 ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-jar","/app.jar"]

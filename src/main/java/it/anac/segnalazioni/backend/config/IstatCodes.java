@@ -1,5 +1,6 @@
 package it.anac.segnalazioni.backend.config;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class IstatCodes {
 	
 	public IstatCodes() throws FileNotFoundException, IOException, CsvException
 	{
-		FileReader fr = new FileReader(ResourceUtils.getFile("classpath:istat.csv"));	
+		FileReader fr = new FileReader(new File("istat.csv"));	
 		CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
 		  try(CSVReader reader = new CSVReaderBuilder(fr)
 		          .withCSVParser(csvParser)
