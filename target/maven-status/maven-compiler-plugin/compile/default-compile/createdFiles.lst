@@ -1,6 +1,7 @@
 it\anac\segnalazioni\backend\model\pg\Documento.class
 it\anac\segnalazioni\backend\rest\AppaltiRestController.class
 it\anac\segnalazioni\backend\rest\security\JwtTokenUtil.class
+it\anac\segnalazioni\backend\config\IstatCodes.class
 it\anac\segnalazioni\backend\rest\security\JwtRequestFilter.class
 it\anac\segnalazioni\backend\config\WebSecurityConfig.class
 it\anac\segnalazioni\backend\rest\PersonaGiuridicaRestController.class

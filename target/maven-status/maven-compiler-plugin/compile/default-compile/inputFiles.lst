@@ -46,6 +46,7 @@ D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazio
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\Stato.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\Indirizzo.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\ComuniRestController.java
+D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\config\IstatCodes.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\Classificazione.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\SubmissionRestController.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\appalto\CONDIZIONINEGOZIATA.java
