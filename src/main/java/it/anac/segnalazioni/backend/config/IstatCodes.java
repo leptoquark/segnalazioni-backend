@@ -7,10 +7,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -22,13 +25,12 @@ import com.opencsv.exceptions.CsvException;
 @Scope("singleton")
 public class IstatCodes {
 	
+	
 	private HashMap<String,String> istat = new HashMap<String, String>();
 	
 	public IstatCodes() throws FileNotFoundException, IOException, CsvException
 	{
-		Resource resource = new ClassPathResource("csvdb/istat.csv");
-		System.out.println("FILE:"+resource.getFile());
-		FileReader fr = new FileReader(resource.getFile());	
+		FileReader fr = new FileReader(ResourceUtils.getFile("classpath:csvdb/istat.csv"));	
 		CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
 		  try(CSVReader reader = new CSVReaderBuilder(fr)
 		          .withCSVParser(csvParser)
