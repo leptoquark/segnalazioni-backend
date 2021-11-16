@@ -20,6 +20,27 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 	{
 		this.webClient = webClientBuilder.baseUrl(personaGiuridicaServiceUri).build();
 	}
+	
+	@Override
+	public String getPersonaGiuridicaFromCF(String cf) {
+		
+		String pg = null;
+						
+		Mono<String> response = webClient
+							.get()
+							.uri(personaGiuridicaServiceUri+"/codicefiscale/{cf}",
+									cf)
+							.retrieve()
+							.bodyToMono(String.class);
+		
+		try {
+			pg = response.block();
+		} catch(WebClientException e) 
+		{
+			e.printStackTrace();
+		}
+		return pg;
+	}	
 
 	@Override
 	public String getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike, int page, int size) {

@@ -21,7 +21,7 @@ public class PersonaGiuridicaRestController
 	@Autowired
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
 	
-	@GetMapping("/personagiuridica/{denominazioneLike}")
+	@GetMapping("/personagiuridica/denominazione/{denominazioneLike}")
 	public PersonaGiuridica[] getPGFromDenominazione(@PathVariable String denominazioneLike,
 										 @RequestParam(defaultValue = "0") int page,
 										 @RequestParam(defaultValue = "10") int size) 
@@ -35,6 +35,25 @@ public class PersonaGiuridicaRestController
 							denominazioneLike,
 							page,
 							size), PersonaGiuridica[].class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return pg;
+	}
+	
+	@GetMapping("/personagiuridica/cf/{cf}")
+	public PersonaGiuridica getPGFromCF(@PathVariable String cf) 
+	{
+		ObjectMapper om = new ObjectMapper();
+		PersonaGiuridica pg = null;
+		
+		try {
+			pg = om.readValue(personaGiuridicaService.
+					getPersonaGiuridicaFromCF(cf),
+					PersonaGiuridica.class);
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
