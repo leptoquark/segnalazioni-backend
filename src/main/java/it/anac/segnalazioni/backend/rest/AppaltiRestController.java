@@ -29,23 +29,19 @@ public class AppaltiRestController
 	@GetMapping("/appalti/{cig}")
 	public Appalto getAppaltoFromCIG(@PathVariable String cig)
 	{
-		
-
 		// XA31927D46
 		ObjectMapper om = new ObjectMapper();
 		Appalto appalto = null;
 		try {
 			appalto = om.readValue(appaltiService.getAppaltoFromCIG(cig), Appalto.class);
+			String codice = (appalto.stazione_appaltante.iSTAT_COMUNE.trim().substring(2));
+			String comune = istat.getComuneFromIstatCode(codice);
+			appalto.stazione_appaltante.iSTAT_COMUNE=comune;			
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-
-		String codice = (appalto.stazione_appaltante.iSTAT_COMUNE.trim().substring(2));
-		String comune = istat.getComuneFromIstatCode(codice);
-		appalto.stazione_appaltante.iSTAT_COMUNE=comune;
-		
 		return appalto;
 	}
 }

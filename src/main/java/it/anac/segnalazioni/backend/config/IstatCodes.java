@@ -12,7 +12,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
 
 @Service
@@ -23,10 +26,13 @@ public class IstatCodes {
 	
 	public IstatCodes() throws FileNotFoundException, IOException, CsvException
 	{
-		Resource resource = new ClassPathResource("jsondb/istat.csv");
+		Resource resource = new ClassPathResource("csvdb/istat.csv");
 		System.out.println("FILE:"+resource.getFile());
-		FileReader fr = new FileReader(resource.getFile());
-		try (CSVReader reader = new CSVReader(fr)) {
+		FileReader fr = new FileReader(resource.getFile());	
+		CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
+		  try(CSVReader reader = new CSVReaderBuilder(fr)
+		          .withCSVParser(csvParser)
+		          .build()){
 		      List<String[]> r = reader.readAll();
 		      r.forEach(x -> istat.put(x[0],x[1]));
 		  }
