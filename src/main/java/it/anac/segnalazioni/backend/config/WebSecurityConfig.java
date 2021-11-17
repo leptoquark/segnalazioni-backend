@@ -1,6 +1,11 @@
 package it.anac.segnalazioni.backend.config;
 
 
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -64,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-resources/**", 
             "/swagger-ui/**",
             "/authenticate",
+            "/authenticate/**",
             "root"
     };
     
@@ -80,7 +86,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				anyRequest().authenticated().and().
 				exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
+		
+		httpSecurity.cors();
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		
+	
 	}
+	
+	
+	
 }

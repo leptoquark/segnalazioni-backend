@@ -24,7 +24,7 @@ public class SegnalazioniBackendApplication
 	    for (String profileName : environment.getActiveProfiles())
 	            out = out +" " + profileName; 
 	        
-	     return out.trim();
+	    return out.trim();
 	}
 	
 	@Value("${segnalazioni.versione}")

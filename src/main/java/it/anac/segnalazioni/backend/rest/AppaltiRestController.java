@@ -21,7 +21,7 @@ public class AppaltiRestController
 	@Autowired
 	private AppaltiServiceAdapter appaltiService;
 		
-	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/appalti/{cig}")
 	public Appalto getAppaltoFromCIG(@PathVariable String cig)
 	{

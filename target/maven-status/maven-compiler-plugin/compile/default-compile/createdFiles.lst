@@ -7,7 +7,6 @@ it\anac\segnalazioni\backend\config\WebSecurityConfig.class
 it\anac\segnalazioni\backend\rest\PersonaGiuridicaRestController.class
 it\anac\segnalazioni\backend\rest\PersonaGiuridicaServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\model\pg\Ruoli.class
-it\anac\segnalazioni\backend\config\WebConfig.class
 it\anac\segnalazioni\backend\model\pg\TipoSoggetto.class
 it\anac\segnalazioni\backend\rest\security\JwtUserDetailsService.class
 it\anac\segnalazioni\backend\model\appalto\CPV.class

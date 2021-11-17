@@ -1,6 +1,7 @@
 package it.anac.segnalazioni.backend.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class PersonaGiuridicaRestController
 	@Autowired
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
 	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/personagiuridica/denominazione/{denominazioneLike}")
 	public PersonaGiuridica[] getPGFromDenominazione(@PathVariable String denominazioneLike,
 										 @RequestParam(defaultValue = "0") int page,
@@ -44,6 +46,7 @@ public class PersonaGiuridicaRestController
 		return pg;
 	}
 	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/personagiuridica/cf/{cf}")
 	public PersonaGiuridica getPGFromCF(@PathVariable String cf) 
 	{
