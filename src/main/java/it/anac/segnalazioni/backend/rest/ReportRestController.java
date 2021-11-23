@@ -67,8 +67,8 @@ public class ReportRestController
 		query.addCriteria(Criteria.where("_id").is(id));
 		List<JSONObject> res = mongoTemplate.find(query,JSONObject.class, "submissions");
 		
-		String nome = res.get(0).getJSONObject("data").getString("soggettoSegnalanteColumnsText");
-		String cognome = res.get(0).getJSONObject("data").getString("soggettoSegnalanteColumnsText2");
+		String nome = res.get(0).toString();
+		String cognome = res.get(0).toString();
 		
 		System.out.println("NOME: "+nome);
 		System.out.println("COGNOME: "+cognome);
