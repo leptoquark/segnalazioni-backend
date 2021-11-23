@@ -2,6 +2,7 @@ package it.anac.segnalazioni.backend.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,6 +59,7 @@ public class HealthRestController {
 		return pg;
 	}
 
+   @CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
    @GetMapping("/health")
    HttpStatus test() {
 	   

@@ -45,6 +45,7 @@ it\anac\segnalazioni\backend\model\appalto\Bando.class
 it\anac\segnalazioni\backend\model\appalto\StazioneAppaltante.class
 it\anac\segnalazioni\backend\rest\SubmissionRestController.class
 it\anac\segnalazioni\backend\model\appalto\Appalto.class
+it\anac\segnalazioni\backend\rest\ReportRestController.class
 it\anac\segnalazioni\backend\model\appalto\CONDIZIONINEGOZIATA.class
 it\anac\segnalazioni\backend\model\pg\Localizzazione.class
 it\anac\segnalazioni\backend\rest\AntivirusRestController.class

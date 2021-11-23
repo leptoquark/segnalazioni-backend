@@ -49,6 +49,25 @@ public class ProtocolloService {
 
 	    return outputStream.toByteArray();
 	}
+	
+	/**
+	 * 
+	 * Discutere con Pozzaglia e Cerniera
+	 * 
+	 * @param identificazioneAoo : ANAC
+	 * @param identificazioneUfficio : ANAC
+	 * @param protocolloTipoProtocollo : O
+	 * @param protocolloOggetto: TEST
+	 * @param protocolloMittente: test test
+	 * @param protocolloTipoDocumento: lettera
+	 * @param assegnatarioUfficio: ufficio1
+	 * @param assegnatarioCompetenza: 1
+	 * @param documentoTipoDocumento: P
+	 * @param documentoNomeFile: test.dpf
+	 * @param documentoUrlDocumento: https://www.anticorruzione.it/documents/91439/129009/Avviso+pubblicazione+esito+prova+orale+e+approvazione+graduatoria+finale+F6IT.pdf/cd5c33c9-40d8-2afb-1f1d-01aacd3df9df?t=1589372298123
+	 * @return
+	 * @throws MalformedURLException
+	 */
 		
 	public ProtocolloResponse invio(String identificazioneAoo,
 									String identificazioneUfficio,

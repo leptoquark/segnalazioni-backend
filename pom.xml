@@ -72,7 +72,6 @@
     		<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		
-		<!-- Micrometer Prometheus registry  -->
 		<dependency>
 		    <groupId>io.micrometer</groupId>
 		    <artifactId>micrometer-registry-prometheus</artifactId>
@@ -84,11 +83,30 @@
 		    <version>1.0</version>
 		</dependency>
 		
-		  <dependency>
-      <groupId>com.opencsv</groupId>
-      <artifactId>opencsv</artifactId>
-      <version>5.3</version>
-  </dependency>
+	    <dependency>
+      		<groupId>com.opencsv</groupId>
+      		<artifactId>opencsv</artifactId>
+      		<version>5.3</version>
+  		</dependency>
+  		
+  		<dependency>
+		   <groupId>fr.opensagres.xdocreport</groupId>
+		   <artifactId>fr.opensagres.xdocreport.document.odt</artifactId>
+		   <version>1.0.5</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>fr.opensagres.xdocreport</groupId>
+		   <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
+		   <version>1.0.5</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>fr.opensagres.xdocreport</groupId>
+		   <artifactId>fr.opensagres.xdocreport.converter.odt.odfdom</artifactId>
+		   <version>1.0.5</version>
+		</dependency>
+		
 	</dependencies>
 
 	<scm>
