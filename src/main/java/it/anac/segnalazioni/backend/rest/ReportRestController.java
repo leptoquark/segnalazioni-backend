@@ -34,6 +34,7 @@ import fr.opensagres.xdocreport.converter.ConverterTypeVia;
 import fr.opensagres.xdocreport.converter.Options;
 import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.IXDocReport;
+import fr.opensagres.xdocreport.document.json.JSONObject;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
@@ -64,12 +65,16 @@ public class ReportRestController
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
-		List<Object> res = mongoTemplate.find(query,Object.class, "submissions");
+		List<JSONObject> res = mongoTemplate.find(query,JSONObject.class, "submissions");
 		
-		System.out.println("RES: "+res.get(0));
+		String nome = res.get(0).getJSONObject("data").getString("soggettoSegnalanteColumnsText");
+		String cognome = res.get(0).getJSONObject("data").getString("soggettoSegnalanteColumnsText2");
 		
-		ctx.put("nome", "");
-		ctx.put("cognome", "");
+		System.out.println("NOME: "+nome);
+		System.out.println("COGNOME: "+cognome);
+		
+		ctx.put("nome", nome);
+		ctx.put("cognome", cognome);
 	    
 		OutputStream out = new FileOutputStream(filePath);
 		report.convert(ctx, options, out);
