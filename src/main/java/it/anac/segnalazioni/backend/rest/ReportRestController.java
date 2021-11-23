@@ -68,12 +68,12 @@ public class ReportRestController
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
-		List<String> res = mongoTemplate.find(query, String.class);
+		List<Object> res = mongoTemplate.find(query, Object.class, collezione);
 		
-		System.out.println("res:"+res.get(0));
+		System.out.println(res.get(0));
 		
-		ctx.put("nome", res.get(0));
-		ctx.put("cognome", res.get(0));
+		ctx.put("nome", "");
+		ctx.put("cognome", "");
 	    
 		OutputStream out = new FileOutputStream(filePath);
 		report.convert(ctx, options, out);
