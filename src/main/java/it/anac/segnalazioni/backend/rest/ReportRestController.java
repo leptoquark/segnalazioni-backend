@@ -42,10 +42,6 @@ import fr.opensagres.xdocreport.template.TemplateEngineKind;
 @RequestMapping(path="/ws")
 public class ReportRestController
 {
-	
-	@Value("${mongo.submussion.collection}")
-	   private String collezione;
-
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
@@ -68,7 +64,7 @@ public class ReportRestController
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
-		List<Object> res = mongoTemplate.find(query, Object.class, collezione);
+		List<Object> res = mongoTemplate.find(query,Object.class, "submissions");
 		
 		System.out.println(res.get(0));
 		
