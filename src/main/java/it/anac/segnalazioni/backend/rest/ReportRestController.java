@@ -50,7 +50,7 @@ public class ReportRestController
 	public ResponseEntity<InputStreamResource> download(
 			@RequestParam(defaultValue = "null") String id) throws IOException, XDocReportException {
 		
-	    String filePath = "out.pdf";
+	    String filePath = System.getProperty("java.io.tmpdir")+"/out.pdf";
 		
 		File initialFile = new File("tmpl.odt");
 	    InputStream in = new FileInputStream(initialFile);
@@ -66,7 +66,7 @@ public class ReportRestController
 		query.addCriteria(Criteria.where("_id").is(id));
 		List<Object> res = mongoTemplate.find(query,Object.class, "submissions");
 		
-		System.out.println(res.get(0));
+		System.out.println("RES: "+res.get(0));
 		
 		ctx.put("nome", "");
 		ctx.put("cognome", "");
