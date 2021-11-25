@@ -1,5 +1,6 @@
 package it.anac.segnalazioni.backend;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SegnalazioniBackendApplication
 {
+
 	@Autowired
 	private Environment environment;
     
@@ -43,7 +45,7 @@ public class SegnalazioniBackendApplication
 	
 	public static void main(String[] args)
 	{
-		SpringApplication.run(SegnalazioniBackendApplication.class, args);
+		SpringApplication.run(SegnalazioniBackendApplication.class, args);	
 	}
 	
     @Bean

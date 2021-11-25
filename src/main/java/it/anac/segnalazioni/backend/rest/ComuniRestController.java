@@ -5,10 +5,16 @@ import java.io.IOException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.opencsv.exceptions.CsvException;
+
+import it.anac.segnalazioni.backend.config.IstatCodes;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -25,7 +31,6 @@ public class ComuniRestController
 	@GetMapping("/comuni")
 	public String getComuni() throws IOException
 	{
-
 		 Resource resource = resourceLoader.getResource("classpath:jsondb/comuni.json");
 		    InputStream inputStream = resource.getInputStream();
 
@@ -33,5 +38,30 @@ public class ComuniRestController
 		        String data = new String(bdata, StandardCharsets.ISO_8859_1);
 
 	     return data;
+	}
+	
+	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@GetMapping("/comuniFromProvincia")
+	public List<String> getComuniFromProvincia(@RequestParam String provincia) throws IOException, CsvException
+	{
+		IstatCodes ic = new IstatCodes();
+		return ic.getComuniFromProvincia(provincia);
+	}
+	
+	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@GetMapping("/provinceFromRegione")
+	public List<String> getProvinceFromRegione(@RequestParam String regione) throws IOException, CsvException
+	{
+		IstatCodes ic = new IstatCodes();
+		return ic.getProvinceFromRegione(regione);
+
+	}
+	
+	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@GetMapping("/regioni")
+	public List<String> getRegioni() throws IOException, CsvException
+	{
+		IstatCodes ic = new IstatCodes();
+		return ic.getRegioni();
 	}
 }

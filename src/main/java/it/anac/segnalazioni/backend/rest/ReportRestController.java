@@ -8,14 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -49,9 +43,9 @@ public class ReportRestController
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/report", method = RequestMethod.GET)	
 	public ResponseEntity<InputStreamResource> download(
-			@RequestParam(defaultValue = "null") String id) throws IOException, XDocReportException {
+			@RequestParam(defaultValue = "") String id) throws IOException, XDocReportException {
 		
-	    String filePath = System.getProperty("java.io.tmpdir")+"/out.pdf";
+	    String filePath = System.getProperty("java.io.tmpdir")+"/out"+id+"-"+System.currentTimeMillis()+".pdf";
 		
 		File initialFile = new File("tmpl.odt");
 	    InputStream in = new FileInputStream(initialFile);
@@ -65,10 +59,10 @@ public class ReportRestController
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
-		List<JSONObject> res = mongoTemplate.find(query,JSONObject.class, "submissions");
+		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
 		
-		String nome = res.get(0).toString();
-		String cognome = res.get(0).toString();
+		String nome = res.toString();
+		String cognome = res.toString();
 		
 		System.out.println("NOME: "+nome);
 		System.out.println("COGNOME: "+cognome);
