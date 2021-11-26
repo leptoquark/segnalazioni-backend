@@ -27,7 +27,7 @@ public class ComuniRestController
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
-	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/comuni")
 	public String getComuni() throws IOException
 	{
@@ -40,7 +40,7 @@ public class ComuniRestController
 	     return data;
 	}
 	
-	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/comuniFromProvincia")
 	public List<String> getComuniFromProvincia(@RequestParam String provincia) throws IOException, CsvException
 	{
@@ -48,7 +48,7 @@ public class ComuniRestController
 		return ic.getComuniFromProvincia(provincia);
 	}
 	
-	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/provinceFromRegione")
 	public List<String> getProvinceFromRegione(@RequestParam String regione) throws IOException, CsvException
 	{
@@ -57,7 +57,7 @@ public class ComuniRestController
 
 	}
 	
-	@CrossOrigin(origins = "http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local")
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/regioni")
 	public List<String> getRegioni() throws IOException, CsvException
 	{
