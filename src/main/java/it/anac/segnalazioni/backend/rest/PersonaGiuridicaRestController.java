@@ -23,8 +23,8 @@ public class PersonaGiuridicaRestController
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
 	
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
-	@GetMapping("/personagiuridica/denominazione/{denominazioneLike}")
-	public PersonaGiuridica[] getPGFromDenominazione(@PathVariable String denominazioneLike,
+	@GetMapping("/personagiuridica/denominazione")
+	public PersonaGiuridica[] getPGFromDenominazione(@RequestParam String denominazioneLike,
 										 @RequestParam(defaultValue = "0") int page,
 										 @RequestParam(defaultValue = "10") int size) 
 	{
@@ -47,8 +47,8 @@ public class PersonaGiuridicaRestController
 	}
 	
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
-	@GetMapping("/personagiuridica/cf/{cf}")
-	public PersonaGiuridica getPGFromCF(@PathVariable String cf) 
+	@GetMapping("/personagiuridica/cf")
+	public PersonaGiuridica getPGFromCF(@RequestParam String cf) 
 	{
 		ObjectMapper om = new ObjectMapper();
 		PersonaGiuridica pg = null;
