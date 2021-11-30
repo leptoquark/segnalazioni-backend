@@ -67,7 +67,7 @@ public class PersonaGiuridicaRestController
 	}
 	
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
-	@GetMapping("/personagiuridica-list/cf")
+	@GetMapping("/personagiuridica/cf-list")
 	public PersonaGiuridica[] getPGFromCFList(@RequestParam String cf) 
 	{
 		ObjectMapper om = new ObjectMapper();
