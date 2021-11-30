@@ -51,7 +51,7 @@ public class PersonaGiuridicaRestController
 	public PersonaGiuridica getPGFromCF(@RequestParam String cf) 
 	{
 		ObjectMapper om = new ObjectMapper();
-		PersonaGiuridica pg = null;
+		PersonaGiuridica pg = new PersonaGiuridica();
 		
 		try {
 			pg = om.readValue(personaGiuridicaService.
@@ -65,27 +65,5 @@ public class PersonaGiuridicaRestController
 		
 		return pg;
 	}
-	
-	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
-	@GetMapping("/personagiuridica/cf-list")
-	public PersonaGiuridica[] getPGFromCFList(@RequestParam String cf) 
-	{
-		ObjectMapper om = new ObjectMapper();
-		PersonaGiuridica pg = null;
-		
-		try {
-			pg = om.readValue(personaGiuridicaService.
-					getPersonaGiuridicaFromCF(cf),
-					PersonaGiuridica.class);
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		
-		PersonaGiuridica[] pgs = new PersonaGiuridica[1];
-		pgs[0]=pg;
-			
-		return (pgs);
-	}
+
 }
