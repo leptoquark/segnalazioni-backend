@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -32,6 +34,8 @@ import fr.opensagres.xdocreport.document.json.JSONObject;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
+import it.anac.segnalazioni.backend.report.model.Segnalante;
+import it.anac.segnalazioni.backend.report.model.SoggettoInteressato;
 
 @RestController
 @RequestMapping(path="/ws")
@@ -61,14 +65,24 @@ public class ReportRestController
 		query.addCriteria(Criteria.where("_id").is(id));
 		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
 		
-		String nome = res.toString();
-		String cognome = res.toString();
 		
-		System.out.println("NOME: "+nome);
-		System.out.println("COGNOME: "+cognome);
+		/****************************************/
 		
-		ctx.put("nome", nome);
-		ctx.put("cognome", cognome);
+		Segnalante segnalante = new Segnalante("Giancarlo", "Carbone", "CRBGCR68B20F839U", "RPCT");
+		// sub.setArea("Anticorruzione");
+		
+		List<SoggettoInteressato> soggetti = new ArrayList<SoggettoInteressato>();
+		soggetti.add(new SoggettoInteressato("CLAUDIO","BIANCALANA","FUNZIONARIO","DIRIGENTE" ));
+		soggetti.add(new SoggettoInteressato("ENZO","BONETTI","DIRIGENTE","CONSIGLIERE" ));
+		soggetti.add(new SoggettoInteressato("PIPPO","PLUTO","DIRIGENTE","CONSIGLIERE" ));
+		soggetti.add(new SoggettoInteressato("AAA","BBBB","DIRIGENTE","CONSIGLIERE" ));
+		soggetti.add(new SoggettoInteressato("CCCC","DDDD","DIRIGENTE","CONSIGLIERE" ));
+		
+		ctx.put("segnalante", segnalante);
+		ctx.put("area","Anticorruzione");
+		ctx.put("incarichi", soggetti);
+
+		/*******************************************/
 	    
 		OutputStream out = new FileOutputStream(filePath);
 		report.convert(ctx, options, out);

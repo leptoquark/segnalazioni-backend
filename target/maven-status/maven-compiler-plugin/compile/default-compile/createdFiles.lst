@@ -7,6 +7,7 @@ it\anac\segnalazioni\backend\config\WebSecurityConfig.class
 it\anac\segnalazioni\backend\rest\PersonaGiuridicaRestController.class
 it\anac\segnalazioni\backend\rest\PersonaGiuridicaServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\model\pg\Ruoli.class
+it\anac\segnalazioni\backend\report\model\Allegato.class
 it\anac\segnalazioni\backend\model\pg\TipoSoggetto.class
 it\anac\segnalazioni\backend\rest\security\JwtUserDetailsService.class
 it\anac\segnalazioni\backend\model\appalto\CPV.class
@@ -26,6 +27,8 @@ it\anac\segnalazioni\backend\model\pg\Classificazione.class
 it\anac\segnalazioni\backend\rest\AppaltiServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\model\pg\Georef.class
 it\anac\segnalazioni\backend\model\protocollo\ProtocolloResponse.class
+it\anac\segnalazioni\backend\report\model\SoggettoInteressato.class
+it\anac\segnalazioni\backend\report\model\Organizzazione.class
 it\anac\segnalazioni\backend\model\security\JwtRequest.class
 it\anac\segnalazioni\backend\model\pg\PersonaGiuridica.class
 it\anac\segnalazioni\backend\model\pg\Citta.class
@@ -38,6 +41,8 @@ it\anac\segnalazioni\backend\model\pg\NaturaGiuridica.class
 it\anac\segnalazioni\backend\model\pg\Provincia.class
 it\anac\segnalazioni\backend\domain\antivirus\AntivirusRequest.class
 it\anac\segnalazioni\backend\model\protocollo\ProtocolloRequest.class
+it\anac\segnalazioni\backend\report\model\Segnalazione.class
+it\anac\segnalazioni\backend\report\model\SubmissionMdl.class
 it\anac\segnalazioni\backend\domain\antivirus\ScanResult.class
 it\anac\segnalazioni\backend\model\appalto\Pubblicazioni.class
 it\anac\segnalazioni\backend\rest\SpringFoxConfig.class
@@ -49,6 +54,7 @@ it\anac\segnalazioni\backend\rest\ReportRestController.class
 it\anac\segnalazioni\backend\model\appalto\CONDIZIONINEGOZIATA.class
 it\anac\segnalazioni\backend\model\pg\Localizzazione.class
 it\anac\segnalazioni\backend\rest\AntivirusRestController.class
+it\anac\segnalazioni\backend\report\model\Segnalante.class
 it\anac\segnalazioni\backend\rest\AppaltiTestController.class
 it\anac\segnalazioni\backend\rest\JwtAuthenticationController.class
 it\anac\segnalazioni\backend\model\pg\Stato.class
