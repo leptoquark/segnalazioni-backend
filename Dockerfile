@@ -11,6 +11,6 @@ USER spring:spring
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 COPY istat.csv istat.csv
-COPY tmpl.odt tmpl.odt
+COPY template.odt template.odt
 
 ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-jar","/app.jar"]

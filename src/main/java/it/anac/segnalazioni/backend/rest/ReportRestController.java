@@ -51,7 +51,7 @@ public class ReportRestController
 		
 	    String filePath = System.getProperty("java.io.tmpdir")+"/out"+id+"-"+System.currentTimeMillis()+".pdf";
 		
-		File initialFile = new File("tmpl.odt");
+		File initialFile = new File("template.odt");
 	    InputStream in = new FileInputStream(initialFile);
 
 		IXDocReport report = XDocReportRegistry.getRegistry().
