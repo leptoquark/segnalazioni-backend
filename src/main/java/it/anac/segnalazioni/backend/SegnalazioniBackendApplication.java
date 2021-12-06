@@ -1,6 +1,10 @@
 package it.anac.segnalazioni.backend;
 
 
+import java.io.IOException;
+
+import javax.naming.NamingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +14,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import it.anac.segnalazioni.backend.model.mailer.Mailer;
 
 @SpringBootApplication
 @RestController
@@ -40,6 +46,15 @@ public class SegnalazioniBackendApplication
 	@GetMapping("/")
 	public String landingPage()
 	{
+		try {
+			Mailer mailer = new Mailer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    return " SEGNALAZIONI - BACKEND API <a href=\"/swagger-ui/index.html\">SWAGGER</a><br>Versione: "+getVersion()+"@"+getActiveProfiles();
 	}
 	

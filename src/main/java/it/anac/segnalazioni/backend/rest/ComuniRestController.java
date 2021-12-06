@@ -63,4 +63,12 @@ public class ComuniRestController
 		IstatCodes ic = new IstatCodes();
 		return ic.getRegioni();
 	}
+	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
+	@GetMapping("/regioneFromProvincia")
+	public String getRegioneFromProvincia(String provincia) throws IOException, CsvException
+	{
+		IstatCodes ic = new IstatCodes();
+		return ic.getRegioneFromProvincia(provincia);
+	}
 }

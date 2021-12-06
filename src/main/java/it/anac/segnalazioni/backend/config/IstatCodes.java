@@ -85,6 +85,19 @@ public class IstatCodes {
 	    return Arrays.asList(sorted_regioni);
 	}
 	
+	public String getRegioneFromProvincia(String provincia) throws CsvValidationException, IOException
+	{
+		String notFound = "";
+		
+	    String[] line;
+	    while ((line = csvReader.readNext()) != null) {
+	    		if (line[3].toLowerCase().trim().equals(
+	    						provincia.toLowerCase().trim()))
+	    			return line[1];
+	    }
+	    return notFound;
+	}
+	
 	public static void main(String[] argv) throws FileNotFoundException, IOException, CsvException
 	{
 		IstatCodes ic = new IstatCodes();
@@ -93,6 +106,8 @@ public class IstatCodes {
 		Iterator iter = list.iterator();
 		while(iter.hasNext())
 			System.out.println(iter.next().toString());
+		
+		System.out.println(ic.getRegioneFromProvincia("ROMA"));
 	}
 
 }

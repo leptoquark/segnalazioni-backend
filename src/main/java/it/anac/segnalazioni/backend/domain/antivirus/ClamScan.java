@@ -1,8 +1,5 @@
 package it.anac.segnalazioni.backend.domain.antivirus;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,8 +9,6 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class ClamScan {
-
-    private static Log log = LogFactory.getLog(ClamScan.class);
 
     public static final int CHUNK_SIZE = 2048;
     private static final byte[] INSTREAM = "zINSTREAM\0".getBytes();
@@ -69,14 +64,14 @@ public class ClamScan {
         try {
             socket.connect(new InetSocketAddress(getHost(), getPort()));
         } catch (IOException e) {
-            log.error("could not connect to clamd server", e);
-            return null;
+        	e.printStackTrace();
+        	return null;
         }
 
         try {
             socket.setSoTimeout(getTimeout());
         } catch (SocketException e) {
-            log.error("Could not set socket timeout to " + getTimeout() + "ms", e);
+        	e.printStackTrace();
         }
 
         DataOutputStream dos = null;
@@ -86,15 +81,15 @@ public class ClamScan {
             try {
                 dos = new DataOutputStream(socket.getOutputStream());
             } catch (IOException e) {
-                log.error("could not open socket OutputStream", e);
-                return null;
+            	e.printStackTrace();
+            	return null;
             }
 
             try {
                 dos.write(cmd);
                 dos.flush();
             } catch (IOException e) {
-                log.debug("error writing " + new String(cmd) + " command", e);
+            	e.printStackTrace();
                 return null;
             }
 
@@ -102,8 +97,8 @@ public class ClamScan {
             try {
                 is = socket.getInputStream();
             } catch (IOException e) {
-                log.error("error getting InputStream from socket", e);
-                return null;
+            	e.printStackTrace();
+            	return null;
             }
 
             int read = CHUNK_SIZE;
@@ -113,8 +108,8 @@ public class ClamScan {
                 try {
                     read = is.read(buffer);
                 } catch (IOException e) {
-                    log.error("error reading result from socket", e);
-                    break;
+                	e.printStackTrace();
+                	break;
                 }
                 response.append(new String(buffer, 0, read));
             }
@@ -123,16 +118,16 @@ public class ClamScan {
             if (dos != null) try {
                 dos.close();
             } catch (IOException e) {
-                log.debug("exception closing DOS", e);
+                e.printStackTrace();
             }
             try {
                 socket.close();
             } catch (IOException e) {
-                log.debug("exception closing socket", e);
+            	e.printStackTrace();
             }
         }
 
-        if (log.isDebugEnabled()) log.debug("Response: " + response.toString());
+        
 
         return response.toString();
     }
@@ -162,14 +157,14 @@ public class ClamScan {
         try {
             socket.connect(new InetSocketAddress(getHost(), getPort()));
         } catch (IOException e) {
-            log.error("could not connect to clamd server", e);
+        	e.printStackTrace();
             return new ScanResult(e);
         }
 
         try {
             socket.setSoTimeout(getTimeout());
         } catch (SocketException e) {
-            log.error("Could not set socket timeout to " + getTimeout() + "ms", e);
+        	e.printStackTrace();
         }
 
         DataOutputStream dos = null;
@@ -179,14 +174,14 @@ public class ClamScan {
             try {
                 dos = new DataOutputStream(socket.getOutputStream());
             } catch (IOException e) {
-                log.error("could not open socket OutputStream", e);
+            	e.printStackTrace();
                 return new ScanResult(e);
             }
 
             try {
                 dos.write(INSTREAM);
             } catch (IOException e) {
-                log.debug("error writing INSTREAM command", e);
+            	e.printStackTrace();
                 return new ScanResult(e);
             }
 
@@ -196,7 +191,7 @@ public class ClamScan {
                 try {
                     read = in.read(buffer);
                 } catch (IOException e) {
-                    log.debug("error reading from InputStream", e);
+                	e.printStackTrace();
                     return new ScanResult(e);
                 }
 
@@ -205,7 +200,7 @@ public class ClamScan {
                         dos.writeInt(read);
                         dos.write(buffer, 0, read);
                     } catch (IOException e) {
-                        log.debug("error writing data to socket", e);
+                    	e.printStackTrace();
                         break;
                     }
                 }
@@ -215,13 +210,13 @@ public class ClamScan {
                 dos.writeInt(0);
                 dos.flush();
             } catch (IOException e) {
-                log.debug("error writing zero-length chunk to socket", e);
+            	e.printStackTrace();
             }
 
             try {
                 read = socket.getInputStream().read(buffer);
             } catch (IOException e) {
-                log.debug("error reading result from socket", e);
+            	e.printStackTrace();
                 read = 0;
             }
 
@@ -231,16 +226,16 @@ public class ClamScan {
             if (dos != null) try {
                 dos.close();
             } catch (IOException e) {
-                log.debug("exception closing DOS", e);
+            	e.printStackTrace();
             }
             try {
                 socket.close();
             } catch (IOException e) {
-                log.debug("exception closing socket", e);
+            	e.printStackTrace();
             }
         }
 
-        if (log.isDebugEnabled()) log.debug("Response: " + response);
+        
 
         return new ScanResult(response.trim());
     }

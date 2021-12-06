@@ -10,6 +10,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
+
 	<groupId>it.anac.segnalazioni.ws</groupId>
 	<artifactId>segnalazioni-ws</artifactId>
 	<version>0.0.4d-SNAPSHOT</version>
@@ -20,7 +21,7 @@
 		<java.version>11</java.version>
   		<cxf.version>2.2.3</cxf.version>
 	</properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -76,13 +77,28 @@
 		    <groupId>io.micrometer</groupId>
 		    <artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
-						
+					
+		
 		<dependency>
 		    <groupId>it.anac.segnalazioni.client.protocollo</groupId>
 		    <artifactId>protocollo-ws</artifactId>
 		    <version>1.0</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>it.avcp.spc.amp</groupId>
+		    <artifactId>amp-client</artifactId>
+		    <scope>system</scope>
+    		 <version>1.0</version>
+     		<systemPath>${basedir}\lib\AVCP-AMPCoreServicesClient-1.1.1.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+        	<groupId>org.wildfly</groupId>
+        	<artifactId>wildfly-client-all</artifactId>
+        	<version>9.0.0.Final</version>
+    	</dependency>
+
 	    <dependency>
       		<groupId>com.opencsv</groupId>
       		<artifactId>opencsv</artifactId>
