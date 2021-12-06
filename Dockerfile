@@ -12,5 +12,6 @@ ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 COPY istat.csv istat.csv
 COPY template.odt template.odt
+COPY amp.properties amp.properties
 
 ENTRYPOINT ["java","-Dspring.profiles.active=premaster","-jar","/app.jar"]
