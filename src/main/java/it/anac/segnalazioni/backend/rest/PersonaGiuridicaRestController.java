@@ -65,5 +65,22 @@ public class PersonaGiuridicaRestController
 		
 		return pg;
 	}
+	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
+	@GetMapping("/personagiuridica/denominazione-and")
+	public PersonaGiuridica[] getPGFromDenominazioneAnd(@RequestParam String denominazioneLike,
+										 @RequestParam(defaultValue = "0") int page,
+										 @RequestParam(defaultValue = "10") int size) 
+	{
+		PersonaGiuridica[] pg = null;
+
+		pg = personaGiuridicaService.
+				getPersonaGiuridicaFromDenominazioneLikeAnd(
+						denominazioneLike,
+						page,
+						size);
+	
+		return pg;
+	}
 
 }

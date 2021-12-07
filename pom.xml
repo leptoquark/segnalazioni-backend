@@ -92,12 +92,7 @@
     		 <version>1.0</version>
      		<systemPath>${basedir}\lib\AVCP-AMPCoreServicesClient-1.1.1.jar</systemPath>
 		</dependency>
-		
-		<dependency>
-        	<groupId>org.wildfly</groupId>
-        	<artifactId>wildfly-client-all</artifactId>
-        	<version>9.0.0.Final</version>
-    	</dependency>
+
 
 	    <dependency>
       		<groupId>com.opencsv</groupId>
