@@ -62,7 +62,9 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 	}	
 
 	@Override
-	public String getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike, int page, int size) {
+	public String getPersonaGiuridicaFromDenominazioneLike(String denominazioneLike,
+														   int page,
+														   int size) {
 		
 		String pg = null;
 				
@@ -103,38 +105,54 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 		  {
 			  String aux = st.nextToken();
 			  Iterator<?> iter = nameNode.iterator();
+			  boolean found = false;
 			  while(iter.hasNext())
 			  {
 				  String nextVal = iter.next().toString();
 				  nextVal = nextVal.substring(1,nextVal.length()-1);
 				  if (nextVal.equals(aux))
-					  ret.add(aux);
+					  found = true;
 			  }
+			  if (!found)
+				  ret.add(aux);
 		  }
 		  
 		  return ret; 
 	}
 
 	@Override
-	public PersonaGiuridica[] getPersonaGiuridicaFromDenominazioneLikeAnd(String andString, int page, int size) {
+	public PersonaGiuridica[] getPersonaGiuridicaFromDenominazioneLikeAnd(String andString,
+																		  int page,
+																		  int size) {
 		
 		ObjectMapper om = new ObjectMapper();
 		PersonaGiuridica[] pg = null;
+		PersonaGiuridica[] pgaux_all = null;
 
 		try {
 			Vector<String> iterate = getCleanString(andString);
+			System.out.println("ITERATE: "+iterate.size());
+			
+			pgaux_all =
+					om.readValue(
+							getPersonaGiuridicaFromDenominazioneLike(
+									andString,page,size),
+							PersonaGiuridica[].class);
+			
 			for(int i=0; i<iterate.size(); i++)
 			{
 				PersonaGiuridica[] pgaux =
-						om.readValue(getPersonaGiuridicaFromDenominazioneLike(iterate.get(i),page,size), PersonaGiuridica[].class);
+						om.readValue(
+								getPersonaGiuridicaFromDenominazioneLike(
+										iterate.get(i),page,size),
+								PersonaGiuridica[].class);
 				pg = (PersonaGiuridica[]) ArrayUtils.addAll(pg, pgaux);
+				System.out.println("Dimensioni delle persone giuridiche per"+iterate.get(i)+" ["+pg.length+"]");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		
-		return pg;
+	
+		return  (PersonaGiuridica[]) ArrayUtils.addAll(pg, pgaux_all);
 	}
-
 }

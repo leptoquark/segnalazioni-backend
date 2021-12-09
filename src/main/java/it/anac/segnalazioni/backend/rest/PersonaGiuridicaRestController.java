@@ -3,7 +3,6 @@ package it.anac.segnalazioni.backend.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +21,8 @@ public class PersonaGiuridicaRestController
 	@Autowired
 	private PersonaGiuridicaServiceAdapter personaGiuridicaService;
 	
-	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local",
+							"http://localhost:4200"})
 	@GetMapping("/personagiuridica/denominazione")
 	public PersonaGiuridica[] getPGFromDenominazione(@RequestParam String denominazioneLike,
 										 @RequestParam(defaultValue = "0") int page,
@@ -46,7 +46,8 @@ public class PersonaGiuridicaRestController
 		return pg;
 	}
 	
-	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local",
+							"http://localhost:4200"})
 	@GetMapping("/personagiuridica/cf")
 	public PersonaGiuridica getPGFromCF(@RequestParam String cf) 
 	{
@@ -66,7 +67,8 @@ public class PersonaGiuridicaRestController
 		return pg;
 	}
 	
-	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local",
+							"http://localhost:4200"})
 	@GetMapping("/personagiuridica/denominazione-and")
 	public PersonaGiuridica[] getPGFromDenominazioneAnd(@RequestParam String denominazioneLike,
 										 @RequestParam(defaultValue = "0") int page,
