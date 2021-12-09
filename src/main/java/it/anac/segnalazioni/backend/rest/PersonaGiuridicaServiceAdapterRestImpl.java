@@ -86,7 +86,7 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 		
 	private Vector<String> getCleanString(String andString) throws IOException
 	{
-		 Resource resource = resourceLoader.getResource("classpath:jsondb/stopword.json");
+		 Resource resource = resourceLoader.getResource("classpath:jsondb/stopwords-iso.json");
 		    InputStream inputStream = resource.getInputStream();
 
 		  byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
@@ -94,7 +94,7 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 		  
 		  ObjectMapper objectMapper = new ObjectMapper();
 		  JsonNode jsonNode = objectMapper.readTree(json);
-		  JsonNode nameNode = jsonNode.get("it");
+		  JsonNode nameNode = jsonNode.get("it"); // seleziono italiano, migliorabile con I18N, se necessario
 
 		  StringTokenizer st = new StringTokenizer(andString, " ");
 		  
@@ -125,7 +125,8 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 			Vector<String> iterate = getCleanString(andString);
 			for(int i=0; i<iterate.size(); i++)
 			{
-				PersonaGiuridica[] pgaux = om.readValue(getPersonaGiuridicaFromDenominazioneLike(iterate.get(i),page,size), PersonaGiuridica[].class);
+				PersonaGiuridica[] pgaux =
+						om.readValue(getPersonaGiuridicaFromDenominazioneLike(iterate.get(i),page,size), PersonaGiuridica[].class);
 				pg = (PersonaGiuridica[]) ArrayUtils.addAll(pg, pgaux);
 			}
 		} catch (IOException e) {

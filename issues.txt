@@ -1,0 +1,9 @@
+- Implementare AND
+- Verificare la correttezza del template odt
+- Verificare la correttezza del metodo per la restituzione della Regione
+- inserire la gif di attesa
+- limite massimo degli inserimenti
+- layout delle grid
+- mailer
+- stabilizzare l'immagine di nodejs
+- concordare l'invio tramite protocollo 
