@@ -147,12 +147,11 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 										iterate.get(i),page,size),
 								PersonaGiuridica[].class);
 				pg = (PersonaGiuridica[]) ArrayUtils.addAll(pg, pgaux);
-				System.out.println("Dimensioni delle persone giuridiche per"+iterate.get(i)+" ["+pg.length+"]");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	
-		return  (PersonaGiuridica[]) ArrayUtils.addAll(pg, pgaux_all);
+		return  (PersonaGiuridica[]) ArrayUtils.addAll(pgaux_all,pg);
 	}
 }
