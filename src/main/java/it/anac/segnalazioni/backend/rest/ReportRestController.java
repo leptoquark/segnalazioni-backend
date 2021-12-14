@@ -77,7 +77,10 @@ public class ReportRestController
 		Options options = Options.getTo(ConverterTypeTo.PDF).via(ConverterTypeVia.ODFDOM);
 
 		IContext ctx = report.createContext();
-				
+
+		
+		System.out.println("ID: "+id);
+
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
 		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
@@ -86,8 +89,13 @@ public class ReportRestController
 		/*********************************************/
 	
 		ObjectMapper objectMapper = new ObjectMapper();
+		
+		System.out.println("MongoExtract: "+res.toString());
+		
 		JsonNode jsonNode = objectMapper.readTree(res.toString());
 		JsonNode nameNode = jsonNode.at("/data");
+		
+		System.out.println("nameNode: "+nameNode.toPrettyString());
 		
 		/****************************************/
 		
