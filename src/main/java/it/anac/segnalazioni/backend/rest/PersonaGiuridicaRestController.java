@@ -26,7 +26,7 @@ public class PersonaGiuridicaRestController
 	@GetMapping("/personagiuridica/denominazione")
 	public PersonaGiuridica[] getPGFromDenominazione(@RequestParam String denominazioneLike,
 										 @RequestParam(defaultValue = "0") int page,
-										 @RequestParam(defaultValue = "10") int size) 
+										 @RequestParam(defaultValue = "100") int size) 
 	{
 		ObjectMapper om = new ObjectMapper();
 		PersonaGiuridica[] pg = null;
