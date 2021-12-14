@@ -131,7 +131,6 @@ public class PersonaGiuridicaServiceAdapterRestImpl implements PersonaGiuridicaS
 
 		try {
 			Vector<String> iterate = getCleanString(andString);
-			System.out.println("ITERATE: "+iterate.size());
 			
 			pgaux_all =
 					om.readValue(

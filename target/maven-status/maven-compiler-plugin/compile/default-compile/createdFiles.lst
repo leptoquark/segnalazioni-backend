@@ -1,8 +1,10 @@
 it\anac\segnalazioni\backend\model\pg\Documento.class
 it\anac\segnalazioni\backend\rest\AppaltiRestController.class
+it\anac\segnalazioni\backend\report\util\PdfBuilder.class
 it\anac\segnalazioni\backend\rest\security\JwtTokenUtil.class
 it\anac\segnalazioni\backend\config\IstatCodes.class
 it\anac\segnalazioni\backend\rest\security\JwtRequestFilter.class
+it\anac\segnalazioni\backend\report\model\Contenzioso.class
 it\anac\segnalazioni\backend\config\WebSecurityConfig.class
 it\anac\segnalazioni\backend\rest\PersonaGiuridicaRestController.class
 it\anac\segnalazioni\backend\rest\PersonaGiuridicaServiceAdapterRestImpl.class
@@ -11,10 +13,12 @@ it\anac\segnalazioni\backend\report\model\Allegato.class
 it\anac\segnalazioni\backend\model\pg\TipoSoggetto.class
 it\anac\segnalazioni\backend\rest\security\JwtUserDetailsService.class
 it\anac\segnalazioni\backend\model\appalto\CPV.class
+it\anac\segnalazioni\backend\report\model\Persona.class
 it\anac\segnalazioni\backend\model\pg\Indirizzo.class
 it\anac\segnalazioni\backend\model\mailer\Mailer.class
 it\anac\segnalazioni\backend\domain\AntivirusServiceAdapter.class
 it\anac\segnalazioni\backend\model\pg\DatiIdentificativi.class
+it\anac\segnalazioni\backend\report\util\MyTemplateExceptionHandler.class
 it\anac\segnalazioni\backend\rest\ComuniRestController.class
 it\anac\segnalazioni\backend\model\appalto\Incaricati.class
 it\anac\segnalazioni\backend\model\pg\Contatti.class
@@ -24,6 +28,7 @@ it\anac\segnalazioni\backend\rest\ProtocolloService.class
 it\anac\segnalazioni\backend\rest\HealthRestController.class
 it\anac\segnalazioni\backend\domain\antivirus\ScanResult$Status.class
 it\anac\segnalazioni\backend\rest\AntivirusServiceAdapterRestImpl.class
+it\anac\segnalazioni\backend\report\model\ContenziosoType.class
 it\anac\segnalazioni\backend\model\pg\Classificazione.class
 it\anac\segnalazioni\backend\rest\AppaltiServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\model\pg\Georef.class
@@ -42,6 +47,7 @@ it\anac\segnalazioni\backend\model\pg\NaturaGiuridica.class
 it\anac\segnalazioni\backend\model\pg\Provincia.class
 it\anac\segnalazioni\backend\domain\antivirus\AntivirusRequest.class
 it\anac\segnalazioni\backend\model\protocollo\ProtocolloRequest.class
+it\anac\segnalazioni\backend\report\model\Rup.class
 it\anac\segnalazioni\backend\report\model\Segnalazione.class
 it\anac\segnalazioni\backend\model\regione\Regione.class
 it\anac\segnalazioni\backend\report\model\SubmissionMdl.class
@@ -49,6 +55,7 @@ it\anac\segnalazioni\backend\domain\antivirus\ScanResult.class
 it\anac\segnalazioni\backend\model\appalto\Pubblicazioni.class
 it\anac\segnalazioni\backend\rest\SpringFoxConfig.class
 it\anac\segnalazioni\backend\model\appalto\Bando.class
+it\anac\segnalazioni\backend\report\model\SegnalazioneAppalto.class
 it\anac\segnalazioni\backend\model\appalto\StazioneAppaltante.class
 it\anac\segnalazioni\backend\rest\SubmissionRestController.class
 it\anac\segnalazioni\backend\model\appalto\Appalto.class

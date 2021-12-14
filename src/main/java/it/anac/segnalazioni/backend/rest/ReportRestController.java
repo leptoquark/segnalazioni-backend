@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import fr.opensagres.xdocreport.converter.ConverterTypeTo;
 import fr.opensagres.xdocreport.converter.ConverterTypeVia;
 import fr.opensagres.xdocreport.converter.Options;
@@ -34,8 +38,11 @@ import fr.opensagres.xdocreport.document.json.JSONObject;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
+import fr.opensagres.xdocreport.template.freemarker.FreemarkerTemplateEngine;
+import freemarker.template.Configuration;
 import it.anac.segnalazioni.backend.report.model.Segnalante;
-import it.anac.segnalazioni.backend.report.model.SoggettoInteressato;
+import it.anac.segnalazioni.backend.report.model.Segnalazione;
+import it.anac.segnalazioni.backend.report.util.MyTemplateExceptionHandler;
 
 @RestController
 @RequestMapping(path="/ws")
@@ -50,37 +57,49 @@ public class ReportRestController
 			@RequestParam(defaultValue = "") String id) throws IOException, XDocReportException {
 		
 	    String filePath = System.getProperty("java.io.tmpdir")+"/out"+id+"-"+System.currentTimeMillis()+".pdf";
-		
-		File initialFile = new File("template.odt");
+	    
+	    File initialFile = new File("template_appalti.odt");
 	    InputStream in = new FileInputStream(initialFile);
-
-		IXDocReport report = XDocReportRegistry.getRegistry().
-		        loadReport(in, TemplateEngineKind.Freemarker);
+	    
+		Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+		cfg.setLocale(java.util.Locale.ITALIAN);
+		cfg.setDateFormat("d MMMMM yyyy");
 		
+		cfg.setTemplateExceptionHandler(new MyTemplateExceptionHandler());
+
+		IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in,
+				TemplateEngineKind.Freemarker);
+
+		FreemarkerTemplateEngine templateEngine = (FreemarkerTemplateEngine) report.getTemplateEngine();
+		templateEngine.setFreemarkerConfiguration(cfg);
+		report.setTemplateEngine(templateEngine);
+
 		Options options = Options.getTo(ConverterTypeTo.PDF).via(ConverterTypeVia.ODFDOM);
 
 		IContext ctx = report.createContext();
-		
+				
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
 		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
 		
 		
+		/*********************************************/
+	
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = objectMapper.readTree(res.toString());
+		JsonNode nameNode = jsonNode.at("/data");
+		
 		/****************************************/
 		
-		Segnalante segnalante = new Segnalante("Giancarlo", "Carbone", "CRBGCR68B20F839U", "RPCT");
-		// sub.setArea("Anticorruzione");
-		
-		List<SoggettoInteressato> soggetti = new ArrayList<SoggettoInteressato>();
-		soggetti.add(new SoggettoInteressato("CLAUDIO","BIANCALANA","FUNZIONARIO","DIRIGENTE" ));
-		soggetti.add(new SoggettoInteressato("ENZO","BONETTI","DIRIGENTE","CONSIGLIERE" ));
-		soggetti.add(new SoggettoInteressato("PIPPO","PLUTO","DIRIGENTE","CONSIGLIERE" ));
-		soggetti.add(new SoggettoInteressato("AAA","BBBB","DIRIGENTE","CONSIGLIERE" ));
-		soggetti.add(new SoggettoInteressato("CCCC","DDDD","DIRIGENTE","CONSIGLIERE" ));
-		
-		ctx.put("segnalante", segnalante);
-		ctx.put("area","Anticorruzione");
-		ctx.put("incarichi", soggetti);
+		Segnalante segnalante = new Segnalante(
+				nameNode.get("nomeSegnalante").asText(),
+				nameNode.get("cognomeSegnalante").asText(),
+				nameNode.get("codiceFiscaleSegnalante").asText(),
+				nameNode.get("qualifica").asText());
+		Segnalazione segnalazione = new Segnalazione(segnalante,new Date(System.currentTimeMillis()),"Anticorruzione");
+		segnalazione.setOggetto("OGGETTO DELLA SEGNALAZIONE");
+
+		ctx.put("segnalazione", segnalazione);
 
 		/*******************************************/
 	    

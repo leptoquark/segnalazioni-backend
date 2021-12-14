@@ -1,5 +1,7 @@
 package it.anac.segnalazioni.backend.report.model;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -7,22 +9,47 @@ import java.util.List;
  *
  */
 public class Segnalazione {
+	// Persona fisica che effettua la segnalazione
 	private Segnalante segnalante;
+	
+	// Oggetto della segnalazione
 	private String oggetto;
-	private String data;
+	
+	// Data della segnalazione
+	private Date data;
+	
+	// Area della segnalazione
 	private String area;
+	
+	// Documenti allegati
 	private List<Allegato> allegati;
+	
+	// Altri soggetti interessati
 	private List<String> altriSoggetti;
+	
+	// Esclusione dalla pubblicazione
 	private String esclusione;
 	
-	public Segnalazione() {}
+	// Esistenza di contenzioso sul medesimo oggetto
+	private boolean contenzioso = false;
 	
-	public Segnalazione(Segnalante segnalante, String oggetto, String data, String area) {
+	// Contenziosi
+	private List<Contenzioso> contenziosi;
+	
+	// Altre segnalazioni inviate ad ANAC
+	private boolean altreSegnalazioni = false;
+	
+	// Estremi delle altre segnalazioni inviate ad ANAC
+	private String estremiSegnalazioni;
+	
+	public Segnalazione(Segnalante segnalante, Date data, String area) {
 		super();
 		this.segnalante = segnalante;
-		this.oggetto = oggetto;
 		this.data = data;
 		this.area = area;
+		this.allegati = new ArrayList<Allegato>();
+		this.altriSoggetti = new ArrayList<String>();
+		this.contenziosi = new ArrayList<Contenzioso>(0);
 	}
 
 	public Segnalante getSegnalante() {
@@ -37,10 +64,10 @@ public class Segnalazione {
 	public void setOggetto(String oggetto) {
 		this.oggetto = oggetto;
 	}
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 	public String getArea() {
@@ -75,6 +102,42 @@ public class Segnalazione {
 	public void setAltriSoggetti(List<String> altriSoggetti) {
 		this.altriSoggetti = altriSoggetti;
 	}
+	
+	public boolean isContenzioso() {
+		return contenzioso;
+	}
+
+	public void setContenzioso(boolean contenzioso) {
+		this.contenzioso = contenzioso;
+	}
+
+	public List<Contenzioso> getContenziosi() {
+		return contenziosi;
+	}
+
+	public void setContenziosi(List<Contenzioso> contenziosi) {
+		this.contenziosi = contenziosi;
+	}
+	
+	public void addContenzioso(Contenzioso c) {
+		this.contenziosi.add(c);
+	}
+
+	public boolean isAltreSegnalazioni() {
+		return altreSegnalazioni;
+	}
+
+	public void setAltreSegnalazioni(boolean altreSegnalazioni) {
+		this.altreSegnalazioni = altreSegnalazioni;
+	}
+
+	public String getEstremiSegnalazioni() {
+		return estremiSegnalazioni;
+	}
+
+	public void setEstremiSegnalazioni(String estremiSegnalazioni) {
+		this.estremiSegnalazioni = estremiSegnalazioni;
+	}	
 	
 	@Override
 	public String toString() {
