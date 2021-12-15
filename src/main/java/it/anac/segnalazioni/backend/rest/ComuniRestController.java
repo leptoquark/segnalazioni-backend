@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.opencsv.exceptions.CsvException;
 
 import it.anac.segnalazioni.backend.config.IstatCodes;
+import it.anac.segnalazioni.backend.model.regione.Provincia;
 import it.anac.segnalazioni.backend.model.regione.Regione;
 
 import java.io.InputStream;
@@ -73,5 +74,15 @@ public class ComuniRestController
 		Regione regione = new Regione();
 		regione.nome = ic.getRegioneFromProvincia(provincia);
 		return regione;
+	}
+	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
+	@GetMapping("/provinciaFromComune")
+	public Provincia getProvinciaFromComune(String comune) throws IOException, CsvException
+	{
+		IstatCodes ic = new IstatCodes();
+		Provincia provincia = new Provincia();
+		provincia.nome = ic.getProvinciaFromComune(comune);
+		return provincia;
 	}
 }

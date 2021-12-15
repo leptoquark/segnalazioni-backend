@@ -98,16 +98,30 @@ public class IstatCodes {
 	    return notFound;
 	}
 	
+	public String getProvinciaFromComune(String comune) throws CsvValidationException, IOException
+	{
+		String notFound = "";
+		
+	    String[] line;
+	    while ((line = csvReader.readNext()) != null) {
+	    		if (line[3].toLowerCase().trim().equals(
+	    						comune.toLowerCase().trim()))
+	    			return line[4];
+	    }
+	    return notFound;
+	}
+	
 	public static void main(String[] argv) throws FileNotFoundException, IOException, CsvException
 	{
 		IstatCodes ic = new IstatCodes();
 		
-		List list = ic.getComuniFromProvincia("Roma");
+		/*List list = ic.getComuniFromProvincia("Roma");
 		Iterator iter = list.iterator();
 		while(iter.hasNext())
 			System.out.println(iter.next().toString());
 		
-		System.out.println(ic.getRegioneFromProvincia("ROMA"));
+		System.out.println(ic.getRegioneFromProvincia("ROMA"));*/
+		System.out.println(ic.getProvinciaFromComune("Anguillara Sabazia"));
 	}
 
 }
