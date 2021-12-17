@@ -68,8 +68,10 @@ public class SubmissionHelper
 		/*String docRetro_name = nameNode.findValues("documento_retro").get(0).get("name").asText();
 		String docRetro_url  = nameNode.findValues("documento_retro").get(0).get("url").asText();*/
 		
-		String nome    = nameNode.get("nomeSegnalante").asText();
-		String cognome = nameNode.get("cognomeSegnalante").asText();
+		/*String nome    = nameNode.get("nomeSegnalante").asText();
+		String cognome = nameNode.get("cognomeSegnalante").asText();*/
+		String nome = "CLAUDIO";
+		String cognome = "BIANCALANA";
 		
 		if (av.checkVirusOnUrl(docFronte_url))// || av.checkVirusOnUrl(docRetro_url))
 			return "VIRUS-KO";
