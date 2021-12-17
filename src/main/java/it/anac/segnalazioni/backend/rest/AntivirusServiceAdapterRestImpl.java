@@ -24,7 +24,6 @@ public class AntivirusServiceAdapterRestImpl implements AntivirusServiceAdapter
 	@Value("${antivirus.clamav.clamAVTimeout}")
     private int clamAVTimeout;
 	
-	
 	public boolean checkVirusOnUrl(String url)
 	{
 		boolean res = false;

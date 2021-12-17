@@ -73,8 +73,8 @@ public class SubmissionHelper
 		String nome = "CLAUDIO";
 		String cognome = "BIANCALANA";
 		
-		if (av.checkVirusOnUrl(docFronte_url))// || av.checkVirusOnUrl(docRetro_url))
-			return "VIRUS-KO";
+		/*if (av.checkVirusOnUrl(docFronte_url))// || av.checkVirusOnUrl(docRetro_url))
+			return "VIRUS-KO";*/
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
 		docs.add(new FileDocument(docFronte_name, docFronte_url));
