@@ -1,6 +1,7 @@
 package it.anac.segnalazioni.backend.engine;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,7 +109,12 @@ public class SubmissionHelper
 			pr.setFileDocuments(fd);
 		}
 		else
-			pr.setFileDocuments((FileDocument[])docs.toArray());
+		{
+			FileDocument[] array = Arrays.copyOf(docs.toArray(),
+					 docs.toArray().length,
+					 FileDocument[].class);
+			pr.setFileDocuments(array);
+		}
 		
 		//TODO da aggiungere il report appena disponibile, prelevandolo dall'ID.
 		return protocolloService.invio(
