@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.opensagres.xdocreport.document.json.JSONObject;
 import it.anac.segnalazioni.backend.engine.model.FileDocument;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloRequest;
+import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
 import it.anac.segnalazioni.backend.rest.AntivirusServiceAdapterRestImpl;
 import it.anac.segnalazioni.backend.rest.ProtocolloService;
 
@@ -117,7 +118,7 @@ public class SubmissionHelper
 		}
 		
 		//TODO da aggiungere il report appena disponibile, prelevandolo dall'ID.
-		return protocolloService.invio(
+		ProtocolloResponse ret = protocolloService.invio(
 							pr.getIdentificazioneAoo(),
 							pr.getIdentificazioneUfficio(),
 							pr.getProtocolloTipoProtocollo(),
@@ -127,6 +128,12 @@ public class SubmissionHelper
 							pr.getAssegnatarioUfficio(),
 							pr.getAssegnatarioCompetenza(),
 							pr.getDocumentoTipoDocumento(),
-							pr.getFileDocuments()).getNumeroProtocollo();
+							pr.getFileDocuments());
+		
+		System.out.println(ret.getEsito());
+		System.out.println(ret.getMessaggio());
+		System.out.println(ret.getData());
+		
+		return ret.getNumeroProtocollo();
 	}
 }
