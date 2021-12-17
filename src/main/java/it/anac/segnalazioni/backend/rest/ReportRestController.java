@@ -79,8 +79,6 @@ public class ReportRestController
 		IContext ctx = report.createContext();
 
 		
-		System.out.println("ID: "+id);
-
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
 		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");

@@ -21,6 +21,7 @@ public class ProtocolloHelper {
 	
 	@Autowired
 	private ProtocolloService protocolloService;
+	
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
@@ -40,18 +41,18 @@ public class ProtocolloHelper {
 		String docFronte_name = nameNode.findValues("documento_fronte").get(0).get("name").asText();
 		String docFronte_url  = nameNode.findValues("documento_fronte").get(0).get("url").asText();
 		
-		String docRetro_name = nameNode.findValues("documento_retro").get(0).get("name").asText();
-		String docRetro_url  = nameNode.findValues("documento_retro").get(0).get("url").asText();
+		/*String docRetro_name = nameNode.findValues("documento_retro").get(0).get("name").asText();
+		String docRetro_url  = nameNode.findValues("documento_retro").get(0).get("url").asText();*/
 		
 		String nome    = nameNode.get("nome").asText();
 		String cognome = nameNode.get("cognome").asText();
 		
-		if (av.checkVirusOnUrl(docFronte_url) || av.checkVirusOnUrl(docRetro_url))
+		if (av.checkVirusOnUrl(docFronte_url))// || av.checkVirusOnUrl(docRetro_url))
 			return "VIRUS-KO";
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
 		docs.add(new FileDocument(docFronte_name, docFronte_url));
-		docs.add(new FileDocument(docRetro_name, docRetro_url));
+		//docs.add(new FileDocument(docRetro_name, docRetro_url));
 
 		ProtocolloRequest pr = new ProtocolloRequest();
 		
