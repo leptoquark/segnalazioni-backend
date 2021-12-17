@@ -91,7 +91,7 @@ public class SubmissionHelper
 		pr.setProtocolloOggetto("segnalazione-web da "+nome+" "+cognome);
 		pr.setProtocolloMittente(nome+" "+cognome);
 		
-		pr.setProtcolloTipoDocumento("modulo-web");
+		pr.setProtcolloTipoDocumento("lettera");
 		
 		// TODO: Settare l'ufficio con l'agoritmo di Giancarlo
 		pr.setAssegnatarioUfficio("ufficio1");
@@ -130,10 +130,7 @@ public class SubmissionHelper
 							pr.getDocumentoTipoDocumento(),
 							pr.getFileDocuments());
 		
-		System.out.println(ret.getEsito());
-		System.out.println(ret.getMessaggio());
-		System.out.println(ret.getData());
-		
+
 		return ret.getNumeroProtocollo();
 	}
 }
