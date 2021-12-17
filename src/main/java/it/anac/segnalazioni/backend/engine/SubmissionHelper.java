@@ -50,20 +50,26 @@ public class SubmissionHelper
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(submissionId));
 		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = objectMapper.readTree(res.toString());
+		
 		JsonNode nameNode = jsonNode.at("/data");	
 		
+		System.out.println(nameNode.toPrettyString());
+		
 		// Inserire tutti i possibili documenti
-		String docFronte_name = nameNode.findValues("documento_fronte").get(0).get("name").asText();
-		String docFronte_url  = nameNode.findValues("documento_fronte").get(0).get("url").asText();
+		/*String docFronte_name = nameNode.findValues("documento_fronte").get(0).get("name").asText();
+		String docFronte_url  = nameNode.findValues("documento_fronte").get(0).get("url").asText();*/
+		
+		String docFronte_name = "documento_fronte.pdf";
+		String docFronte_url = "http://formio-upload-segnalazioni-ril.apps.ocp.premaster.local/file/%2F51e97d3ad8d580f4d70d8d41e85118f2";
 		
 		/*String docRetro_name = nameNode.findValues("documento_retro").get(0).get("name").asText();
 		String docRetro_url  = nameNode.findValues("documento_retro").get(0).get("url").asText();*/
 		
-		String nome    = nameNode.get("nome").asText();
-		String cognome = nameNode.get("cognome").asText();
+		String nome    = nameNode.get("nomeSegnalante").asText();
+		String cognome = nameNode.get("cognomeSegnalante").asText();
 		
 		if (av.checkVirusOnUrl(docFronte_url))// || av.checkVirusOnUrl(docRetro_url))
 			return "VIRUS-KO";
