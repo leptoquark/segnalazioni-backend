@@ -1,5 +1,6 @@
 package it.anac.segnalazioni.backend.engine;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -100,7 +101,7 @@ public class SubmissionHelper
 		// valido per tutti i documenti
 		pr.setDocumentoTipoDocumento("P");
 		
-		String zippedFile = System.currentTimeMillis()+"_"+cognome+".zip";
+		String zippedFile = System.getProperty("java.io.tmpdir") +File.separator+System.currentTimeMillis()+"_"+cognome+".zip";
 		if (zip)
 		{
 			FileHelper fh = new FileHelper();
