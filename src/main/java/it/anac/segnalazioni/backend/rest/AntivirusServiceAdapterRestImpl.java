@@ -57,6 +57,10 @@ public class AntivirusServiceAdapterRestImpl implements AntivirusServiceAdapter
         scanner.setHost(clamAvUrl);
         scanner.setPort(clamAvPort);
         scanner.setTimeout(clamAVTimeout);
+        
+        System.out.println("URL: "+clamAvUrl);
+        System.out.println("PORT: "+clamAvPort);
+        System.out.println("TIMEOUT: "+clamAVTimeout);
 		
         result = scanner.scan(allegatoBytes);
         
