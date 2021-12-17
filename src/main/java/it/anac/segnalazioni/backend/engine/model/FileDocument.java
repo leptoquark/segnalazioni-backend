@@ -13,6 +13,12 @@ public class FileDocument {
 		this.url = new URL(url);
 	}
 	
+	public FileDocument(String filename) throws MalformedURLException
+	{
+		this.filename = filename;
+	}
+	
+	
 	public String getFilename() {
 		return filename;
 	}

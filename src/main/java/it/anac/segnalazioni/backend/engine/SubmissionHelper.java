@@ -106,7 +106,8 @@ public class SubmissionHelper
 			FileHelper fh = new FileHelper();
 			fh.zipMultipleUrls(docs, zippedFile);
 			FileDocument[] fd = new FileDocument[1];
-			fd[0].setFilename(zippedFile);
+			FileDocument zippedFileDocument = new FileDocument(zippedFile);
+			fd[0]=zippedFileDocument;
 			pr.setFileDocuments(fd);
 		}
 		else
