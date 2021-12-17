@@ -42,7 +42,7 @@ public class FileHelper {
 	
 	public void zipMultipleFiles(List<String> srcFiles, String zippedFile) throws IOException
 	{
-        FileOutputStream fos = new FileOutputStream(zippedFile);
+        FileOutputStream fos = new FileOutputStream(System.getProperty("java.io.tmpdir") +File.separator+zippedFile);
         ZipOutputStream zipOut = new ZipOutputStream(fos);
         for (String srcFile : srcFiles) {
             File fileToZip = new File(srcFile);
