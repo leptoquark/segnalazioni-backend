@@ -1,5 +1,6 @@
 package it.anac.segnalazioni.backend.rest;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ProtocolloRestController
 		
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@PostMapping("/protocollo")
-	public ProtocolloResponse invio(@RequestBody ProtocolloRequest pr) 
+	public ProtocolloResponse invio(@RequestBody ProtocolloRequest pr) throws IOException 
 	{
 		ProtocolloResponse ret = new ProtocolloResponse();
 		try {
@@ -36,8 +37,7 @@ public class ProtocolloRestController
 						pr.getAssegnatarioUfficio(),
 						pr.getAssegnatarioCompetenza(),
 						pr.getDocumentoTipoDocumento(),
-						pr.getDocumentoNomeFile(),
-						pr.getDocumentoUrlDocumento());
+						pr.getFileDocuments());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

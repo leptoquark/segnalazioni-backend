@@ -89,14 +89,10 @@ public class ReportRestController
 		/*********************************************/
 	
 		ObjectMapper objectMapper = new ObjectMapper();
-		
-		System.out.println("MongoExtract: "+res.toString());
-		
+			
 		JsonNode jsonNode = objectMapper.readTree(res.toString());
 		JsonNode nameNode = jsonNode.at("/data");
-		
-		System.out.println("nameNode: "+nameNode.toPrettyString());
-		
+				
 		/****************************************/
 		
 		Segnalante segnalante = new Segnalante(

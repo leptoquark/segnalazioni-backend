@@ -1,5 +1,7 @@
 package it.anac.segnalazioni.backend.model.protocollo;
 
+import it.anac.segnalazioni.backend.engine.model.FileDocument;
+
 public class ProtocolloRequest
 {
 	private String identificazioneAoo;
@@ -11,8 +13,7 @@ public class ProtocolloRequest
 	private String assegnatarioUfficio;
 	private int    assegnatarioCompetenza;
 	private String documentoTipoDocumento;
-	private String documentoNomeFile;
-	private String documentoUrlDocumento;
+	private FileDocument[] fileDocuments;
 	
 	public String getIdentificazioneAoo() {
 		return identificazioneAoo;
@@ -68,16 +69,10 @@ public class ProtocolloRequest
 	public void setDocumentoTipoDocumento(String documentoTipoDocumento) {
 		this.documentoTipoDocumento = documentoTipoDocumento;
 	}
-	public String getDocumentoNomeFile() {
-		return documentoNomeFile;
+	public FileDocument[] getFileDocuments() {
+		return fileDocuments;
 	}
-	public void setDocumentoNomeFile(String documentoNomeFile) {
-		this.documentoNomeFile = documentoNomeFile;
-	}
-	public String getDocumentoUrlDocumento() {
-		return documentoUrlDocumento;
-	}
-	public void setDocumentoUrlDocumento(String documentoUrlDocumento) {
-		this.documentoUrlDocumento = documentoUrlDocumento;
+	public void setFileDocuments(FileDocument[] fileDocuments) {
+		this.fileDocuments = fileDocuments;
 	}
 }

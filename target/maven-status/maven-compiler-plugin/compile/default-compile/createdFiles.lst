@@ -16,6 +16,7 @@ it\anac\segnalazioni\backend\model\appalto\CPV.class
 it\anac\segnalazioni\backend\report\model\Persona.class
 it\anac\segnalazioni\backend\model\pg\Indirizzo.class
 it\anac\segnalazioni\backend\model\mailer\Mailer.class
+it\anac\segnalazioni\backend\engine\ProtocolloHelper.class
 it\anac\segnalazioni\backend\domain\AntivirusServiceAdapter.class
 it\anac\segnalazioni\backend\model\pg\DatiIdentificativi.class
 it\anac\segnalazioni\backend\report\util\MyTemplateExceptionHandler.class
@@ -23,6 +24,7 @@ it\anac\segnalazioni\backend\rest\ComuniRestController.class
 it\anac\segnalazioni\backend\model\appalto\Incaricati.class
 it\anac\segnalazioni\backend\model\pg\Contatti.class
 it\anac\segnalazioni\backend\domain\PersonaGiuridicaServiceAdapter.class
+it\anac\segnalazioni\backend\engine\model\FileDocument.class
 it\anac\segnalazioni\backend\rest\ProtocolloRestController.class
 it\anac\segnalazioni\backend\rest\ProtocolloService.class
 it\anac\segnalazioni\backend\rest\HealthRestController.class
@@ -37,6 +39,7 @@ it\anac\segnalazioni\backend\report\model\SoggettoInteressato.class
 it\anac\segnalazioni\backend\report\model\Organizzazione.class
 it\anac\segnalazioni\backend\model\security\JwtRequest.class
 it\anac\segnalazioni\backend\model\pg\PersonaGiuridica.class
+it\anac\segnalazioni\backend\engine\FileHelper.class
 it\anac\segnalazioni\backend\model\pg\Citta.class
 it\anac\segnalazioni\backend\rest\security\JwtAuthenticationEntryPoint.class
 it\anac\segnalazioni\backend\model\appalto\CUP.class

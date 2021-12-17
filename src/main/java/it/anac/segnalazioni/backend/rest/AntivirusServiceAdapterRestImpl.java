@@ -46,7 +46,7 @@ public class AntivirusServiceAdapterRestImpl implements AntivirusServiceAdapter
 	     return res;
 	}
 	
-	private boolean testAntivirus(byte[] allegatoBytes) throws IOException
+	public boolean testAntivirus(byte[] allegatoBytes) throws IOException
 	{
 		ClamScan scanner;
 		ScanResult result= null;

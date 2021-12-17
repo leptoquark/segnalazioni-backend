@@ -9,6 +9,8 @@ import java.net.URL;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import it.anac.segnalazioni.backend.engine.FileHelper;
+import it.anac.segnalazioni.backend.engine.model.FileDocument;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
 import it.anac.segnalazioni.client.protocollo.AssegnatarioType;
 import it.anac.segnalazioni.client.protocollo.DocumentoType;
@@ -30,24 +32,14 @@ public class ProtocolloService {
 	@Value("${protocollo.ws.password}")
     private String password;
 	
-	public byte[] downloadUrl(URL toDownload) {
-	    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-	    try {
-	        byte[] chunk = new byte[4096];
-	        int bytesRead;
-	        InputStream stream = toDownload.openStream();
-
-	        while ((bytesRead = stream.read(chunk)) > 0) {
-	            outputStream.write(chunk, 0, bytesRead);
-	        }
-
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        return null;
-	    }
-
-	    return outputStream.toByteArray();
+	private byte[] downloadUrl(URL toDownload) {
+		FileHelper fh = new FileHelper();
+		return fh.downloadUrl(toDownload);
+	}
+	
+	private byte[] downloadFile(String file) throws IOException {
+		FileHelper fh = new FileHelper();
+		return fh.file2byte(file);
 	}
 	
 	/**
@@ -66,7 +58,7 @@ public class ProtocolloService {
 	 * @param documentoNomeFile: test.dpf
 	 * @param documentoUrlDocumento: https://www.anticorruzione.it/documents/91439/129009/Avviso+pubblicazione+esito+prova+orale+e+approvazione+graduatoria+finale+F6IT.pdf/cd5c33c9-40d8-2afb-1f1d-01aacd3df9df?t=1589372298123
 	 * @return
-	 * @throws MalformedURLException
+	 * @throws IOException 
 	 */
 		
 	public ProtocolloResponse invio(String identificazioneAoo,
@@ -78,8 +70,7 @@ public class ProtocolloService {
 									String assegnatarioUfficio,
 									int    assegnatarioCompetenza,
 									String documentoTipoDocumento,
-									String documentoNomeFile,
-									String documentoUrlDocumento) throws MalformedURLException
+									FileDocument[] fileDocuments) throws IOException
 	{
 		
 		ProtocolloWS_Service service = new ProtocolloWS_Service();
@@ -107,15 +98,25 @@ public class ProtocolloService {
     	assegnatari.setAssegnatario(assegnatario);
     	protocollo.getAssegnatari().add(assegnatari);
     	
-    	DocumentoType documento = new DocumentoType();
-    	documento.setTipoDocumento(documentoTipoDocumento);
-    	documento.setNomeFile(documentoNomeFile);
-    	URL url = new URL(documentoUrlDocumento);		    	
-    	byte[] encoded = downloadUrl(url);
-    	documento.setFileBase64(encoded);
-       
     	ProtocolloTypeDocumenti documenti = new ProtocolloTypeDocumenti();
-    	documenti.setDocumento(documento);
+    	
+    	
+    	for(int i=0; i<fileDocuments.length; i++)
+    	{
+    	
+	    	DocumentoType documento = new DocumentoType();
+	    	documento.setTipoDocumento(documentoTipoDocumento);
+	    	documento.setNomeFile(fileDocuments[i].getFilename());
+	    	URL url = fileDocuments[i].getUrl();
+	    	
+	    	if (url!=null)
+	    		documento.setFileBase64(downloadUrl(url));
+	    	else
+	    		documento.setFileBase64(downloadFile(documento.getNomeFile()));
+	    	
+	    	documenti.setDocumento(documento);
+    	}
+    	
     	protocollo.getDocumenti().add(documenti);
 	
     	registraProtocolloRequest.setIdentificazione(identificazione);
