@@ -77,7 +77,7 @@ public class SubmissionHelper
 			return "VIRUS-KO";*/
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
-		docs.add(new FileDocument(docFronte_name, docFronte_url));
+		docs.add(new FileDocument(docFronte_url, docFronte_name));
 		//docs.add(new FileDocument(docRetro_name, docRetro_url));
 
 		ProtocolloRequest pr = new ProtocolloRequest();
