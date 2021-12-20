@@ -136,7 +136,7 @@ public class SubmissionHelper
 			"  \"regione_appalti\" : \"Sicilia\",\r\n" + 
 			"  \"soggettoSegnalanteColumnsText\" : \"Paride\",\r\n" + 
 			"  \"denominazione_sa\" : \"SO.G.I.P. SRL UNIPERSONALE\",\r\n" + 
-			"  \"documento_retro\" : \"AL 304 AH\",\r\n" + 
+			"  \"codice_documento\" : \"AL 304 AH\",\r\n" + 
 			"  \"descrizione_intervento_segnalazione\" : \"FORNITURA DI RAM AGGIUNTIVA PER SERVER CENTRALE\"\r\n" + 
 			"}";
 	
@@ -155,8 +155,8 @@ public class SubmissionHelper
 		{
 			docRetro_name = jsonNode.findValues("documento_retro").get(0).get(0).get("name").asText();
 			docRetro_url = jsonNode.findValues("documento_retro").get(0).get(0).get("url").asText();
-		}	
-				
+		}
+						
 	}
 		
 	private String invioProtocollo(String submissionId, boolean zip) throws IOException {
@@ -175,7 +175,7 @@ public class SubmissionHelper
 		
 		String docRetro_name = "";
 		String docRetro_url = "";
-		if (! jsonNode.findValues("documento_retro").isEmpty())
+		if (!jsonNode.findValues("documento_retro").isEmpty())
 		{
 			docRetro_name = jsonNode.findValues("documento_retro").get(0).get(0).get("name").asText();
 			docRetro_url = jsonNode.findValues("documento_retro").get(0).get(0).get("url").asText();

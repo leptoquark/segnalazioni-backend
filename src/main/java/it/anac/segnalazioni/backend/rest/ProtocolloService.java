@@ -1,9 +1,6 @@
 package it.anac.segnalazioni.backend.rest;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -111,10 +108,11 @@ public class ProtocolloService {
 	    	
 	    	if (url!=null)
 	    		documento.setFileBase64(downloadUrl(url));
-	    	else
+	    	else if (!documento.getNomeFile().equals(""))
 	    		documento.setFileBase64(downloadFile(documento.getNomeFile()));
-	    	
-	    	documenti.setDocumento(documento);
+
+	    	if (!documento.getNomeFile().equals(""))
+	    		documenti.setDocumento(documento);
     	}
     	
     	protocollo.getDocumenti().add(documenti);
