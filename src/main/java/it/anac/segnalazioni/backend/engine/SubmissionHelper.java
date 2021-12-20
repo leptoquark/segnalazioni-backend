@@ -50,19 +50,19 @@ public class SubmissionHelper
 	
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/protocollo")
-	public String invioProtocollo(@RequestParam String submissionId) throws IOException, MessagingException
+	public ProtocolloResponse invioProtocollo(@RequestParam String submissionId) throws IOException, MessagingException
 	{
 		return invioProtocollo(submissionId, false);
 	}
 	
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/protocollo_zip")
-	public String invioProtocolloZip(@RequestParam String submissionId) throws IOException, MessagingException
+	public ProtocolloResponse invioProtocolloZip(@RequestParam String submissionId) throws IOException, MessagingException
 	{
 		return invioProtocollo(submissionId, true);
 	}
 			
-	private String invioProtocollo(String submissionId, boolean zip) throws IOException, MessagingException {
+	private ProtocolloResponse invioProtocollo(String submissionId, boolean zip) throws IOException, MessagingException {
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(submissionId));
@@ -92,7 +92,15 @@ public class SubmissionHelper
 		
 		logger.debug("Controllo antivirus");
 		if (!av.checkVirusOnUrl(docFronte_url) && !av.checkVirusOnUrl(docRetro_url))
-			return "VIRUS-KO";
+		{
+			ProtocolloResponse pr = new ProtocolloResponse();
+			pr.setData("");
+			pr.setEsito("VIRUS-KO");
+			pr.setMessaggio("Nei file è cotenuto un virus");
+			pr.setNumeroProtocollo("");
+			
+			return pr;
+		}
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
 		docs.add(new FileDocument(docFronte_url, docFronte_name));
@@ -154,6 +162,6 @@ public class SubmissionHelper
 				"template_appalti.odt",
 				"template_appalti.odt");*/
 
-		return ret.getNumeroProtocollo();
+		return ret;
 	}
 }
