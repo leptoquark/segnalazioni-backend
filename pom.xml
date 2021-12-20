@@ -117,6 +117,12 @@
 		   <artifactId>fr.opensagres.xdocreport.converter.odt.odfdom</artifactId>
 		   <version>1.0.5</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		    <version>2.5.6</version>
+		</dependency>
 						
 	</dependencies>
 

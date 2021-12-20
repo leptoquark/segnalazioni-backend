@@ -15,6 +15,7 @@ it\anac\segnalazioni\backend\rest\security\JwtUserDetailsService.class
 it\anac\segnalazioni\backend\model\appalto\CPV.class
 it\anac\segnalazioni\backend\report\model\Persona.class
 it\anac\segnalazioni\backend\model\pg\Indirizzo.class
+it\anac\segnalazioni\backend\engine\MailSenderHelper.class
 it\anac\segnalazioni\backend\model\mailer\Mailer.class
 it\anac\segnalazioni\backend\domain\AntivirusServiceAdapter.class
 it\anac\segnalazioni\backend\model\pg\DatiIdentificativi.class

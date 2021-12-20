@@ -7,6 +7,7 @@ D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazio
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\appalto\Appalto.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\report\model\Segnalante.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\Documento.java
+D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\engine\MailSenderHelper.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\PersonaGiuridica.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\report\model\Rup.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\domain\AntivirusServiceAdapter.java
