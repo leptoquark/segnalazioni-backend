@@ -10,7 +10,8 @@ public class FileDocument {
 	public FileDocument(String url, String filename) throws MalformedURLException
 	{
 		this.filename = filename;
-		this.url = new URL(url);
+		if (url!=null && !url.contentEquals(""))
+			this.url = new URL(url);
 	}
 	
 	public FileDocument(String filename) throws MalformedURLException
