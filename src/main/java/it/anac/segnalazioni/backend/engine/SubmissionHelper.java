@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,12 +48,14 @@ public class SubmissionHelper
 	@Autowired
 	private MailSenderHelper msh;
 	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/protocollo")
 	public String invioProtocollo(@RequestParam String submissionId) throws IOException, MessagingException
 	{
 		return invioProtocollo(submissionId, false);
 	}
-	  
+	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/protocollo_zip")
 	public String invioProtocolloZip(@RequestParam String submissionId) throws IOException, MessagingException
 	{

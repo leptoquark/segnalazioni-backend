@@ -3,6 +3,7 @@ package it.anac.segnalazioni.backend.rest;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,8 @@ public class AntivirusRestController
 {
 	@Autowired
 	private AntivirusServiceAdapter antivirusService;
-		
+	
+	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@PostMapping("/antivirus")
 	public boolean checkVirusOnUrl(@RequestBody AntivirusRequest req) throws IOException
 	{
