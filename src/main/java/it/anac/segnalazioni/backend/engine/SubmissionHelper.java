@@ -145,12 +145,11 @@ public class SubmissionHelper
 							pr.getFileDocuments());
 		
 		// Invio della mail con allegato il pdf della segnalazione
-		msh.sendMessage("c.biancalana@anticorruzione.it",
+		/*msh.sendMessage(nameNode.get("email_soggetto_segnalante").asText(),
 				"Segnalazioni ANAC",
 				"In allegato la segnalazione ANAC",
 				"template_appalti.odt",
-				"template_appalti.odt");
-		
+				"template_appalti.odt");*/
 
 		return ret.getNumeroProtocollo();
 	}
