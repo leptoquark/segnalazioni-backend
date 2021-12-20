@@ -1,9 +1,10 @@
-- Implementare AND
+OK - Implementare AND
 - Verificare la correttezza del template odt
-- Verificare la correttezza del metodo per la restituzione della Regione
-- inserire la gif di attesa
-- limite massimo degli inserimenti
-- layout delle grid
+OK - Verificare la correttezza del metodo per la restituzione della Regione
+OK - inserire la gif di attesa
+OK - limite massimo degli inserimenti
+OK - layout delle grid
 - mailer
 - stabilizzare l'immagine di nodejs
-- concordare l'invio tramite protocollo 
+OK - concordare l'invio tramite protocollo
+invio al protocollo con ID sottomissione.

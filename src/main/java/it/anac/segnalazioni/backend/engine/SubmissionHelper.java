@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.opensagres.xdocreport.document.json.JSONObject;
+import it.anac.segnalazioni.backend.domain.AntivirusServiceAdapter;
 import it.anac.segnalazioni.backend.engine.model.FileDocument;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloRequest;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
@@ -34,6 +35,9 @@ public class SubmissionHelper
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
+	@Autowired
+	private AntivirusServiceAdapter av;
+	
 	@GetMapping("/protocollo")
 	public String invioProtocollo(@RequestParam String submissionId) throws IOException
 	{
@@ -46,7 +50,6 @@ public class SubmissionHelper
 		return invioProtocollo(submissionId, true);
 	}
 	
-	private AntivirusServiceAdapterRestImpl av = new AntivirusServiceAdapterRestImpl();
 		
 	private String invioProtocollo(String submissionId, boolean zip) throws IOException {
 		
@@ -76,8 +79,8 @@ public class SubmissionHelper
 		String nome = "CLAUDIO";
 		String cognome = "BIANCALANA";
 		
-		/*if (av.checkVirusOnUrl(docFronte_url))// || av.checkVirusOnUrl(docRetro_url))
-			return "VIRUS-KO";*/
+		if (av.checkVirusOnUrl(docFronte_url))// || av.checkVirusOnUrl(docRetro_url))
+			return "VIRUS-KO";
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
 		docs.add(new FileDocument(docFronte_url, docFronte_name));

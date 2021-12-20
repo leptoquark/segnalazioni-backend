@@ -37,7 +37,9 @@ public class AntivirusServiceAdapterRestImpl implements AntivirusServiceAdapter
 	        while ((bytesRead = stream.read(chunk)) > 0) 
 	            outputStream.write(chunk, 0, bytesRead);
 	        
-	        res = testAntivirus(outputStream.toByteArray()); 
+	        System.out.println("START CHECK ANTIVIRUS");
+	        res = testAntivirus(outputStream.toByteArray());
+	        System.out.println("END CHECK ANTIVIRUS");
 		} catch (IOException e) {
 			e.printStackTrace();
 			res = false;
