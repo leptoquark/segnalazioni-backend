@@ -156,7 +156,7 @@ public class SubmissionHelper
 			docRetro_name = jsonNode.findValues("documento_retro").get(0).get(0).get("name").asText();
 			docRetro_url = jsonNode.findValues("documento_retro").get(0).get(0).get("url").asText();
 		}
-						
+		
 	}
 		
 	private String invioProtocollo(String submissionId, boolean zip) throws IOException {
