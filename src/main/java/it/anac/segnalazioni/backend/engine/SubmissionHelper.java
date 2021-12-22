@@ -85,10 +85,10 @@ public class SubmissionHelper
 		}
 		
 		
-		/*String nome    = nameNode.get("nomeSegnalante").asText();
-		String cognome = nameNode.get("cognomeSegnalante").asText();*/
-		String nome = "CLAUDIO";
-		String cognome = "BIANCALANA";
+		String nome_segnalante    = nameNode.get("nome_soggetto_segnalante").asText();
+		String cognome_segnalante = nameNode.get("cognome_soggetto_segnalante").asText();
+		String email_segnalante = nameNode.get("nome_soggetto_segnalante").asText();
+
 		
 		logger.debug("Controllo antivirus");
 		if (!av.checkVirusOnUrl(docFronte_url) && !av.checkVirusOnUrl(docRetro_url))
@@ -112,8 +112,8 @@ public class SubmissionHelper
 		pr.setIdentificazioneUfficio("ANAC");
 		pr.setProtocolloTipoProtocollo("I");
 	
-		pr.setProtocolloOggetto("segnalazione-web da "+nome+" "+cognome);
-		pr.setProtocolloMittente(nome+" "+cognome);
+		pr.setProtocolloOggetto("segnalazione-web da "+nome_segnalante+" "+cognome_segnalante);
+		pr.setProtocolloMittente(nome_segnalante+" "+cognome_segnalante);
 		
 		pr.setProtcolloTipoDocumento("lettera");
 		
@@ -124,7 +124,7 @@ public class SubmissionHelper
 		// valido per tutti i documenti
 		pr.setDocumentoTipoDocumento("P");
 		
-		String zippedFile = System.getProperty("java.io.tmpdir") +File.separator+System.currentTimeMillis()+"_"+cognome+".zip";
+		String zippedFile = System.getProperty("java.io.tmpdir") +File.separator+System.currentTimeMillis()+"_"+cognome_segnalante+".zip";
 		if (zip)
 		{
 			FileHelper fh = new FileHelper();
@@ -156,8 +156,8 @@ public class SubmissionHelper
 							pr.getFileDocuments());
 		
 		// Invio della mail con allegato il pdf della segnalazione
-		msh.sendMessage(nameNode.get("email_soggetto_segnalante").asText(),
-				"Segnalazioni ANAC",
+		msh.sendMessage(email_segnalante,
+				"Segnalazioni ANAC prot. "+ret.getNumeroProtocollo(),
 				"In allegato la segnalazione ANAC",
 				"template_appalti.odt",
 				"template_appalti.odt");
