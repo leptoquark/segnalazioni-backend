@@ -87,7 +87,7 @@ public class SubmissionHelper
 		
 		String nome_segnalante    = nameNode.get("nome_soggetto_segnalante").asText();
 		String cognome_segnalante = nameNode.get("cognome_soggetto_segnalante").asText();
-		String email_segnalante = nameNode.get("nome_soggetto_segnalante").asText();
+		String email_segnalante = nameNode.get("nome_email_segnalante").asText();
 
 		
 		logger.debug("Controllo antivirus");
