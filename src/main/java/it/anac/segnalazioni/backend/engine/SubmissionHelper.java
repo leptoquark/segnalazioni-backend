@@ -62,7 +62,7 @@ public class SubmissionHelper
 		return invioProtocollo(submissionId, true);
 	}
 			
-	private ProtocolloResponse invioProtocollo(String submissionId, boolean zip) throws IOException, MessagingException {
+	private ProtocolloResponse invioProtocollo(String submissionId, boolean zip) throws IOException {
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(submissionId));
@@ -87,7 +87,7 @@ public class SubmissionHelper
 		
 		String nome_segnalante    = nameNode.get("nome_soggetto_segnalante").asText();
 		String cognome_segnalante = nameNode.get("cognome_soggetto_segnalante").asText();
-		String email_segnalante = nameNode.get("nome_email_segnalante").asText();
+		String email_segnalante = nameNode.get("email_soggetto_segnalante").asText();
 
 		
 		logger.debug("Controllo antivirus");
@@ -98,6 +98,9 @@ public class SubmissionHelper
 			pr.setEsito("VIRUS-KO");
 			pr.setMessaggio("Nei file è cotenuto un virus");
 			pr.setNumeroProtocollo("");
+			
+			logger.debug("File con Virus!");
+
 			
 			return pr;
 		}
@@ -156,11 +159,15 @@ public class SubmissionHelper
 							pr.getFileDocuments());
 		
 		// Invio della mail con allegato il pdf della segnalazione
-		msh.sendMessage(email_segnalante,
-				"Segnalazioni ANAC prot. "+ret.getNumeroProtocollo(),
-				"In allegato la segnalazione ANAC",
-				"template_appalti.odt",
-				"template_appalti.odt");
+		try {
+			msh.sendMessage(email_segnalante,
+					"Segnalazioni ANAC prot. "+ret.getNumeroProtocollo(),
+					"In allegato la segnalazione ANAC",
+					"template_appalti.odt",
+					"template_appalti.odt");
+		} catch (MessagingException e) {
+			logger.error("Invio fallito per "+email_segnalante,e);
+		}
 
 		return ret;
 	}
