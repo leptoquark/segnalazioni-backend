@@ -5,11 +5,26 @@ package it.anac.segnalazioni.backend.report.model;
  *
  */
 public class Allegato {
+	
+	// Nome del file allegato (obbligatorio)
 	private String filename;
+	
+	// Titolo del documento allegato
 	private String titolo;
+	
+	// Descrizione del file allegato
 	private String descrizione;
 	
-	public Allegato() {}
+	public Allegato(String filename) {
+		super();
+		this.filename = filename;
+	}
+	
+	public Allegato(String filename, String titolo) {
+		super();
+		this.filename = filename;
+		this.titolo = titolo;
+	}
 	
 	public Allegato(String filename, String titolo, String descrizione) {
 		super();

@@ -84,12 +84,10 @@ public class SubmissionHelper
 			docRetro_url = jsonNode.findValues("documento_retro").get(0).get(0).get("url").asText();
 		}
 		
-		
 		String nome_segnalante    = nameNode.get("nome_soggetto_segnalante").asText();
 		String cognome_segnalante = nameNode.get("cognome_soggetto_segnalante").asText();
 		String email_segnalante = nameNode.get("email_soggetto_segnalante").asText();
-
-		
+	
 		logger.debug("Controllo antivirus");
 		if (!av.checkVirusOnUrl(docFronte_url) && !av.checkVirusOnUrl(docRetro_url))
 		{
@@ -100,8 +98,7 @@ public class SubmissionHelper
 			pr.setNumeroProtocollo("");
 			
 			logger.debug("File con Virus!");
-
-			
+		
 			return pr;
 		}
 		
@@ -159,7 +156,7 @@ public class SubmissionHelper
 							pr.getFileDocuments());
 		
 		// Invio della mail con allegato il pdf della segnalazione
-		try {
+		try {	
 			msh.sendMessage(email_segnalante,
 					"Segnalazioni ANAC prot. "+ret.getNumeroProtocollo(),
 					"In allegato la segnalazione ANAC",

@@ -1,5 +1,10 @@
 package it.anac.segnalazioni.backend.report.model;
 
+/**
+ * @author Giancarlo Carbone
+ *
+ * Responsabile Unico del Procedimento
+ */
 public class Rup extends Persona {
 	
 	public final static String RUP = "RUP";

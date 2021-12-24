@@ -5,17 +5,39 @@ package it.anac.segnalazioni.backend.report.model;
  *
  */
 public class Organizzazione {
+	
+	// Denominazione Amministrazione/Ente (obbligatorio)
 	private String denominazione;
+	
+	// Codice fiscale
 	private String codiceFiscale;
+	
+	// Tipologia Amministrazione/Ente
 	private String tipoEnte;
+	
+	// Regione (obbligatorio)
 	private String regione;
+	
+	// Provincia (obbligatorio)
 	private String provincia;
+	
+	// Comune (obbligatorio)
 	private String comune;
+	
+	// Indirizzo mail
 	private String mail;
+	
+	// Indirizzo PEC
 	private String pec;
+	
+	// Numero di telefono
 	private String telefono;
 	
-	public Organizzazione() {}
+	public Organizzazione(String denominazione, String codiceFiscale) {
+		super();
+		this.denominazione = denominazione;
+		this.codiceFiscale = codiceFiscale;
+	}
 	
 	public Organizzazione(String denominazione, String regione, String provincia, String comune) {
 		super();

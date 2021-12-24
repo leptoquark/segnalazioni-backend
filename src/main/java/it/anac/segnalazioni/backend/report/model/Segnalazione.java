@@ -1,13 +1,13 @@
 package it.anac.segnalazioni.backend.report.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 /**
  * @author Giancarlo Carbone
  *
  */
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 public class Segnalazione {
 	// Persona fisica che effettua la segnalazione
 	private Segnalante segnalante;
@@ -24,7 +24,7 @@ public class Segnalazione {
 	// Documenti allegati
 	private List<Allegato> allegati;
 	
-	// Altri soggetti interessati
+	// Altri soggetti istituzionali
 	private List<String> altriSoggetti;
 	
 	// Esclusione dalla pubblicazione

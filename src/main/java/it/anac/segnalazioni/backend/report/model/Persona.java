@@ -5,9 +5,18 @@ package it.anac.segnalazioni.backend.report.model;
  *
  */
 public class Persona {
+	
+	// Nome della persona (obbligatorio)
 	private String nome;
+	
+	// Cognome della persona (obbligatorio)
 	private String cognome;
+	
+	// Qualifica della persona
 	private String qualifica;
+	
+	// Codice fiscale della persona
+	private String codiceFiscale;
 	
 	public Persona(String nome, String cognome) {
 		super();
@@ -15,6 +24,16 @@ public class Persona {
 		this.cognome = cognome;
 		this.qualifica = "";
 	}
+	
+	public Persona(String nome, String cognome, String cf) {
+		this(nome, cognome);
+		this.codiceFiscale = cf;
+	}
+	
+	public Persona(String nome, String cognome, String cf, String qualifica) {
+		this(nome, cognome, cf);
+		this.qualifica = qualifica;
+	}	
 
 	public String getNome() {
 		return nome;
@@ -38,6 +57,14 @@ public class Persona {
 
 	public void setQualifica(String qualifica) {
 		this.qualifica = qualifica;
+	}
+	
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
 	}
 
 	@Override

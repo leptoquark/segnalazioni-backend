@@ -1,5 +1,9 @@
 package it.anac.segnalazioni.backend.report.model;
 
+/**
+ * @author Giancarlo Carbone
+ *
+ */
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +13,7 @@ public class SegnalazioneAppalto extends Segnalazione {
 	// CIG
 	private String cig;
 	
-	// Stazione appaltante
+	// Stazione appaltante (obbligatorio)
 	private Organizzazione sa;
 	
 	// Operatore economico
@@ -18,10 +22,10 @@ public class SegnalazioneAppalto extends Segnalazione {
 	// Elenco di ulteriori CIG
 	private List<String> ulterioriCig;
 	
-	// Ambito d'intervento
+	// Ambito d'intervento (obbligatorio)
 	private String ambito;
 	
-	// Oggetto del contratto
+	// Oggetto del contratto (obbligatorio)
 	private String oggettoContratto;
 	
 	// Contratto secretato
