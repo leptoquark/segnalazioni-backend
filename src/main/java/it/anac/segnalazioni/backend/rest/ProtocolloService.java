@@ -95,13 +95,12 @@ public class ProtocolloService {
     	assegnatari.setAssegnatario(assegnatario);
     	protocollo.getAssegnatari().add(assegnatari);
     	
-    	ProtocolloTypeDocumenti documenti = new ProtocolloTypeDocumenti();
     	
     	
     	
     	for(int i=0; i<fileDocuments.length; i++)
     	{
-    	
+        	ProtocolloTypeDocumenti documenti = new ProtocolloTypeDocumenti();   	
 	    	DocumentoType documento = new DocumentoType();
 	    	documento.setTipoDocumento(documentoTipoDocumento);
 	    	documento.setNomeFile(fileDocuments[i].getFilename());
