@@ -503,6 +503,15 @@ public class ReportRestController
 		return ret;
 	}
 	
+	private int getIntValueFromJson(JsonNode nameNode, String prop)
+	{
+		int ret_int = 0;
+		String ret = getValueFromJson(nameNode, prop);
+		if (!ret.trim().equals(""))
+			Integer.valueOf(ret_int);		
+		return ret_int;
+	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/report", method = RequestMethod.GET)	
 	public ResponseEntity<InputStreamResource> download(
@@ -604,7 +613,7 @@ public class ReportRestController
 		segnalazione.setPerSe(getValueFromJson(nameNode, "fornituraCentraleCommittenza").equals("si"));
 		
 		// Importo base d'asta
-		segnalazione.setBaseAsta(Integer.valueOf(getValueFromJson(nameNode, "importo_base_asta")));
+		segnalazione.setBaseAsta(getIntValueFromJson(nameNode, "importo_base_asta"));
 		
 		// Procedura di affidamento
 		segnalazione.setProcedura(getValueFromJson(nameNode, "procedura_affidamento"));
@@ -619,7 +628,7 @@ public class ReportRestController
 		
 		segnalazione.setDataFase(dateformat.parse("20-02-2021"));
 		
-		segnalazione.setImporto(Integer.valueOf(getValueFromJson(nameNode, "importo_contrattuale")));
+		segnalazione.setImporto(getIntValueFromJson(nameNode, "importo_contrattuale"));
 		
 		// RUP
 		segnalazione.setRup(new Rup(getValueFromJson(nameNode, "nome_rup"), getValueFromJson(nameNode, "cognome_rup")));
