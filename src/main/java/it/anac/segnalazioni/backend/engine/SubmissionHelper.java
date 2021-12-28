@@ -81,6 +81,7 @@ public class SubmissionHelper
 		String docRetro_url = "";
 		if (!jsonNode.findValues("documento_retro").isEmpty())
 		{
+			System.out.println(nameNode.findValues("documento_retro").get(0).toPrettyString());
 			docRetro_name = nameNode.findValues("documento_retro").get(0).get(0).get("name").asText();
 			docRetro_url = nameNode.findValues("documento_retro").get(0).get(0).get("url").asText();
 		}
