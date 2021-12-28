@@ -47,7 +47,7 @@ public class SubmissionHelper
 	
 	@Autowired
 	private MailSenderHelper msh;
-	
+		
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/protocollo")
 	public ProtocolloResponse invioProtocollo(@RequestParam String submissionId) throws IOException, MessagingException
@@ -69,8 +69,9 @@ public class SubmissionHelper
 		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
 
 		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = objectMapper.readTree(res.toString());
 		
+		JsonNode jsonNode = objectMapper.readTree(res.toString());
+			
 		JsonNode nameNode = jsonNode.at("/data");	
 		
 		String docFronte_name = nameNode.findValues("documento_fronte").get(0).get(0).get("name").asText();

@@ -52,8 +52,456 @@ import it.anac.segnalazioni.backend.report.util.MyTemplateExceptionHandler;
 @RequestMapping(path="/ws")
 public class ReportRestController
 {
+	private String jsonTest = 
+			"{\r\n" + 
+			"	\"data\" : {\r\n" + 
+			"		\"nome_soggetto_segnalante\" : \"Claudio\",\r\n" + 
+			"		\"cognome_soggetto_segnalante\" : \"Biancalana\",\r\n" + 
+			"		\"codiceFiscale_soggetto_segnalante\" : \"BNCCLD79P07H501P\",\r\n" + 
+			"		\"email_soggetto_segnalante\" : \"claudio.biancalana@gmail.com\",\r\n" + 
+			"		\"qualifica\" : \"dipendente\",\r\n" + 
+			"		\"tipoDocumento\" : \"cartaDiIdentita\",\r\n" + 
+			"		\"numero_documento\" : \"AL 302 AH\",\r\n" + 
+			"		\"documento_fronte\" : [\r\n" + 
+			"			{\r\n" + 
+			"				\"storage\" : \"url\",\r\n" + 
+			"				\"name\" : \"Modulo_CAI-9b8203d4-9a14-4ad8-8f87-0e5aa10f6210.pdf\",\r\n" + 
+			"				\"url\" : \"http://formio-upload-segnalazioni-ril.apps.ocp.premaster.local/file/%2Ff3cfaf00bf5edfbdbe0cca1eb5aab024\",\r\n" + 
+			"				\"size\" : 2351818,\r\n" + 
+			"				\"type\" : \"application/pdf\",\r\n" + 
+			"				\"data\" : {\r\n" + 
+			"					\"fieldname\" : \"file\",\r\n" + 
+			"					\"originalname\" : \"Modulo_CAI.pdf\",\r\n" + 
+			"					\"encoding\" : \"7bit\",\r\n" + 
+			"					\"mimetype\" : \"application/pdf\",\r\n" + 
+			"					\"destination\" : \"/tmp\",\r\n" + 
+			"					\"filename\" : \"f3cfaf00bf5edfbdbe0cca1eb5aab024\",\r\n" + 
+			"					\"path\" : \"/tmp/f3cfaf00bf5edfbdbe0cca1eb5aab024\",\r\n" + 
+			"					\"size\" : 2351818,\r\n" + 
+			"					\"url\" : \"/%2Ff3cfaf00bf5edfbdbe0cca1eb5aab024\",\r\n" + 
+			"					\"baseUrl\" : \"http://nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"					\"project\" : \"\",\r\n" + 
+			"					\"form\" : \"\"\r\n" + 
+			"				},\r\n" + 
+			"				\"originalName\" : \"Modulo_CAI.pdf\"\r\n" + 
+			"			}\r\n" + 
+			"		],\r\n" + 
+			"		\"documento_retro\" : [\r\n" + 
+			"			{\r\n" + 
+			"				\"storage\" : \"url\",\r\n" + 
+			"				\"name\" : \"Polizza_N_0000091642384-8306b754-696e-4c96-9b23-1753d91ae007.pdf\",\r\n" + 
+			"				\"url\" : \"http://formio-upload-segnalazioni-ril.apps.ocp.premaster.local/file/%2F4a8beaa00ba17f87b04309b3910bfc8a\",\r\n" + 
+			"				\"size\" : 629281,\r\n" + 
+			"				\"type\" : \"application/pdf\",\r\n" + 
+			"				\"data\" : {\r\n" + 
+			"					\"fieldname\" : \"file\",\r\n" + 
+			"					\"originalname\" : \"Polizza_N_0000091642384.pdf\",\r\n" + 
+			"					\"encoding\" : \"7bit\",\r\n" + 
+			"					\"mimetype\" : \"application/pdf\",\r\n" + 
+			"					\"destination\" : \"/tmp\",\r\n" + 
+			"					\"filename\" : \"4a8beaa00ba17f87b04309b3910bfc8a\",\r\n" + 
+			"					\"path\" : \"/tmp/4a8beaa00ba17f87b04309b3910bfc8a\",\r\n" + 
+			"					\"size\" : 629281,\r\n" + 
+			"					\"url\" : \"/%2F4a8beaa00ba17f87b04309b3910bfc8a\",\r\n" + 
+			"					\"baseUrl\" : \"http://nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"					\"project\" : \"\",\r\n" + 
+			"					\"form\" : \"\"\r\n" + 
+			"				},\r\n" + 
+			"				\"originalName\" : \"Polizza_N_0000091642384.pdf\"\r\n" + 
+			"			}\r\n" + 
+			"		],\r\n" + 
+			"		\"denominazione_amministrazione2\" : \"lazio\",\r\n" + 
+			"		\"selezione_ente2\" : {\r\n" + 
+			"			\"id\" : \"5dc5995932030e57099971a7\",\r\n" + 
+			"			\"dati_identificativi\" : {\r\n" + 
+			"				\"codice_fiscale_jammed\" : \"92c0c22d7afe0124640847b9a894a5e1\",\r\n" + 
+			"				\"codice_fiscale\" : \"01134160769\",\r\n" + 
+			"				\"partita_iva\" : \"01134160769\",\r\n" + 
+			"				\"denominazione\" : \"2D TRIVELLAZIONI S.N.C. DI DE CARLO GERARDO & F.LLI\",\r\n" + 
+			"				\"natura_giuridica\" : {\r\n" + 
+			"					\"codice\" : \"24\",\r\n" + 
+			"					\"descrizione\" : \"SOCIETA' IN NOME COLLETTIVO\"\r\n" + 
+			"				},\r\n" + 
+			"				\"soggetto_estero\" : \"N\",\r\n" + 
+			"				\"localizzazione\" : {\r\n" + 
+			"					\"provincia\" : {\r\n" + 
+			"						\"codice\" : \"IT-PZ\",\r\n" + 
+			"						\"nome\" : \"POTENZA\"\r\n" + 
+			"					},\r\n" + 
+			"					\"citta\" : {\r\n" + 
+			"						\"codice\" : \"076071\",\r\n" + 
+			"						\"nome\" : \"RUOTI\"\r\n" + 
+			"					},\r\n" + 
+			"					\"indirizzo\" : {\r\n" + 
+			"						\"dug\" : \"CONTRADA\",\r\n" + 
+			"						\"odonimo\" : \"BOSCO GRANDE\",\r\n" + 
+			"						\"numero_civico\" : \"73\",\r\n" + 
+			"						\"esponente\" : \"\"\r\n" + 
+			"					},\r\n" + 
+			"					\"cap\" : \"85056\",\r\n" + 
+			"					\"tipo_sede\" : null,\r\n" + 
+			"					\"georef\" : {\r\n" + 
+			"						\"lat\" : 0,\r\n" + 
+			"						\"lon\" : 0\r\n" + 
+			"					}\r\n" + 
+			"				},\r\n" + 
+			"				\"cciaa\" : {\r\n" + 
+			"					\"numero_iscrizione_CCIAA\" : \"81092\",\r\n" + 
+			"					\"provincia_iscrizione_CCIAA\" : \"POTENZA\",\r\n" + 
+			"					\"data_iscrizione_CCIAA\" : \"1993-06-08\"\r\n" + 
+			"				},\r\n" + 
+			"				\"contatti\" : {\r\n" + 
+			"					\"MAIL_PEC\" : \"2DTRIVELLAZIONISNC@PEC.IT\",\r\n" + 
+			"					\"EMAIL\" : \"\",\r\n" + 
+			"					\"TELEFONO\" : null\r\n" + 
+			"				}\r\n" + 
+			"			},\r\n" + 
+			"			\"_check_ValPar\" : \"check_ValPar\",\r\n" + 
+			"			\"_source\" : \"VAL\",\r\n" + 
+			"			\"documento\" : {\r\n" + 
+			"				\"tipo\" : \"personaGiuridica\",\r\n" + 
+			"				\"versione\" : \"1.1\"\r\n" + 
+			"			},\r\n" + 
+			"			\"_acl\" : [ \"pubblico\" ],\r\n" + 
+			"			\"ts\" : \"Wed Jun 02 05:04:41 CEST 2021\",\r\n" + 
+			"			\"tipoSoggetto\" : {\r\n" + 
+			"				\"tipo_soggetto\" : \"Impresa\",\r\n" + 
+			"				\"flag_inHouse\" : \"\",\r\n" + 
+			"				\"flag_partecipata\" : \"\",\r\n" + 
+			"				\"flag_consorziata\" : \"\"\r\n" + 
+			"			},\r\n" + 
+			"			\"stato\" : {\r\n" + 
+			"				\"stato\" : \"ATTIVA\",\r\n" + 
+			"				\"data_inizio\" : \"1993-06-08\",\r\n" + 
+			"				\"data_fine\" : \"\"\r\n" + 
+			"			},\r\n" + 
+			"			\"classificazioni\" : [\r\n" + 
+			"				{\r\n" + 
+			"					\"codice_codifica\" : \"07\",\r\n" + 
+			"					\"codifica\" : \"Classificazione ATECORI 2007\",\r\n" + 
+			"					\"classificazione\" : [\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"41.2\",\r\n" + 
+			"							\"descrizione\" : \"Costruzione di edifici residenziali e non residenziali\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"42.11\",\r\n" + 
+			"							\"descrizione\" : \"Costruzione di strade, autostrade e piste aeroportuali\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"42.21\",\r\n" + 
+			"							\"descrizione\" : \"Costruzione di opere di pubblica utilita' per il trasporto di fluidi\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"42.91\",\r\n" + 
+			"							\"descrizione\" : \"Costruzione di opere idrauliche\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.11\",\r\n" + 
+			"							\"descrizione\" : \"Demolizione di edifici\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.13\",\r\n" + 
+			"							\"descrizione\" : \"Trivellazioni e perforazioni\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.29.02\",\r\n" + 
+			"							\"descrizione\" : \"Lavori di isolamento termico, acustico o antivibrazioni\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.29.09\",\r\n" + 
+			"							\"descrizione\" : \"Altri lavori di costruzione e installazione nca\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.31\",\r\n" + 
+			"							\"descrizione\" : \"Intonacatura e stuccatura\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.32\",\r\n" + 
+			"							\"descrizione\" : \"Posa in opera di casseforti ed infissi\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.34\",\r\n" + 
+			"							\"descrizione\" : \"Tinteggiatura e posa in opera di vetri\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.91\",\r\n" + 
+			"							\"descrizione\" : \"Realizzazione di coperture\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"43.99\",\r\n" + 
+			"							\"descrizione\" : \"Altri lavori specializzati di costruzione nca\"\r\n" + 
+			"						},\r\n" + 
+			"						{\r\n" + 
+			"							\"codice\" : \"90.03.02\",\r\n" + 
+			"							\"descrizione\" : \"Attivita' di conservazione e restauro di opere d'arte\"\r\n" + 
+			"						}\r\n" + 
+			"					]\r\n" + 
+			"				}\r\n" + 
+			"			],\r\n" + 
+			"			\"ruoli\" : {\r\n" + 
+			"				\"rappresentanti_legali\" : {\r\n" + 
+			"					\"rl_persone_giuridiche\" : [ ],\r\n" + 
+			"					\"rl_persone_fisiche\" : [ ]\r\n" + 
+			"				},\r\n" + 
+			"				\"direttori_tecnici\" : [\r\n" + 
+			"					{\r\n" + 
+			"						\"data_inizio_rapporto\" : \"2003-01-02\",\r\n" + 
+			"						\"data_fine_rapporto\" : null,\r\n" + 
+			"						\"tipo_rapporto_direttore_tecnico\" : {\r\n" + 
+			"							\"codice\" : \"\",\r\n" + 
+			"							\"descrizione\" : \"\"\r\n" + 
+			"						},\r\n" + 
+			"						\"persona_fisica\" : {\r\n" + 
+			"							\"dati_identificativi\" : {\r\n" + 
+			"								\"codice_fiscale\" : \"DCRPTR49S22H641W\",\r\n" + 
+			"								\"nome\" : \"PIETRO\",\r\n" + 
+			"								\"cognome\" : \"DE CARLO\",\r\n" + 
+			"								\"contatti\" : {\r\n" + 
+			"									\"MAIL_PEC\" : \"\",\r\n" + 
+			"									\"EMAIL\" : \"\",\r\n" + 
+			"									\"TELEFONO\" : null\r\n" + 
+			"								}\r\n" + 
+			"							},\r\n" + 
+			"							\"_check_ValPar\" : null,\r\n" + 
+			"							\"_source\" : null,\r\n" + 
+			"							\"documento\" : {\r\n" + 
+			"								\"tipo\" : \"personaFisica\",\r\n" + 
+			"								\"versione\" : \"1.0\"\r\n" + 
+			"							},\r\n" + 
+			"							\"_acl\" : null,\r\n" + 
+			"							\"ts\" : \"Tue Dec 29 23:08:25 CET 2020\"\r\n" + 
+			"						}\r\n" + 
+			"					},\r\n" + 
+			"					{\r\n" + 
+			"						\"data_inizio_rapporto\" : \"2003-01-02\",\r\n" + 
+			"						\"data_fine_rapporto\" : null,\r\n" + 
+			"						\"tipo_rapporto_direttore_tecnico\" : {\r\n" + 
+			"							\"codice\" : \"\",\r\n" + 
+			"							\"descrizione\" : \"\"\r\n" + 
+			"						},\r\n" + 
+			"						\"persona_fisica\" : {\r\n" + 
+			"							\"dati_identificativi\" : {\r\n" + 
+			"								\"codice_fiscale\" : \"DCRRCC58B16H641A\",\r\n" + 
+			"								\"nome\" : \"ROCCO\",\r\n" + 
+			"								\"cognome\" : \"DE CARLO\",\r\n" + 
+			"								\"contatti\" : {\r\n" + 
+			"									\"MAIL_PEC\" : \"\",\r\n" + 
+			"									\"EMAIL\" : \"ROCCO.DECARLO58@TISCALI.IT\",\r\n" + 
+			"									\"TELEFONO\" : null\r\n" + 
+			"								}\r\n" + 
+			"							},\r\n" + 
+			"							\"_check_ValPar\" : null,\r\n" + 
+			"							\"_source\" : null,\r\n" + 
+			"							\"documento\" : {\r\n" + 
+			"								\"tipo\" : \"personaFisica\",\r\n" + 
+			"								\"versione\" : \"1.0\"\r\n" + 
+			"							},\r\n" + 
+			"							\"_acl\" : null,\r\n" + 
+			"							\"ts\" : \"Thu Dec 31 02:10:30 CET 2020\"\r\n" + 
+			"						}\r\n" + 
+			"					},\r\n" + 
+			"					{\r\n" + 
+			"						\"data_inizio_rapporto\" : \"2003-01-02\",\r\n" + 
+			"						\"data_fine_rapporto\" : null,\r\n" + 
+			"						\"tipo_rapporto_direttore_tecnico\" : {\r\n" + 
+			"							\"codice\" : \"\",\r\n" + 
+			"							\"descrizione\" : \"\"\r\n" + 
+			"						},\r\n" + 
+			"						\"persona_fisica\" : {\r\n" + 
+			"							\"dati_identificativi\" : {\r\n" + 
+			"								\"codice_fiscale\" : \"DCRRCC58B16H641A\",\r\n" + 
+			"								\"nome\" : \"ROCCO\",\r\n" + 
+			"								\"cognome\" : \"DE CARLO\",\r\n" + 
+			"								\"contatti\" : {\r\n" + 
+			"									\"MAIL_PEC\" : \"\",\r\n" + 
+			"									\"EMAIL\" : \"ROCCO.DECARLO58@TISCALI.IT\",\r\n" + 
+			"									\"TELEFONO\" : null\r\n" + 
+			"								}\r\n" + 
+			"							},\r\n" + 
+			"							\"_check_ValPar\" : null,\r\n" + 
+			"							\"_source\" : null,\r\n" + 
+			"							\"documento\" : {\r\n" + 
+			"								\"tipo\" : \"personaFisica\",\r\n" + 
+			"								\"versione\" : \"1.0\"\r\n" + 
+			"							},\r\n" + 
+			"							\"_acl\" : null,\r\n" + 
+			"							\"ts\" : \"Thu Dec 31 02:10:30 CET 2020\"\r\n" + 
+			"						}\r\n" + 
+			"					}\r\n" + 
+			"				],\r\n" + 
+			"				\"soggetti\" : [ ]\r\n" + 
+			"			},\r\n" + 
+			"			\"componenti\" : [ ]\r\n" + 
+			"		},\r\n" + 
+			"		\"summary_denominazione2\" : \"<ul class='list-group list-group-flush'><li class='list-group-item list-group-item-primary'><b>Denominazione:</b> 2D TRIVELLAZIONI S.N.C. DI DE CARLO GERARDO & F.LLI</li><li class='list-group-item list-group-item-primary'><b>Codice Fiscale:</b> 01134160769</li><li class='list-group-item list-group-item-primary'><b>Localizzazione:</b> RUOTI (POTENZA)</li><li class='list-group-item list-group-item-primary'><b>Natura giuridica:</b> SOCIETA' IN NOME COLLETTIVO</li></ul>\",\r\n" + 
+			"		\"cf_amministrazione2\" : \"\",\r\n" + 
+			"		\"summary_cf2\" : \"\",\r\n" + 
+			"		\"denominazione\" : \"2D TRIVELLAZIONI S.N.C. DI DE CARLO GERARDO & F.LLI\",\r\n" + 
+			"		\"cf\" : \"01134160769\",\r\n" + 
+			"		\"tipologia_ente_amministrazione\" : \"ministero\",\r\n" + 
+			"		\"regione\" : \"Basilicata\",\r\n" + 
+			"		\"provincia\" : \"Potenza\",\r\n" + 
+			"		\"comune\" : \"Ruoti\",\r\n" + 
+			"		\"mail\" : \"massimiliano.raffa@laziocrea.it\",\r\n" + 
+			"		\"pec\" : \"2dtrivellazionisnc@pec.it\",\r\n" + 
+			"		\"area\" : \"appalti\",\r\n" + 
+			"		\"cig\" : \"XA31927D46\",\r\n" + 
+			"		\"denominazione_sa\" : \"SO.G.I.P. SRL UNIPERSONALE\",\r\n" + 
+			"		\"codiceFiscale_sa\" : \"04015810874\",\r\n" + 
+			"		\"regione_appalti\" : \"Sicilia\",\r\n" + 
+			"		\"provincia_appalti\" : \"Catania\",\r\n" + 
+			"		\"comune_appalti\" : \"Acireale\",\r\n" + 
+			"		\"stazioneappaltante\" : \"\",\r\n" + 
+			"		\"denominazione_operatoreEconomico\" : \"denominazione\",\r\n" + 
+			"		\"codiceFiscale_operatoreEconomico\" : \"1234567890123456\",\r\n" + 
+			"		\"cig_aggiuntivi\" : [\r\n" + 
+			"			{\r\n" + 
+			"				\"codiceIdentificativoGaraCig\" : \"0000000000\"\r\n" + 
+			"			},\r\n" + 
+			"			{\r\n" + 
+			"				\"codiceIdentificativoGaraCig\" : \"0000000000\"\r\n" + 
+			"			}\r\n" + 
+			"		],\r\n" + 
+			"		\"ambitodellintervento\" : \"appaltoDiServiziPubbliciLocali\",\r\n" + 
+			"		\"oggettoContratto_sa\" : \"oggetto del contratto\",\r\n" + 
+			"		\"procedura_affidamento\" : \"proceduraAperta\",\r\n" + 
+			"		\"faseprocedura\" : \"garaInCorso\",\r\n" + 
+			"		\"data_scadenza\" : \"2021-12-24T00:00:00.000+01:00\",\r\n" + 
+			"		\"importo_base_asta\" : 12000,\r\n" + 
+			"		\"nome_rup\" : \"SALVATORE\",\r\n" + 
+			"		\"cognome_rup\" : \"MESSINA\",\r\n" + 
+			"		\"descrizione_intervento_segnalazione\" : \"FORNITURA DI RAM AGGIUNTIVA PER SERVER CENTRALE\",\r\n" + 
+			"		\"PeriodoPresuntaSegnalazione\" : \"nessuno\",\r\n" + 
+			"		\"appalti_end\" : {\r\n" + 
+			"			\"contenziosoSegnalante\" : true,\r\n" + 
+			"			\"Segnalantepartedelgiudizio\" : \"si\",\r\n" + 
+			"			\"esistenzacivile\" : true,\r\n" + 
+			"			\"esistenzacivile_estremi\" : \"1\",\r\n" + 
+			"			\"esistenzapenale\" : true,\r\n" + 
+			"			\"esistenzapenale_estremi\" : \"2\",\r\n" + 
+			"			\"esistenzaanac\" : true,\r\n" + 
+			"			\"esistenzaanac_estremi\" : \"3\",\r\n" + 
+			"			\"esistenzacorteconti\" : true,\r\n" + 
+			"			\"esistenzacorteconti_estremi\" : \"4\",\r\n" + 
+			"			\"esistenzaautotutela\" : true,\r\n" + 
+			"			\"esistenzaautotutela_estremi\" : \"5\",\r\n" + 
+			"			\"esistenzaamministrativo\" : true,\r\n" + 
+			"			\"esistenzaamministrativo_estremi\" : \"6\"\r\n" + 
+			"		},\r\n" + 
+			"		\"esistenzaanacsegnalazioni\" : true,\r\n" + 
+			"		\"esistenzaanacsegnalazioni_estremi\" : \"7\",\r\n" + 
+			"		\"soggettiaux\" : {\r\n" + 
+			"			\"rpct\" : true,\r\n" + 
+			"			\"procuraDellaRepubblica\" : false,\r\n" + 
+			"			\"procuraRegionaleCorteDeiConti\" : false,\r\n" + 
+			"			\"ispettoratoPerLaFunzionePubblica\" : false,\r\n" + 
+			"			\"prefettura\" : true,\r\n" + 
+			"			\"altro\" : false\r\n" + 
+			"		},\r\n" + 
+			"		\"documenti_allegati_chiusura\" : [\r\n" + 
+			"			{\r\n" + 
+			"				\"titolo_documento\" : \"titolo\",\r\n" + 
+			"				\"note_documento\" : \"note\",\r\n" + 
+			"				\"documento_allegati\" : [\r\n" + 
+			"					{\r\n" + 
+			"						\"storage\" : \"url\",\r\n" + 
+			"						\"name\" : \"ANTIRICICLAGGIO ESTESO -1--73a19dcb-5c82-4d54-b19d-bd5958881f28.pdf\",\r\n" + 
+			"						\"url\" : \"http://formio-upload-segnalazioni-ril.apps.ocp.premaster.local/file/%2F6f7e207d4c8c5073e4301506e9a999e5\",\r\n" + 
+			"						\"size\" : 256804,\r\n" + 
+			"						\"type\" : \"application/pdf\",\r\n" + 
+			"						\"data\" : {\r\n" + 
+			"							\"fieldname\" : \"file\",\r\n" + 
+			"							\"originalname\" : \"ANTIRICICLAGGIO ESTESO (1).pdf\",\r\n" + 
+			"							\"encoding\" : \"7bit\",\r\n" + 
+			"							\"mimetype\" : \"application/pdf\",\r\n" + 
+			"							\"destination\" : \"/tmp\",\r\n" + 
+			"							\"filename\" : \"6f7e207d4c8c5073e4301506e9a999e5\",\r\n" + 
+			"							\"path\" : \"/tmp/6f7e207d4c8c5073e4301506e9a999e5\",\r\n" + 
+			"							\"size\" : 256804,\r\n" + 
+			"							\"url\" : \"/%2F6f7e207d4c8c5073e4301506e9a999e5\",\r\n" + 
+			"							\"baseUrl\" : \"http://nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"							\"project\" : \"\",\r\n" + 
+			"							\"form\" : \"\"\r\n" + 
+			"						},\r\n" + 
+			"						\"originalName\" : \"ANTIRICICLAGGIO ESTESO (1).pdf\"\r\n" + 
+			"					}\r\n" + 
+			"				]\r\n" + 
+			"			},\r\n" + 
+			"			{\r\n" + 
+			"				\"titolo_documento\" : \"titolo_2\",\r\n" + 
+			"				\"note_documento\" : \"note\",\r\n" + 
+			"				\"documento_allegati\" : [\r\n" + 
+			"					{\r\n" + 
+			"						\"storage\" : \"url\",\r\n" + 
+			"						\"name\" : \"documento_fronte-057cf307-439e-4b87-8182-bbc4a6912ce9.pdf\",\r\n" + 
+			"						\"url\" : \"http://formio-upload-segnalazioni-ril.apps.ocp.premaster.local/file/%2F5b5c9fab315322a28a0cd1307350789b\",\r\n" + 
+			"						\"size\" : 89583,\r\n" + 
+			"						\"type\" : \"application/pdf\",\r\n" + 
+			"						\"data\" : {\r\n" + 
+			"							\"fieldname\" : \"file\",\r\n" + 
+			"							\"originalname\" : \"documento_fronte.pdf\",\r\n" + 
+			"							\"encoding\" : \"7bit\",\r\n" + 
+			"							\"mimetype\" : \"application/pdf\",\r\n" + 
+			"							\"destination\" : \"/tmp\",\r\n" + 
+			"							\"filename\" : \"5b5c9fab315322a28a0cd1307350789b\",\r\n" + 
+			"							\"path\" : \"/tmp/5b5c9fab315322a28a0cd1307350789b\",\r\n" + 
+			"							\"size\" : 89583,\r\n" + 
+			"							\"url\" : \"/%2F5b5c9fab315322a28a0cd1307350789b\",\r\n" + 
+			"							\"baseUrl\" : \"http://nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"							\"project\" : \"\",\r\n" + 
+			"							\"form\" : \"\"\r\n" + 
+			"						},\r\n" + 
+			"						\"originalName\" : \"documento_fronte.pdf\"\r\n" + 
+			"					}\r\n" + 
+			"				]\r\n" + 
+			"			}\r\n" + 
+			"		],\r\n" + 
+			"		\"dati_sensibili\" : \"kkk\"\r\n" + 
+			"	},\r\n" + 
+			"	\"access\" : [ ],\r\n" + 
+			"	\"metadata\" : {\r\n" + 
+			"		\"timezone\" : \"Europe/Rome\",\r\n" + 
+			"		\"offset\" : 60,\r\n" + 
+			"		\"origin\" : \"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"		\"referrer\" : \"\",\r\n" + 
+			"		\"browserName\" : \"Netscape\",\r\n" + 
+			"		\"userAgent\" : \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36\",\r\n" + 
+			"		\"pathName\" : \"/form\",\r\n" + 
+			"		\"onLine\" : true,\r\n" + 
+			"		\"headers\" : {\r\n" + 
+			"			\"content-length\" : \"10818\",\r\n" + 
+			"			\"accept\" : \"application/json\",\r\n" + 
+			"			\"user-agent\" : \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36\",\r\n" + 
+			"			\"content-type\" : \"application/json\",\r\n" + 
+			"			\"origin\" : \"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"			\"referer\" : \"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local/\",\r\n" + 
+			"			\"accept-encoding\" : \"gzip, deflate\",\r\n" + 
+			"			\"accept-language\" : \"it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7\",\r\n" + 
+			"			\"host\" : \"nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"			\"x-forwarded-host\" : \"nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local\",\r\n" + 
+			"			\"x-forwarded-port\" : \"80\",\r\n" + 
+			"			\"x-forwarded-proto\" : \"http\",\r\n" + 
+			"			\"forwarded\" : \"for=10.130.72.235;host=nodejs-mongodb-formio-segnalazioni-ril.apps.ocp.premaster.local;proto=http\",\r\n" + 
+			"			\"x-forwarded-for\" : \"10.130.72.235\"\r\n" + 
+			"		}\r\n" + 
+			"	},\r\n" + 
+			"	\"externalIds\" : [ ],\r\n" + 
+			"	\"__v\" : 0\r\n" + 
+			"}";
+	
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	
+	private String getValueFromJson(JsonNode nameNode, String prop)
+	{
+		String ret = "";
+		
+        if (nameNode.get(prop)!=null)
+        	ret = nameNode.get(prop).asText();
+        	
+		return ret;
+	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/report", method = RequestMethod.GET)	
@@ -66,52 +514,90 @@ public class ReportRestController
 		boolean rpct = false;
 		boolean trasparenza = false;
 		
-		Query query = new Query();
+	/*	Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
-		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
+		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");*/
 		
 		
 		/*********************************************/
 	
 		ObjectMapper objectMapper = new ObjectMapper();
 			
-		JsonNode jsonNode = objectMapper.readTree(res.toString());
+	//	JsonNode jsonNode = objectMapper.readTree(res.toString());
+		JsonNode jsonNode = objectMapper.readTree(jsonTest);
 		JsonNode nameNode = jsonNode.at("/data");
 				
 		/****************************************/
 		
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
 		
-		Segnalante segnalante = new Segnalante(nameNode.get("nome_soggetto_segnalante").asText(),
-											   nameNode.get("cognnome_soggetto_segnalante").asText(),
-											   nameNode.get("codiceFiscale_soggetto_segnalante").asText(),
-											   nameNode.get("qualifica").asText());
+		Segnalante segnalante = new Segnalante(getValueFromJson(nameNode,"nome_soggetto_segnalante"),
+											   getValueFromJson(nameNode,"cognome_soggetto_segnalante"),
+											   getValueFromJson(nameNode,"codiceFiscale_soggetto_segnalante"),
+											   getValueFromJson(nameNode,"qualifica"));
 
-		Organizzazione org = new Organizzazione(nameNode.get("denominazione").asText(),
-												nameNode.get("regione").asText(),
-												nameNode.get("provincia").asText(),
-												nameNode.get("comune").asText());
-		org.setTipoEnte("Comune");
-		org.setMail("prova@bugliano.gov.it");
-		org.setPec("protocollo@bugliano.pec.it");
-		org.setTelefono("+39 06060606");
+		Organizzazione org = new Organizzazione(getValueFromJson(nameNode,"denominazione"),
+												getValueFromJson(nameNode,"regione"),
+												getValueFromJson(nameNode,"provincia"),
+												getValueFromJson(nameNode,"comune"));
+		
+		String tipoEnte = getValueFromJson(nameNode,"tipologia_ente_amministrazione");
+		if (tipoEnte.trim().equals(""))
+			tipoEnte = getValueFromJson(nameNode,"tipologia_ente_amministrazione_rpct");
+		org.setTipoEnte(tipoEnte);
+		
+		String mail = nameNode.get("mail").asText();
+		if (mail.trim().equals(""))
+			mail = getValueFromJson(nameNode,"mail_rpct");	
+		org.setMail(mail);
+		
+		String pec = nameNode.get("pec").asText();
+		if (pec.trim().equals(""))
+			pec = nameNode.get("pec_rpct").asText();	
+		org.setPec(pec);
+		
+		String telefono = getValueFromJson(nameNode,"telefono");
+		if (telefono.trim().equals(""))
+			telefono = getValueFromJson(nameNode,"telefono_rpct");	
+		org.setTelefono(telefono);
+		
+		String cf = getValueFromJson(nameNode,"cf");
+		if (telefono.trim().equals(""))
+			telefono = getValueFromJson(nameNode,"cf_rpct");	
+		org.setCodiceFiscale(cf);
+		
 		segnalante.setEnte(org);
 
-		Organizzazione sa = new Organizzazione("Comune di Bugliano", "Toscana", "Pisa", "Bugliano");
-		sa.setTipoEnte("Soggetto aggregatore");
+		Organizzazione sa = new Organizzazione(
+				getValueFromJson(nameNode, "denominazione_sa"),
+				getValueFromJson(nameNode, "regione_appalti"),
+				getValueFromJson(nameNode, "provincia_appalti"),
+				getValueFromJson(nameNode, "comune_appalti"));
+		sa.setTipoEnte(getValueFromJson(nameNode, "stazioneappaltante"));
 
-		SegnalazioneAppalto segnalazione = new SegnalazioneAppalto(segnalante, "Oggetto segnalazione", 
-				dateformat.parse("07-12-2021"), sa, "Fornitura di banchi a rotelle", "Appalto di Servizi/Forniture");
+		SegnalazioneAppalto segnalazione = new SegnalazioneAppalto(
+													segnalante,
+													getValueFromJson(nameNode, "descrizione_intervento_segnalazione"), 
+													dateformat.parse("07-12-2021"),
+													sa,
+													"Fornitura di banchi a rotelle",
+													"Appalto di Servizi/Forniture");
 
 		// Operatore Economico
-		Organizzazione oe = new Organizzazione("Lavori SPA", "Toscana", "Firenze", "Fucecchio");
+		Organizzazione oe = new Organizzazione(
+				getValueFromJson(nameNode, "denominazione_operatoreEconomico"),
+				getValueFromJson(nameNode, "codiceFiscale_operatoreEconomico"));
 		segnalazione.setOe(oe);
 		
-		segnalazione.setCig("0079814896");
+		segnalazione.setCig(getValueFromJson(nameNode, "cig"));
 		
 		// Aggiungiamo ulteriori CIG
-		segnalazione.addCig("01022012EE");
-		segnalazione.addCig("008512575D");
+		JsonNode arrNode = nameNode.get("cig_aggiuntivi");
+		if (arrNode.isArray()) {
+		    for (JsonNode objNode : arrNode) {
+		        segnalazione.addCig(objNode.get("codiceIdentificativoGaraCig").asText());
+		    }
+		}
 		
 		// Secretato
 		segnalazione.setSecretato(true);
@@ -210,6 +696,8 @@ public class ReportRestController
 		ctx.put("segnalazione", segnalazione);
 
 		/*******************************************/
+		
+		System.out.println(filePath);
 	    
 		OutputStream out = new FileOutputStream(filePath);
 		report.convert(ctx, options, out);
