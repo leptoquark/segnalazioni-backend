@@ -514,17 +514,16 @@ public class ReportRestController
 		boolean rpct = false;
 		boolean trasparenza = false;
 		
-	/*	Query query = new Query();
+		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
-		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");*/
+		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
 		
 		
 		/*********************************************/
 	
 		ObjectMapper objectMapper = new ObjectMapper();
 			
-	//	JsonNode jsonNode = objectMapper.readTree(res.toString());
-		JsonNode jsonNode = objectMapper.readTree(jsonTest);
+	    JsonNode jsonNode = objectMapper.readTree(res.toString());
 		JsonNode nameNode = jsonNode.at("/data");
 				
 		/****************************************/
