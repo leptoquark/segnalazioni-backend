@@ -98,6 +98,7 @@ public class ProtocolloService {
     	ProtocolloTypeDocumenti documenti = new ProtocolloTypeDocumenti();
     	
     	
+    	
     	for(int i=0; i<fileDocuments.length; i++)
     	{
     	
@@ -112,10 +113,13 @@ public class ProtocolloService {
 	    		documento.setFileBase64(downloadFile(documento.getNomeFile()));
 
 	    	if (!documento.getNomeFile().equals(""))
+	    	{
 	    		documenti.setDocumento(documento);
+	    		protocollo.getDocumenti().add(documenti);
+	    	}
     	}
     	
-    	protocollo.getDocumenti().add(documenti);
+    	
 	
     	registraProtocolloRequest.setIdentificazione(identificazione);
     	registraProtocolloRequest.setProtocollo(protocollo);
