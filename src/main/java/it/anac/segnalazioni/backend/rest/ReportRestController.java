@@ -545,12 +545,12 @@ public class ReportRestController
 			tipoEnte = getValueFromJson(nameNode,"tipologia_ente_amministrazione_rpct");
 		org.setTipoEnte(tipoEnte);
 		
-		String mail = nameNode.get("mail").asText();
+		String mail =getValueFromJson(nameNode,"mail");
 		if (mail.trim().equals(""))
 			mail = getValueFromJson(nameNode,"mail_rpct");	
 		org.setMail(mail);
 		
-		String pec = nameNode.get("pec").asText();
+		String pec = getValueFromJson(nameNode,"pec");
 		if (pec.trim().equals(""))
 			pec = nameNode.get("pec_rpct").asText();	
 		org.setPec(pec);
@@ -591,9 +591,9 @@ public class ReportRestController
 		segnalazione.setCig(getValueFromJson(nameNode, "cig"));
 		
 		// Aggiungiamo ulteriori CIG
-		JsonNode arrNode = nameNode.get("cig_aggiuntivi");
-		if (arrNode.isArray()) {
-		    for (JsonNode objNode : arrNode) {
+		JsonNode arrNode_cig = nameNode.get("cig_aggiuntivi");
+		if (arrNode_cig.isArray()) {
+		    for (JsonNode objNode : arrNode_cig) {
 		        segnalazione.addCig(objNode.get("codiceIdentificativoGaraCig").asText());
 		    }
 		}
