@@ -552,7 +552,7 @@ public class ReportRestController
 		
 		String pec = getValueFromJson(nameNode,"pec");
 		if (pec.trim().equals(""))
-			pec = nameNode.get("pec_rpct").asText();	
+			pec = getValueFromJson(nameNode,"pec_rpct");	
 		org.setPec(pec);
 		
 		String telefono = getValueFromJson(nameNode,"telefono");
@@ -599,40 +599,78 @@ public class ReportRestController
 		}
 		
 		// Secretato
-		segnalazione.setSecretato(true);
-		segnalazione.setGenerale(true);
-		segnalazione.setPerSe(true);
+		segnalazione.setSecretato(getValueFromJson(nameNode, "contrattoSecretato").equals("si"));
+		segnalazione.setGenerale(getValueFromJson(nameNode, "contraenteGenerale").equals("si"));
+		segnalazione.setPerSe(getValueFromJson(nameNode, "fornituraCentraleCommittenza").equals("si"));
 		
 		// Importo base d'asta
-		segnalazione.setBaseAsta(400000);
+		segnalazione.setBaseAsta(Integer.valueOf(getValueFromJson(nameNode, "importo_base_asta")));
 		
 		// Procedura di affidamento
-		segnalazione.setProcedura("Procedura aperta");
+		segnalazione.setProcedura(getValueFromJson(nameNode, "procedura_affidamento"));
 		
 		// Fase
-		segnalazione.setFase("Esecuzione del contratto");
+		segnalazione.setFase(getValueFromJson(nameNode, "faseprocedura"));
+		
+		System.out.println(getValueFromJson(nameNode, "data_scadenza"));
+		System.out.println(getValueFromJson(nameNode, "data_aggiudicazione"));
+		System.out.println(getValueFromJson(nameNode, "data_stipula"));
+		System.out.println(getValueFromJson(nameNode, "data_collaudo"));
+		
 		segnalazione.setDataFase(dateformat.parse("20-02-2021"));
 		
-		segnalazione.setImporto(350000);
+		segnalazione.setImporto(Integer.valueOf(getValueFromJson(nameNode, "importo_contrattuale")));
 		
 		// RUP
-		segnalazione.setRup(new Rup("Brunella", "Talarico"));
+		segnalazione.setRup(new Rup(getValueFromJson(nameNode, "nome_rup"), getValueFromJson(nameNode, "cognome_rup")));
 		
 		// Data della presunta violazione
-		segnalazione.setDataViolazione("ottobre 2020");
+		segnalazione.setDataViolazione(getValueFromJson(nameNode, "PeriodoPresuntaSegnalazione"));
 		
 		// Aggiungi tutti i possibili contenziosi
-		segnalazione.setContenzioso(true);
+		segnalazione.setContenzioso(getValueFromJson(nameNode, "contenziosoSegnalante").equals("true"));
 		
-		for (ContenziosoType ctype : ContenziosoType.values()) {
-			Contenzioso cont = new Contenzioso(ctype);
-			cont.setEstremi("ac viverra felis nunc ut ipsum. Nunc condimentum lacus");
+		
+		if (getValueFromJson(nameNode, "esistenzacivile").equals("true"))
+		{
+			Contenzioso cont = new Contenzioso(ContenziosoType.CIVILE);
+			cont.setEstremi(getValueFromJson(nameNode, "esistenzacivile_estremi"));
+			segnalazione.addContenzioso(cont);
+		}
+		if (getValueFromJson(nameNode, "esistenzapenale").equals("true"))
+		{
+			Contenzioso cont = new Contenzioso(ContenziosoType.PENALE);
+			cont.setEstremi(getValueFromJson(nameNode, "esistenzapenale_estremi"));
+			segnalazione.addContenzioso(cont);
+		}
+		if (getValueFromJson(nameNode, "esistenzaanac").equals("true"))
+		{
+			Contenzioso cont = new Contenzioso(ContenziosoType.ANAC);
+			cont.setEstremi(getValueFromJson(nameNode, "esistenzaanac_estremi"));
+			segnalazione.addContenzioso(cont);
+		}
+		if (getValueFromJson(nameNode, "esistenzacorteconti").equals("true"))
+		{
+			Contenzioso cont = new Contenzioso(ContenziosoType.CORTE_CONTI);
+			cont.setEstremi(getValueFromJson(nameNode, "esistenzacorteconti_estremi"));
+			segnalazione.addContenzioso(cont);
+		}
+		if (getValueFromJson(nameNode, "esistenzaautotutela").equals("true"))
+		{
+			Contenzioso cont = new Contenzioso(ContenziosoType.AUTOTUTELA);
+			cont.setEstremi(getValueFromJson(nameNode, "esistenzaautotutela_estremi"));
+			segnalazione.addContenzioso(cont);
+		}
+		if (getValueFromJson(nameNode, "esistenzaamministrativo").equals("true"))
+		{
+			Contenzioso cont = new Contenzioso(ContenziosoType.AMMINISTRATIVO);
+			cont.setEstremi(getValueFromJson(nameNode, "esistenzaamministrativo_estremi"));
 			segnalazione.addContenzioso(cont);
 		}
 		
 		// Aggiungi altre segnalazioni
-		segnalazione.setAltreSegnalazioni(true);
-		segnalazione.setEstremiSegnalazioni("lorem vel metus commodo condimentum congue eget urna.");
+		segnalazione.setAltreSegnalazioni(getValueFromJson(nameNode, "esistenzaanacsegnalazioni").equals("true"));
+		segnalazione.setEstremiSegnalazioni(getValueFromJson(nameNode, "esistenzaanacsegnalazioni_estremi"));
 		
 		// Parametri di chiusura
 
@@ -656,7 +694,6 @@ public class ReportRestController
 						+ "commodo mi gravida eget.");
 	
 		
-
 		
 	    String filePath = System.getProperty("java.io.tmpdir")+"/out_"+id+"_"+System.currentTimeMillis()+".pdf";
 	    
