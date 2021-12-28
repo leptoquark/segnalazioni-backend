@@ -79,7 +79,7 @@ public class SubmissionHelper
 		
 		String docRetro_name = "";
 		String docRetro_url = "";
-		if (!jsonNode.findValues("documento_retro").isEmpty())
+		if (jsonNode.findValues("documento_retro").size()!=0)
 		{
 			System.out.println(nameNode.findValues("documento_retro").get(0).toPrettyString());
 			docRetro_name = nameNode.findValues("documento_retro").get(0).get(0).get("name").asText();
@@ -106,10 +106,7 @@ public class SubmissionHelper
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
 		docs.add(new FileDocument(docFronte_url, docFronte_name));
-		
-		System.out.println("docRetro_name: "+docRetro_name);
-		System.out.println("docRetro_url: "+docRetro_url);
-		docs.add(new FileDocument(docRetro_name, docRetro_url));
+		docs.add(new FileDocument(docRetro_url, docRetro_name));
 
 		ProtocolloRequest pr = new ProtocolloRequest();
 		
