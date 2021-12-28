@@ -106,6 +106,10 @@ public class SubmissionHelper
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
 		docs.add(new FileDocument(docFronte_url, docFronte_name));
+		docs.add(new FileDocument(docFronte_url, docFronte_name));
+		docs.add(new FileDocument(docFronte_url, docFronte_name));
+		docs.add(new FileDocument(docFronte_url, docFronte_name));
+		
 		docs.add(new FileDocument(docRetro_url, docRetro_name));
 
 		ProtocolloRequest pr = new ProtocolloRequest();
