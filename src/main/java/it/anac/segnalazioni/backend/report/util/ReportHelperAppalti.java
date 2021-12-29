@@ -89,6 +89,8 @@ public class ReportHelperAppalti extends ReportHelperJson {
 		if (nameNode.get("data_collaudo")!=null)
 			System.out.println("DATA COLLAUDO: \n"+nameNode.get("data_collaudo").toPrettyString());
 		
+		System.out.println("dataFaseAux"+dataFaseAux);
+		
 		if (!dataFaseAux.equals(""))
 		{
 			Instant instant = Instant.parse(dataFaseAux);

@@ -24,9 +24,7 @@ public abstract class ReportHelperJson {
 		
 	    JsonNode jsonNode = objectMapper.readTree(json);
 		this.nameNode = jsonNode.at("/data");
-		
-		System.out.println(nameNode.toPrettyString());
-		
+			
 		this.dateformat = new SimpleDateFormat("dd-MM-yyyy");
 	}
 	
@@ -99,7 +97,6 @@ public abstract class ReportHelperJson {
 	protected void chiusura(Segnalazione segnalazione)
 	{
 		// Aggiungiamo alcuni allegati
-		segnalazione.addAllegato(new Allegato("contratto.pdf", "Contratto stipulato", "Documento contrattuale"));
 		
 		if (nameNode.get("soggettiaux").get("rpct").asBoolean())
 			segnalazione.addAltroSoggetto("RPCT");
@@ -119,8 +116,22 @@ public abstract class ReportHelperJson {
 		// pubblicazione
 		segnalazione.setEsclusione(getValueFromJson(nameNode,"dati_sensibili"));
 		
-		System.out.println("CHIUSURA");
-		System.out.println(nameNode.get("documenti_allegati_chiusura").toPrettyString());
-						
+		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
+		if (arrNode_cig.isArray()) {
+		    for (JsonNode objNode : arrNode_cig) {
+		        String nome_doc = getValueFromJson(objNode.get("documento_allegati"),"OriginalName");
+		        Allegato allegato = new Allegato(nome_doc);
+		        
+		        String titolo_doc = getValueFromJson(objNode, "titolo_documento");
+		        if (titolo_doc.equals(""))
+		        	allegato.setTitolo(titolo_doc);
+		        
+		        String note_doc = getValueFromJson(objNode,"note_documento");
+		        if (note_doc.equals(""))
+		        	allegato.setDescrizione(note_doc);
+	        	
+				segnalazione.addAllegato(new Allegato(nome_doc, titolo_doc, note_doc));
+		    }
+		}					
 	}
 }
