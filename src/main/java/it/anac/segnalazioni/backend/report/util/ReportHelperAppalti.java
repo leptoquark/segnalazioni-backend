@@ -80,9 +80,21 @@ public class ReportHelperAppalti extends ReportHelperJson {
 		dataFaseAux = getValueFromJson(nameNode.get("data_stipula"),"$date");
 		dataFaseAux = getValueFromJson(nameNode.get("data_collaudo"),"$date");
 		
-		Instant instant = Instant.parse(dataFaseAux);
-		Date dataFase = Date.from(instant);
-		segnalazione.setDataFase(dataFase);
+		if (nameNode.get("data_scadenza")!=null)
+			System.out.println("DATA SCADENZA: \n"+nameNode.get("data_scadenza").toPrettyString());
+		if (nameNode.get("data_aggiudicazione")!=null)
+			System.out.println("DATA AGGIUDICAZIONE: \n"+nameNode.get("data_aggiudicazione").toPrettyString());
+		if (nameNode.get("data_stipula")!=null)
+			System.out.println("DATA STIPULA: \n"+nameNode.get("data_stipula").toPrettyString());
+		if (nameNode.get("data_collaudo")!=null)
+			System.out.println("DATA COLLAUDO: \n"+nameNode.get("data_collaudo").toPrettyString());
+		
+		if (!dataFaseAux.equals(""))
+		{
+			Instant instant = Instant.parse(dataFaseAux);
+			Date dataFase = Date.from(instant);
+			segnalazione.setDataFase(dataFase);
+		}
 		
 		segnalazione.setImporto(getIntValueFromJson(nameNode, "importo_contrattuale"));
 		
