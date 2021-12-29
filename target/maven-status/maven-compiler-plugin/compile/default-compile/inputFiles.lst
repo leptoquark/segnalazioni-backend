@@ -20,6 +20,7 @@ D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazio
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\report\util\TestAppalto.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\pg\Contatti.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\security\JwtRequestFilter.java
+D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\report\util\ReportHelperAppalti.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\security\JwtTokenUtil.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\report\model\SegnalazioneAppalto.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\PersonaGiuridicaRestController.java
@@ -53,6 +54,7 @@ D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazio
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\AppaltiTestController.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\rest\SpringFoxConfig.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\model\appalto\Incaricati.java
+D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\report\util\ReportHelperJson.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\SegnalazioniBackendApplication.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\domain\antivirus\AntivirusRequest.java
 D:\omnia\eclipse-workspace\segnalazioni-backend\src\main\java\it\anac\segnalazioni\backend\report\model\Allegato.java

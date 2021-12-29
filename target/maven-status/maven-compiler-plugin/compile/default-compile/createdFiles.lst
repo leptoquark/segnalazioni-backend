@@ -36,6 +36,7 @@ it\anac\segnalazioni\backend\domain\antivirus\ScanResult$Status.class
 it\anac\segnalazioni\backend\report\model\SoggettoInadempiente.class
 it\anac\segnalazioni\backend\rest\AntivirusServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\report\model\ContenziosoType.class
+it\anac\segnalazioni\backend\report\util\ReportHelperAppalti.class
 it\anac\segnalazioni\backend\model\pg\Classificazione.class
 it\anac\segnalazioni\backend\rest\AppaltiServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\model\pg\Georef.class
@@ -80,6 +81,7 @@ it\anac\segnalazioni\backend\model\appalto\CONDIZIONINEGOZIATA.class
 it\anac\segnalazioni\backend\model\pg\Localizzazione.class
 it\anac\segnalazioni\backend\rest\AntivirusRestController.class
 it\anac\segnalazioni\backend\report\model\Segnalante.class
+it\anac\segnalazioni\backend\report\util\ReportHelperJson.class
 it\anac\segnalazioni\backend\rest\AppaltiTestController.class
 it\anac\segnalazioni\backend\rest\JwtAuthenticationController.class
 it\anac\segnalazioni\backend\model\pg\Stato.class
