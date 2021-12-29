@@ -40,8 +40,8 @@ public class ReportHelperAppalti extends ReportHelperJson {
 													getValueFromJson(nameNode, "descrizione_intervento_segnalazione"), 
 													new Date(),
 													sa,
-													"Fornitura di banchi a rotelle",
-													"Appalto di Servizi/Forniture");
+													getValueFromJson(nameNode, "oggettoContratto_sa"),
+													getValueFromJson(nameNode, "ambitodellintervento"));
 
 		// Operatore Economico
 		Organizzazione oe = new Organizzazione(
