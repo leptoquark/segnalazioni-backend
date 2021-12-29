@@ -102,17 +102,20 @@ public abstract class ReportHelperJson {
 		// Aggiungiamo alcuni allegati
 		segnalazione.addAllegato(new Allegato("contratto.pdf", "Contratto stipulato", "Documento contrattuale"));
 		
-		// Aggiungiamo altri soggetti interessati
-		// segnalazione.addAltroSoggetto(new String("Nessuno"));
-		/*JsonNode arrNode_soggettiInteressati = nameNode.get("soggettiaux");
-		if (arrNode_soggettiInteressati.isArray()) {
-		    for (JsonNode objNode : arrNode_soggettiInteressati) {
-		        segnalazione.addAltroSoggetto(objNode.get("soggettiaux").asText());
-		    }
-		}*/
-		
-		segnalazione.addAltroSoggetto("TEST");
-		
+		if (nameNode.get("soggettiaux").get("rpct").asBoolean())
+			segnalazione.addAltroSoggetto("rpct");
+		if (nameNode.get("soggettiaux").get("procuraDellaRepubblica").asBoolean())
+			segnalazione.addAltroSoggetto("procuraDellaRepubblica");
+		if (nameNode.get("soggettiaux").get("procuraRegionaleCorteDeiConti").asBoolean())
+			segnalazione.addAltroSoggetto("procuraRegionaleCorteDeiConti");
+		if (nameNode.get("soggettiaux").get("ispettoratoPerLaFunzionePubblica").asBoolean())
+			segnalazione.addAltroSoggetto("ispettoratoPerLaFunzionePubblica");
+		if (nameNode.get("soggettiaux").get("prefettura").asBoolean())
+			segnalazione.addAltroSoggetto("prefettura");
+		if (nameNode.get("soggettiaux").get("altro").asBoolean())
+			segnalazione.addAltroSoggetto(getValueFromJson(nameNode, "altro_soggetto"));
+
+				
 		// Aggiungiamo Dati sensibili di cui il richiedente chiede esclusione da
 		// pubblicazione
 		segnalazione.setEsclusione(getValueFromJson(nameNode,"dati_sensibili"));

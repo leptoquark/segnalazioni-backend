@@ -1,6 +1,7 @@
 package it.anac.segnalazioni.backend.report.util;
 
 import java.text.ParseException;
+import java.time.Instant;
 import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -73,13 +74,15 @@ public class ReportHelperAppalti extends ReportHelperJson {
 		// Fase
 		segnalazione.setFase(getValueFromJson(nameNode, "faseprocedura"));
 		
-		/*System.out.println("DATA: ");
-		System.out.println(getValueFromJson(nameNode, "data_scadenza"));
-		System.out.println(getValueFromJson(nameNode, "data_aggiudicazione"));
-		System.out.println(getValueFromJson(nameNode, "data_stipula"));
-		System.out.println(getValueFromJson(nameNode, "data_collaudo"));*/
+
+		String dataFaseAux = getValueFromJson(nameNode.get("data_scadenza"),"$date");
+		dataFaseAux = getValueFromJson(nameNode.get("data_aggiudicazione"),"$date");
+		dataFaseAux = getValueFromJson(nameNode.get("data_stipula"),"$date");
+		dataFaseAux = getValueFromJson(nameNode.get("data_collaudo"),"$date");
 		
-		segnalazione.setDataFase(dateformat.parse("20-02-2021"));
+		Instant instant = Instant.parse(dataFaseAux);
+		Date dataFase = Date.from(instant);
+		segnalazione.setDataFase(dataFase);
 		
 		segnalazione.setImporto(getIntValueFromJson(nameNode, "importo_contrattuale"));
 		
