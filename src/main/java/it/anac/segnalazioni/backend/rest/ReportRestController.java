@@ -73,7 +73,7 @@ public class ReportRestController
 	    if (appalto)
 	    	template_file = "template_appalti.odt";
 	    else if (corruzione)
-	    	template_file = "template_corruzioe.odt";
+	    	template_file = "template_corruzione.odt";
 	    else if (incarichi)
 	    	template_file = "template_incarichi.odt";
 	    else if (rpct)
