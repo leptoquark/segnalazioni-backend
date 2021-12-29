@@ -20,7 +20,7 @@ public abstract class ReportHelperJson {
 	    JsonNode jsonNode = objectMapper.readTree(json);
 		this.nameNode = jsonNode.at("/data");
 		
-		 new SimpleDateFormat("dd-MM-yyyy");
+		this.dateformat = new SimpleDateFormat("dd-MM-yyyy");
 	}
 	
 	protected String getValueFromJson(JsonNode nameNode, String prop)
