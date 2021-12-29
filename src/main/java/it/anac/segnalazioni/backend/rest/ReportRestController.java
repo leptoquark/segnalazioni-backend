@@ -531,7 +531,6 @@ public class ReportRestController
 		cfg.setLocale(java.util.Locale.ITALIAN);
 		cfg.setDateFormat("d MMMMM yyyy");
 		
-		cfg.setTemplateExceptionHandler(new MyTemplateExceptionHandler());
 
 		IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in,
 				TemplateEngineKind.Freemarker);
@@ -550,16 +549,23 @@ public class ReportRestController
 			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());
 		} else if (corruzione)
 		{
+			ReportHelperAppalti reportHelper = new ReportHelperAppalti(res.toString());
+			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());
 			
 		} else if (incarichi)
 		{
+			ReportHelperAppalti reportHelper = new ReportHelperAppalti(res.toString());
+			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());
 			
 		} else if (rpct)
 		{
+			ReportHelperAppalti reportHelper = new ReportHelperAppalti(res.toString());
+			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());
 			
 		} else if (trasparenza)
 		{
-			
+			ReportHelperAppalti reportHelper = new ReportHelperAppalti(res.toString());
+			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());
 		}
 
 		/*******************************************/
