@@ -20,6 +20,75 @@ public class ReportHelperAppalti extends ReportHelperJson {
 	public ReportHelperAppalti(String json) throws JsonMappingException, JsonProcessingException {
 		super(json);
 	}
+	
+	private String getAmbitoIntervento(String val)
+	{
+		String ret = "N.D.";
+		if (val.equals("appalto1"))
+			ret = "Appalto di Lavori";
+		else if (val.equals("appalto2"))
+			ret = "Appalto di Servizi/Forniture";
+		else if (val.equals("serviziDiIngegneriaEdArchitettura"))
+			ret = "Servizi di ingegneria ed architettura";
+		else if (val.equals("partenariatoPubblicoPrivato"))
+			ret = "Parternariato Pubblico Privato";
+		else if (val.equals("concessioneDiLavori"))
+			ret = "Concessione di Lavori";
+		else if (val.equals("concessioneDiServiziForniture"))
+			ret = "Concessione di Servizi / Forniture";
+		else if (val.equals("appaltoDiServiziPubbliciLocali"))
+			ret = "Appalto di Servizi Pubblici Locali";
+		else if (val.equals("concessioneDiServiziPubbliciLocali"))
+			ret = "Concessione di Servizi Pubblici Locali";
+		return ret;
+	}
+	
+	private String getProceduraAffidamento(String val)
+	{
+		String ret = "N.D.";
+		if (val.equals("accordoQuadro"))
+			ret = "Accordo quadro";
+		else if (val.equals("affidamentoASocietaInHouse"))
+			ret = "Affidamento a società In House";
+		else if (val.equals("affidamentoDirettoRiservatoOInEconomia"))
+			ret = "Affidamento diretto, riservato o in economia";
+		else if (val.equals("dialogoCompetitivo"))
+			ret = "Dialogo competitivo";
+		else if (val.equals("partenariato"))
+			ret = "Partenariato Pubblico Privato";
+		else if (val.equals("proceduraAperta"))
+			ret = "Procedura Aperta";
+		else if (val.equals("proceduraNegoziata"))
+			ret = "Procedura Negoziata";
+		else if (val.equals("proceduraRistretta"))
+			ret = "Procedura Ristretta";
+		else if (val.equals("sistemaDinamicoDiAcquisizione"))
+			ret = "Sistema Dinamico di Acquisizione";
+		else if (val.equals("altroTipoDiProcedura"))
+			ret = "Altro tipo di procedura";
+		return ret;	
+	}
+	
+	private String getFaseProcedura(String val)
+	{
+		String ret = "N.D.";
+		if (val.equals("programmazioneProgettazione"))
+			ret = "Programmazione/Progettazione";
+		else if (val.equals("pubblicazioneDelBando"))
+			ret = "Pubblicazione del Bando";
+		else if (val.equals("garaInCorso"))
+			ret = "Gara in Corso";
+		else if (val.equals("gara"))
+			ret = "Gara conclusa o aggiudicata";
+		else if (val.equals("contratto"))
+			ret = "Esecuzione del Contratto";
+		else if (val.equals("collaudo"))
+			ret = "Collaudo/Veririca di conformità";
+		else if (val.equals("proroga"))
+			ret = "Proroga";
+				
+		return ret;
+	}
 
 	public SegnalazioneAppalto createAppaltoFromJson() throws JsonMappingException, JsonProcessingException, ParseException
 	{
@@ -34,7 +103,7 @@ public class ReportHelperAppalti extends ReportHelperJson {
 				getValueFromJson(nameNode, "provincia_appalti"),
 				getValueFromJson(nameNode, "comune_appalti"));
 		sa.setTipoEnte(getValueFromJson(nameNode, "stazioneappaltante"));
-		
+			
 		
 		SegnalazioneAppalto segnalazione = new SegnalazioneAppalto(
 													segnalante,
@@ -42,7 +111,7 @@ public class ReportHelperAppalti extends ReportHelperJson {
 													new Date(),
 													sa,
 													getValueFromJson(nameNode, "oggettoContratto_sa"),
-													getValueFromJson(nameNode, "ambitodellintervento"));
+													getAmbitoIntervento(getValueFromJson(nameNode, "ambitodellintervento")));
 
 		// Operatore Economico
 		Organizzazione oe = new Organizzazione(
@@ -69,29 +138,19 @@ public class ReportHelperAppalti extends ReportHelperJson {
 		segnalazione.setBaseAsta(getIntValueFromJson(nameNode, "importo_base_asta"));
 		
 		// Procedura di affidamento
-		segnalazione.setProcedura(getValueFromJson(nameNode, "procedura_affidamento"));
+		segnalazione.setProcedura(getProceduraAffidamento(getValueFromJson(nameNode, "procedura_affidamento")));
 		
 		// Fase
-		segnalazione.setFase(getValueFromJson(nameNode, "faseprocedura"));
+		segnalazione.setFase(getFaseProcedura(getValueFromJson(nameNode, "faseprocedura")));
 		
 
 		String dataFaseAux = getValueFromJson(nameNode.get("data_scadenza"),"$date");
-		dataFaseAux = getValueFromJson(nameNode.get("data_aggiudicazione"),"$date");
-		dataFaseAux = getValueFromJson(nameNode.get("data_stipula"),"$date");
-		dataFaseAux = getValueFromJson(nameNode.get("data_collaudo"),"$date");
+		if (dataFaseAux.trim().equals("")) dataFaseAux = getValueFromJson(nameNode.get("data_aggiudicazione"),"$date");
+		if (dataFaseAux.trim().equals("")) dataFaseAux = getValueFromJson(nameNode.get("data_stipula"),"$date");
+		if (dataFaseAux.trim().equals("")) dataFaseAux = getValueFromJson(nameNode.get("data_collaudo"),"$date");
 		
-		if (nameNode.get("data_scadenza")!=null)
-			System.out.println("DATA SCADENZA: \n"+nameNode.get("data_scadenza").toPrettyString());
-		if (nameNode.get("data_aggiudicazione")!=null)
-			System.out.println("DATA AGGIUDICAZIONE: \n"+nameNode.get("data_aggiudicazione").toPrettyString());
-		if (nameNode.get("data_stipula")!=null)
-			System.out.println("DATA STIPULA: \n"+nameNode.get("data_stipula").toPrettyString());
-		if (nameNode.get("data_collaudo")!=null)
-			System.out.println("DATA COLLAUDO: \n"+nameNode.get("data_collaudo").toPrettyString());
 		
-		System.out.println("dataFaseAux"+dataFaseAux);
-		
-		if (!dataFaseAux.equals(""))
+		if (!dataFaseAux.trim().equals(""))
 		{
 			Instant instant = Instant.parse(dataFaseAux);
 			Date dataFase = Date.from(instant);
@@ -108,7 +167,6 @@ public class ReportHelperAppalti extends ReportHelperJson {
 		
 		// Aggiungi tutti i possibili contenziosi
 		segnalazione.setContenzioso(getValueFromJson(nameNode, "contenziosoSegnalante").equals("true"));
-		
 		
 		if (getValueFromJson(nameNode, "esistenzacivile").equals("true"))
 		{

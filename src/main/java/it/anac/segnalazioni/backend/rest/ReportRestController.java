@@ -38,6 +38,7 @@ import fr.opensagres.xdocreport.template.freemarker.FreemarkerTemplateEngine;
 import freemarker.template.Configuration;
 import it.anac.segnalazioni.backend.report.util.ReportHelperAppalti;
 import it.anac.segnalazioni.backend.report.util.ReportHelperCorruzione;
+import it.anac.segnalazioni.backend.report.util.ReportHelperJson;
 
 @RestController
 @RequestMapping(path="/ws")
@@ -51,18 +52,22 @@ public class ReportRestController
 	@RequestMapping(value = "/report", method = RequestMethod.GET)	
 	public ResponseEntity<InputStreamResource> download(
 			@RequestParam(defaultValue = "") String id) throws IOException, XDocReportException, ParseException {
-
-		boolean appalto = true; // messo per test a true
-		boolean corruzione = false;
-		boolean incarichi = false;
-		boolean rpct = false;
-		boolean trasparenza = false;
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
 		JSONObject res = mongoTemplate.findOne(query,JSONObject.class, "submissions");
 				
 	    String filePath = System.getProperty("java.io.tmpdir")+"/out_"+id+"_"+System.currentTimeMillis()+".pdf";
+	    
+		ReportHelperJson rhj = new ReportHelperJson(res.toString());
+		String area = rhj.getTipoSegnalazione();
+	    boolean appalto = area.equals("appalti");
+		boolean corruzione = area.equals("anticorruzione");
+		boolean incarichi = area.equals("incarichi");
+		boolean trasparenza = area.equals("trasparenza");
+	
+		// TODO definire quando è RPCT
+		boolean rpct = false;
 	    
 	    String template_file = "";
 	    if (appalto)

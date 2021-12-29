@@ -12,7 +12,7 @@ import it.anac.segnalazioni.backend.report.model.Organizzazione;
 import it.anac.segnalazioni.backend.report.model.Segnalante;
 import it.anac.segnalazioni.backend.report.model.Segnalazione;
 
-public abstract class ReportHelperJson {
+public class ReportHelperJson {
 	
 	protected JsonNode nameNode;
 	protected SimpleDateFormat dateformat;
@@ -26,6 +26,11 @@ public abstract class ReportHelperJson {
 		this.nameNode = jsonNode.at("/data");
 			
 		this.dateformat = new SimpleDateFormat("dd-MM-yyyy");
+	}
+	
+	public String getTipoSegnalazione()
+	{
+		return  getValueFromJson(this.nameNode,"area");		
 	}
 	
 	protected String getValueFromJson(JsonNode nameNode, String prop)
