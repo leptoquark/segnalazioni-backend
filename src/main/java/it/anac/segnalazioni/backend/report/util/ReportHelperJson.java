@@ -33,10 +33,9 @@ public abstract class ReportHelperJson {
 	protected String getValueFromJson(JsonNode nameNode, String prop)
 	{
 		String ret = "";
-		
-        if (nameNode.get(prop)!=null)
-        	ret = nameNode.get(prop).asText();
-        	
+		if (nameNode!=null)
+			if (nameNode.get(prop)!=null)
+				ret = nameNode.get(prop).asText();
 		return ret;
 	}
 	
