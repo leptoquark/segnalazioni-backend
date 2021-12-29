@@ -39,6 +39,7 @@ it\anac\segnalazioni\backend\report\model\ContenziosoType.class
 it\anac\segnalazioni\backend\report\util\ReportHelperAppalti.class
 it\anac\segnalazioni\backend\model\pg\Classificazione.class
 it\anac\segnalazioni\backend\rest\AppaltiServiceAdapterRestImpl.class
+it\anac\segnalazioni\backend\report\util\ReportHelperCorruzione.class
 it\anac\segnalazioni\backend\model\pg\Georef.class
 it\anac\segnalazioni\backend\model\protocollo\ProtocolloResponse.class
 it\anac\segnalazioni\backend\report\model\SoggettoInteressato.class

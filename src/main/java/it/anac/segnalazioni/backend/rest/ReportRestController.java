@@ -37,6 +37,7 @@ import fr.opensagres.xdocreport.template.TemplateEngineKind;
 import fr.opensagres.xdocreport.template.freemarker.FreemarkerTemplateEngine;
 import freemarker.template.Configuration;
 import it.anac.segnalazioni.backend.report.util.ReportHelperAppalti;
+import it.anac.segnalazioni.backend.report.util.ReportHelperCorruzione;
 
 @RestController
 @RequestMapping(path="/ws")
@@ -100,7 +101,8 @@ public class ReportRestController
 			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());
 		} else if (corruzione)
 		{
-			
+			ReportHelperCorruzione reportHelper = new ReportHelperCorruzione(res.toString());
+			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());	
 		} else if (incarichi)
 		{
 			
