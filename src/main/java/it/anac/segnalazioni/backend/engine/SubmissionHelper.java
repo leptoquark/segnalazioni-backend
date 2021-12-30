@@ -29,7 +29,6 @@ import it.anac.segnalazioni.backend.domain.AntivirusServiceAdapter;
 import it.anac.segnalazioni.backend.engine.model.FileDocument;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloRequest;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
-import it.anac.segnalazioni.backend.report.model.Allegato;
 import it.anac.segnalazioni.backend.report.util.ReportHelperPdf;
 import it.anac.segnalazioni.backend.rest.ProtocolloService;
 
@@ -97,8 +96,8 @@ public class SubmissionHelper
 		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
 		if (arrNode_cig.isArray()) {
 		    for (JsonNode objNode : arrNode_cig) {
-		        String docChiusura_name  = getValueFromJson(objNode.get("documento_allegati"),"originalName");
-		        String docChiusura_url   = getValueFromJson(objNode.get("documento_allegati"),"url");
+		        String docChiusura_name  = getValueFromJson(objNode.get("documento_allegati").get(0),"originalName");
+		        String docChiusura_url   = getValueFromJson(objNode.get("documento_allegati").get(0),"url");
 		        docs.add(new FileDocument(docChiusura_url, docChiusura_name,false));
 		    }
 		}	

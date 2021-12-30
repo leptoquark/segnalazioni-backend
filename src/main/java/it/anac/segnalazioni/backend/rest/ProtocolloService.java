@@ -99,13 +99,15 @@ public class ProtocolloService {
         	ProtocolloTypeDocumenti documentoHandler = new ProtocolloTypeDocumenti();
 	    	DocumentoType documento = new DocumentoType();
 	    	documento.setTipoDocumento(fileDocuments[i].getTipo());
-	    	documento.setNomeFile(fileDocuments[i].getFilename());
 	    	URL url = fileDocuments[i].getUrl();
 	    	
 	    	if (url!=null)
 	    		documento.setFileBase64(downloadUrl(url));
 	    	else if (!documento.getNomeFile().equals(""))
+	    	{
 	    		documento.setFileBase64(downloadFile(documento.getNomeFile()));
+		    	documento.setNomeFile("Segnalazione_ANAC.pdf");
+	    	}
 
 	    	if (!documento.getNomeFile().equals(""))
 	    	{

@@ -124,7 +124,7 @@ public class ReportHelperJson {
 		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
 		if (arrNode_cig.isArray()) {
 		    for (JsonNode objNode : arrNode_cig) {
-		        String nome_doc = getValueFromJson(objNode.get("documento_allegati"),"originalName");
+		        String nome_doc = getValueFromJson(objNode.get("documento_allegati").get(0),"originalName");
 		        Allegato allegato = new Allegato(nome_doc);
 		        
 		        String titolo_doc = getValueFromJson(objNode, "titolo_documento");

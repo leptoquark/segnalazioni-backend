@@ -19,6 +19,7 @@ public class FileDocument {
 	public FileDocument(String filename, boolean principale) throws MalformedURLException
 	{
 		this.filename = filename;
+		this.principale = principale;
 	}
 	
 	
