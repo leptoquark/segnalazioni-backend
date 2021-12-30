@@ -9,12 +9,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RoutingRuleEngine {
 	
-	public final String UVMACT = "UVMACT";
-	public final String UVIF   = "UVIF";
-	public final String UVCP   = "UVCP";
-	public final String UVS    = "UVS";
-	public final String UVLA   = "UVLA";
-	public final String UVSF   = "UVSF";
+	public final String UVMACT = "ufficio1";
+	public final String UVIF   = "ufficio1";
+	public final String UVCP   = "ufficio1";
+	public final String UVS    = "ufficio1";
+	public final String UVLA   = "ufficio1";
+	public final String UVSF   = "ufficio1";
 	
 	private JsonNode nameNode;
 	
