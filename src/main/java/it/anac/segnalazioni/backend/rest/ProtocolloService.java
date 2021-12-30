@@ -2,6 +2,7 @@ package it.anac.segnalazioni.backend.rest;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -129,6 +130,10 @@ public class ProtocolloService {
     	ret.setMessaggio(aux.getDescrizioneEsito());
     	ret.setNumeroProtocollo(aux.getNumeroProtocollo());
     	ret.setData(aux.getDataProtocollo());
+    	
+    	System.out.println("PROTOCOLLO");
+    	System.out.println("\tESITO: "+ret.getEsito());
+    	System.out.println("\tMESSAGGIO: "+ret.getMessaggio());
     	
     	return ret;
 	}
