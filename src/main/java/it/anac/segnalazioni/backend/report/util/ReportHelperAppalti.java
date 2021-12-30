@@ -149,7 +149,7 @@ public class ReportHelperAppalti extends ReportHelperJson {
 		if (dataFaseAux.trim().equals("")) dataFaseAux = getValueFromJson(nameNode.get("data_stipula"),"$date");
 		if (dataFaseAux.trim().equals("")) dataFaseAux = getValueFromJson(nameNode.get("data_collaudo"),"$date");
 		
-		
+		segnalazione.setDataFase(new Date());
 		if (!dataFaseAux.trim().equals(""))
 		{
 			Instant instant = Instant.parse(dataFaseAux);
