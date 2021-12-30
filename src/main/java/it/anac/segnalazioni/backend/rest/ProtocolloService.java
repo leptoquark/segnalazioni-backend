@@ -131,10 +131,6 @@ public class ProtocolloService {
     	ret.setNumeroProtocollo(aux.getNumeroProtocollo());
     	ret.setData(aux.getDataProtocollo());
     	
-    	System.out.println("PROTOCOLLO");
-    	System.out.println("\tESITO: "+ret.getEsito());
-    	System.out.println("\tMESSAGGIO: "+ret.getMessaggio());
-    	
     	return ret;
 	}
 }

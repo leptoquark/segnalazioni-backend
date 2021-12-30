@@ -175,20 +175,20 @@ public class SubmissionHelper
 							pr.getAssegnatarioCompetenza(),
 							pr.getFileDocuments());
 		
-		// Invio della mail con allegato il pdf della segnalazione
-		try {						
-			msh.sendMessage(email_segnalante,
-					"Segnalaziona ANAC prot. "+ret.getNumeroProtocollo(),
-					"Gentile utente,\n"+
-					"in allegato la segnalazione ANAC sottomessa in data "+ret.getData()+"\n"+
-					"Il protocollo assegnato alla segnalazione è "+ret.getNumeroProtocollo()+
-					"\n\nCordiali Saluti,\n Lo staff tecnico di ANAC",
-					"sottomissione_prot_"+ret.getNumeroProtocollo()+".pdf",
-					filePath);
-		} catch (MessagingException e) {
-			logger.error("Invio fallito per "+email_segnalante,e);
-		}
-
+		if (ret.equals("0000"))
+				try {						
+					msh.sendMessage(email_segnalante,
+							"Segnalaziona ANAC prot. "+ret.getNumeroProtocollo(),
+							"Gentile utente,\n"+
+							"in allegato la segnalazione ANAC sottomessa in data "+ret.getData()+"\n"+
+							"Il protocollo assegnato alla segnalazione è "+ret.getNumeroProtocollo()+
+							"\n\nCordiali Saluti,\n Lo staff tecnico di ANAC",
+							"sottomissione_prot_"+ret.getNumeroProtocollo()+".pdf",
+							filePath);
+				} catch (MessagingException e) {
+					logger.error("Invio fallito per "+email_segnalante,e);
+				}
+		
 		return ret;
 	}
 }

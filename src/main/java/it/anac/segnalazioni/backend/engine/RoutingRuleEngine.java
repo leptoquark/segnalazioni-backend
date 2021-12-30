@@ -1,7 +1,5 @@
 package it.anac.segnalazioni.backend.engine;
 
-import java.text.SimpleDateFormat;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -9,12 +7,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RoutingRuleEngine {
 	
-	public final String UVMACT = "ufficio1";
-	public final String UVIF   = "ufficio1";
-	public final String UVCP   = "ufficio1";
-	public final String UVS    = "ufficio1";
-	public final String UVLA   = "ufficio1";
-	public final String UVSF   = "ufficio1";
+	public final String UVMACT   = "ufficio1";
+	public final String UVIF     = "ufficio1";
+	public final String UVCP     = "ufficio1";
+	public final String UVS      = "ufficio1";
+	public final String UVLA     = "ufficio1";
+	public final String UVSF     = "ufficio1";
+	public final String NO_ROUTE = "ufficio1";
 	
 	private JsonNode nameNode;
 	
@@ -37,7 +36,7 @@ public class RoutingRuleEngine {
 	
 	public String getRoute()
 	{
-		String ret = "NO ROUTE";
+		String ret = this.NO_ROUTE;
 		
 		String area = getValueFromJson(nameNode, "area");
 		if (area.equals("anticorruzione"))
