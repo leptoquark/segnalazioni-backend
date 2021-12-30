@@ -14,6 +14,7 @@ it\anac\segnalazioni\backend\rest\ComuniRestController.class
 it\anac\segnalazioni\backend\model\appalto\Incaricati.class
 it\anac\segnalazioni\backend\model\pg\Contatti.class
 it\anac\segnalazioni\backend\domain\PersonaGiuridicaServiceAdapter.class
+it\anac\segnalazioni\backend\report\util\ReportHelperRpct.class
 it\anac\segnalazioni\backend\engine\model\FileDocument.class
 it\anac\segnalazioni\backend\rest\HealthRestController.class
 it\anac\segnalazioni\backend\domain\antivirus\ScanResult$Status.class
@@ -26,6 +27,7 @@ it\anac\segnalazioni\backend\model\pg\Classificazione.class
 it\anac\segnalazioni\backend\rest\AppaltiServiceAdapterRestImpl.class
 it\anac\segnalazioni\backend\report\util\ReportHelperCorruzione.class
 it\anac\segnalazioni\backend\model\protocollo\ProtocolloResponse.class
+it\anac\segnalazioni\backend\report\util\ReportHelperIncarichi.class
 it\anac\segnalazioni\backend\report\model\Carenza.class
 it\anac\segnalazioni\backend\engine\FileHelper.class
 it\anac\segnalazioni\backend\report\model\SegnalazioneIncarichi.class
@@ -71,6 +73,7 @@ it\anac\segnalazioni\backend\model\pg\Georef.class
 it\anac\segnalazioni\backend\report\model\SoggettoInteressato.class
 it\anac\segnalazioni\backend\report\model\Organizzazione.class
 it\anac\segnalazioni\backend\model\security\JwtRequest.class
+it\anac\segnalazioni\backend\report\util\ReportHelperTrasparenza.class
 it\anac\segnalazioni\backend\model\pg\PersonaGiuridica.class
 it\anac\segnalazioni\backend\model\pg\Citta.class
 it\anac\segnalazioni\backend\model\pg\Classificazioni.class

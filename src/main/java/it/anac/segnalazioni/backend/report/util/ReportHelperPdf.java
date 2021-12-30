@@ -304,16 +304,19 @@ public class ReportHelperPdf {
 		} else if (corruzione)
 		{
 			ReportHelperCorruzione reportHelper = new ReportHelperCorruzione(json);
-			ctx.put("segnalazione", reportHelper.createAppaltoFromJson());	
+			ctx.put("segnalazione", reportHelper.createCorruzioneFromJson());	
 		} else if (incarichi)
 		{
-			
+			ReportHelperIncarichi reportHelper = new ReportHelperIncarichi(json);
+			ctx.put("segnalazione", reportHelper.createIncarichiFromJson());		
 		} else if (rpct)
 		{
-			
+			ReportHelperRpct reportHelper = new ReportHelperRpct(json);
+			ctx.put("segnalazione", reportHelper.createRpctFromJson());		
 		} else if (trasparenza)
 		{
-
+			ReportHelperTrasparenza reportHelper = new ReportHelperTrasparenza(json);
+			ctx.put("segnalazione", reportHelper.createTrasparenzaFromJson());	
 		}
 		
 		OutputStream out = new FileOutputStream(filePath);

@@ -16,7 +16,7 @@ public class FileDocument {
 			this.url = new URL(url);
 	}
 	
-	public FileDocument(String filename) throws MalformedURLException
+	public FileDocument(String filename, boolean principale) throws MalformedURLException
 	{
 		this.filename = filename;
 	}

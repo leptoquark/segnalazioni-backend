@@ -18,7 +18,7 @@ public class ReportHelperCorruzione extends ReportHelperJson {
 		super(json);
 	}
 
-	public SegnalazioneCorruzione createAppaltoFromJson() throws JsonMappingException, JsonProcessingException, ParseException
+	public SegnalazioneCorruzione createCorruzioneFromJson() throws JsonMappingException, JsonProcessingException, ParseException
 	{
 		Segnalante segnalante = createSegnalanteFromJson();
 		Organizzazione org = createOrganizzazioneFromJson(); 

@@ -1,6 +1,5 @@
 package it.anac.segnalazioni.backend.engine;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -30,6 +29,7 @@ import it.anac.segnalazioni.backend.domain.AntivirusServiceAdapter;
 import it.anac.segnalazioni.backend.engine.model.FileDocument;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloRequest;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
+import it.anac.segnalazioni.backend.report.model.Allegato;
 import it.anac.segnalazioni.backend.report.util.ReportHelperPdf;
 import it.anac.segnalazioni.backend.rest.ProtocolloService;
 
@@ -53,19 +53,21 @@ public class SubmissionHelper
 		
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/protocollo")
-	public ProtocolloResponse invioProtocollo(@RequestParam String submissionId) throws IOException, MessagingException
+	public ProtocolloResponse invioProtocollo(@RequestParam String submissionId) throws IOException, MessagingException, ParseException, XDocReportException
 	{
-		return invioProtocollo(submissionId, false);
+		return invioProtocolloWorker(submissionId);
 	}
 	
-	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
-	@GetMapping("/protocollo_zip")
-	public ProtocolloResponse invioProtocolloZip(@RequestParam String submissionId) throws IOException, MessagingException
+	private String getValueFromJson(JsonNode nameNode, String prop)
 	{
-		return invioProtocollo(submissionId, true);
+		String ret = "";
+		if (nameNode!=null)
+			if (nameNode.get(prop)!=null)
+				ret = nameNode.get(prop).asText();
+		return ret;
 	}
-			
-	private ProtocolloResponse invioProtocollo(String submissionId, boolean zip) throws IOException {
+	
+	private ProtocolloResponse invioProtocolloWorker(String submissionId) throws IOException, ParseException, XDocReportException {
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(submissionId));
@@ -77,17 +79,29 @@ public class SubmissionHelper
 			
 		JsonNode nameNode = jsonNode.at("/data");	
 		
+		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
+		
 		String docFronte_name = nameNode.findValues("documento_fronte").get(0).get(0).get("name").asText();
 		String docFronte_url = nameNode.findValues("documento_fronte").get(0).get(0).get("url").asText();
+		docs.add(new FileDocument(docFronte_url, docFronte_name,false));
 		
 		String docRetro_name = "";
 		String docRetro_url = "";
-		
 		if (nameNode.findValues("documento_retro").get(0).get(0)!=null)
 		{
 			docRetro_name = nameNode.findValues("documento_retro").get(0).get(0).get("name").asText();
 			docRetro_url = nameNode.findValues("documento_retro").get(0).get(0).get("url").asText();
 		}
+		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
+		
+		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
+		if (arrNode_cig.isArray()) {
+		    for (JsonNode objNode : arrNode_cig) {
+		        String docChiusura_name  = getValueFromJson(objNode.get("documento_allegati"),"originalName");
+		        String docChiusura_url   = getValueFromJson(objNode.get("documento_allegati"),"url");
+		        docs.add(new FileDocument(docChiusura_url, docChiusura_name,false));
+		    }
+		}	
 		
 		String nome_segnalante    = nameNode.get("nome_soggetto_segnalante").asText();
 		String cognome_segnalante = nameNode.get("cognome_soggetto_segnalante").asText();
@@ -107,9 +121,6 @@ public class SubmissionHelper
 			return pr;
 		}
 		
-		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
-		docs.add(new FileDocument(docFronte_url, docFronte_name,false));
-		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
 
 		ProtocolloRequest pr = new ProtocolloRequest();
 		
@@ -126,27 +137,15 @@ public class SubmissionHelper
 		pr.setAssegnatarioUfficio("ufficio1");
 		
 		pr.setAssegnatarioCompetenza(1);
+
+		ReportHelperPdf rhp = new ReportHelperPdf();
+		String filePath = rhp.getPdfReport(res.toString(),submissionId+"_"+System.currentTimeMillis()+".pdf");
+		docs.add(new FileDocument(filePath,true));
 		
-		// valido per tutti i documenti
-		//pr.setDocumentoTipoDocumento("P");
-		
-		String zippedFile = System.getProperty("java.io.tmpdir") +File.separator+System.currentTimeMillis()+"_"+cognome_segnalante+".zip";
-		if (zip)
-		{
-			FileHelper fh = new FileHelper();
-			fh.zipMultipleUrls(docs, zippedFile);
-			FileDocument[] fd = new FileDocument[1];
-			FileDocument zippedFileDocument = new FileDocument(zippedFile);
-			fd[0]=zippedFileDocument;
-			pr.setFileDocuments(fd);
-		}
-		else
-		{
-			FileDocument[] array = Arrays.copyOf(docs.toArray(),
-					 docs.toArray().length,
-					 FileDocument[].class);
-			pr.setFileDocuments(array);
-		}
+		FileDocument[] array = Arrays.copyOf(docs.toArray(),
+				 docs.toArray().length,
+				 FileDocument[].class);
+		pr.setFileDocuments(array);
 		
 		//TODO da aggiungere il report appena disponibile, prelevandolo dall'ID.
 		ProtocolloResponse ret = protocolloService.invio(
@@ -161,16 +160,13 @@ public class SubmissionHelper
 							pr.getFileDocuments());
 		
 		// Invio della mail con allegato il pdf della segnalazione
-		try {
-			ReportHelperPdf rhp = new ReportHelperPdf();
-			String filePath = rhp.getPdfReport(res.toString(),submissionId+"_"+System.currentTimeMillis()+".pdf");
-			
+		try {						
 			msh.sendMessage(email_segnalante,
 					"Segnalazioni ANAC prot. "+ret.getNumeroProtocollo(),
 					"In allegato la segnalazione ANAC",
 					"sottomissione_prot_"+ret.getNumeroProtocollo()+".pdf",
 					filePath);
-		} catch (MessagingException | ParseException | XDocReportException e) {
+		} catch (MessagingException e) {
 			logger.error("Invio fallito per "+email_segnalante,e);
 		}
 
