@@ -100,9 +100,7 @@ public class ReportHelperJson {
 	}
 	
 	protected void chiusura(Segnalazione segnalazione)
-	{
-		// Aggiungiamo alcuni allegati
-		
+	{	
 		if (nameNode.get("soggettiaux").get("rpct").asBoolean())
 			segnalazione.addAltroSoggetto("RPCT");
 		if (nameNode.get("soggettiaux").get("procuraDellaRepubblica").asBoolean())
@@ -115,6 +113,9 @@ public class ReportHelperJson {
 			segnalazione.addAltroSoggetto("Prefettura");
 		if (nameNode.get("soggettiaux").get("altro").asBoolean())
 			segnalazione.addAltroSoggetto(getValueFromJson(nameNode, "altro_soggetto"));
+		
+		if (segnalazione.getAltriSoggetti().size()<=0)
+			segnalazione.addAltroSoggetto("Nessuno");
 
 				
 		// Aggiungiamo Dati sensibili di cui il richiedente chiede esclusione da
