@@ -12,7 +12,6 @@ public class ProtocolloRequest
 	private String protcolloTipoDocumento;
 	private String assegnatarioUfficio;
 	private int    assegnatarioCompetenza;
-	private String documentoTipoDocumento;
 	private FileDocument[] fileDocuments;
 	
 	public String getIdentificazioneAoo() {
@@ -62,12 +61,6 @@ public class ProtocolloRequest
 	}
 	public void setAssegnatarioCompetenza(int assegnatarioCompetenza) {
 		this.assegnatarioCompetenza = assegnatarioCompetenza;
-	}
-	public String getDocumentoTipoDocumento() {
-		return documentoTipoDocumento;
-	}
-	public void setDocumentoTipoDocumento(String documentoTipoDocumento) {
-		this.documentoTipoDocumento = documentoTipoDocumento;
 	}
 	public FileDocument[] getFileDocuments() {
 		return fileDocuments;

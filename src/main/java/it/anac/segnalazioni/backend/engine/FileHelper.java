@@ -24,13 +24,13 @@ public class FileHelper {
 		
 		docs.add(new FileDocument(
 				"https://www.anticorruzione.it/documents/91439/129009/Avviso+pubblicazione+esito+prova+orale+e+approvazione+graduatoria+finale+F6IT.pdf/cd5c33c9-40d8-2afb-1f1d-01aacd3df9df?t=1589372298123",
-				"test_1.pdf"));
+				"test_1.pdf",true));
 		docs.add(new FileDocument(
 				"https://www.anticorruzione.it/documents/91439/129009/Avviso+pubblicazione+esito+prova+orale+e+approvazione+graduatoria+finale+F6IT.pdf/cd5c33c9-40d8-2afb-1f1d-01aacd3df9df?t=1589372298123",
-				"test_2.pdf"));
+				"test_2.pdf",false));
 		docs.add(new FileDocument(
 				"https://www.anticorruzione.it/documents/91439/129009/Avviso+pubblicazione+esito+prova+orale+e+approvazione+graduatoria+finale+F6IT.pdf/cd5c33c9-40d8-2afb-1f1d-01aacd3df9df?t=1589372298123",
-				"test_3.pdf"));
+				"test_3.pdf",false));
 		fh.zipMultipleUrls(docs, "test.zip");
 	}
 	

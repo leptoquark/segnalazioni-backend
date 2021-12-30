@@ -36,7 +36,6 @@ public class ProtocolloRestController
 						pr.getProtcolloTipoDocumento(),
 						pr.getAssegnatarioUfficio(),
 						pr.getAssegnatarioCompetenza(),
-						pr.getDocumentoTipoDocumento(),
 						pr.getFileDocuments());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

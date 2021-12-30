@@ -66,7 +66,6 @@ public class ProtocolloService {
 									String protocolloTipoDocumento,
 									String assegnatarioUfficio,
 									int    assegnatarioCompetenza,
-									String documentoTipoDocumento,
 									FileDocument[] fileDocuments) throws IOException
 	{
 		
@@ -99,7 +98,7 @@ public class ProtocolloService {
     	{
         	ProtocolloTypeDocumenti documentoHandler = new ProtocolloTypeDocumenti();
 	    	DocumentoType documento = new DocumentoType();
-	    	documento.setTipoDocumento(documentoTipoDocumento);
+	    	documento.setTipoDocumento(fileDocuments[i].getTipo());
 	    	documento.setNomeFile(fileDocuments[i].getFilename());
 	    	URL url = fileDocuments[i].getUrl();
 	    	
@@ -112,16 +111,6 @@ public class ProtocolloService {
 	    	{
 	    		documentoHandler.setDocumento(documento);
 	    		protocollo.getDocumenti().add(documentoHandler);
-	    		System.out.println("aggiunto 1: "+documentoHandler.getDocumento().getNomeFile());
-	    		
-	    		// aggiunto per test
-	    		protocollo.getDocumenti().add(documentoHandler);
-	    		System.out.println("aggiunto 2: "+documentoHandler.getDocumento().getNomeFile());
-	    		
-	    		protocollo.getDocumenti().add(documentoHandler);
-	    		System.out.println("aggiunto 3: "+documentoHandler.getDocumento().getNomeFile());
-	    		
-	    		System.out.println("Aggiunti: "+protocollo.getDocumenti().size()+" documenti");
 	    	}
     	}
     	

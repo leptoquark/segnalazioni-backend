@@ -108,8 +108,8 @@ public class SubmissionHelper
 		}
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
-		docs.add(new FileDocument(docFronte_url, docFronte_name));
-		docs.add(new FileDocument(docRetro_url, docRetro_name));
+		docs.add(new FileDocument(docFronte_url, docFronte_name,false));
+		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
 
 		ProtocolloRequest pr = new ProtocolloRequest();
 		
@@ -126,8 +126,9 @@ public class SubmissionHelper
 		pr.setAssegnatarioUfficio("ufficio1");
 		
 		pr.setAssegnatarioCompetenza(1);
+		
 		// valido per tutti i documenti
-		pr.setDocumentoTipoDocumento("P");
+		//pr.setDocumentoTipoDocumento("P");
 		
 		String zippedFile = System.getProperty("java.io.tmpdir") +File.separator+System.currentTimeMillis()+"_"+cognome_segnalante+".zip";
 		if (zip)
@@ -157,7 +158,6 @@ public class SubmissionHelper
 							pr.getProtcolloTipoDocumento(),
 							pr.getAssegnatarioUfficio(),
 							pr.getAssegnatarioCompetenza(),
-							pr.getDocumentoTipoDocumento(),
 							pr.getFileDocuments());
 		
 		// Invio della mail con allegato il pdf della segnalazione

@@ -118,8 +118,7 @@ public class ReportHelperJson {
 			segnalazione.addAltroSoggetto("Nessuno");
 
 				
-		// Aggiungiamo Dati sensibili di cui il richiedente chiede esclusione da
-		// pubblicazione
+		// Aggiungiamo Dati sensibili di cui il richiedente chiede esclusione da pubblicazione
 		segnalazione.setEsclusione(getValueFromJson(nameNode,"dati_sensibili"));
 		
 		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
