@@ -68,14 +68,12 @@ public class SubmissionHelper
 	
 	private boolean checkVirus(LinkedList<FileDocument> docList)
 	{
-		boolean res = true;
+		boolean res = false;
 		
 		for(int i=0; i<docList.size(); i++)
 		{
 			if (docList.get(i).getUrl()!=null)
 				res = av.checkVirusOnUrl(docList.get(i).getUrl().getPath()); 
-			else
-				res = av.checkVirusOnUrl(docList.get(i).getFilename());
 			
 			if (res)
 				return res;
