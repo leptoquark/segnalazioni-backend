@@ -97,7 +97,7 @@ public class ProtocolloService {
     	
     	for(int i=0; i<fileDocuments.length; i++)
     	{
-        	ProtocolloTypeDocumenti documenti = new ProtocolloTypeDocumenti();
+        	ProtocolloTypeDocumenti documentoHandler = new ProtocolloTypeDocumenti();
 	    	DocumentoType documento = new DocumentoType();
 	    	documento.setTipoDocumento(documentoTipoDocumento);
 	    	documento.setNomeFile(fileDocuments[i].getFilename());
@@ -110,8 +110,18 @@ public class ProtocolloService {
 
 	    	if (!documento.getNomeFile().equals(""))
 	    	{
-	    		documenti.setDocumento(documento);
-	    		protocollo.getDocumenti().add(documenti);
+	    		documentoHandler.setDocumento(documento);
+	    		protocollo.getDocumenti().add(documentoHandler);
+	    		System.out.println("aggiunto 1: "+documentoHandler.getDocumento().getNomeFile());
+	    		
+	    		// aggiunto per test
+	    		protocollo.getDocumenti().add(documentoHandler);
+	    		System.out.println("aggiunto 2: "+documentoHandler.getDocumento().getNomeFile());
+	    		
+	    		protocollo.getDocumenti().add(documentoHandler);
+	    		System.out.println("aggiunto 3: "+documentoHandler.getDocumento().getNomeFile());
+	    		
+	    		System.out.println("Aggiunti: "+protocollo.getDocumenti().size()+" documenti");
 	    	}
     	}
     	
