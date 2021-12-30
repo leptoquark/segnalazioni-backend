@@ -64,6 +64,7 @@ it\anac\segnalazioni\backend\model\appalto\CPV.class
 it\anac\segnalazioni\backend\model\pg\Indirizzo.class
 it\anac\segnalazioni\backend\report\util\test\TestTrasparenza.class
 it\anac\segnalazioni\backend\engine\MailSenderHelper.class
+it\anac\segnalazioni\backend\engine\RoutingRuleEngine.class
 it\anac\segnalazioni\backend\model\pg\DatiIdentificativi.class
 it\anac\segnalazioni\backend\rest\ProtocolloRestController.class
 it\anac\segnalazioni\backend\rest\ProtocolloService.class

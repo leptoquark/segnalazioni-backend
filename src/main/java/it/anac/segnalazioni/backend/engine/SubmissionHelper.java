@@ -66,6 +66,24 @@ public class SubmissionHelper
 		return ret;
 	}
 	
+	private boolean checkVirus(LinkedList<FileDocument> docList)
+	{
+		boolean res = true;
+		
+		for(int i=0; i<docList.size(); i++)
+		{
+			if (docList.get(i).getUrl()!=null)
+				res = av.checkVirusOnUrl(docList.get(i).getUrl().getPath()); 
+			else
+				res = av.checkVirusOnUrl(docList.get(i).getFilename());
+			
+			if (res)
+				return res;
+		}
+		
+		return res;
+	}
+	
 	private ProtocolloResponse invioProtocolloWorker(String submissionId) throws IOException, ParseException, XDocReportException {
 		
 		Query query = new Query();
@@ -80,7 +98,7 @@ public class SubmissionHelper
 		
 		LinkedList<FileDocument> docs = new LinkedList<FileDocument>();
 		
-		String docFronte_name = nameNode.findValues("documento_fronte").get(0).get(0).get("name").asText();
+		String docFronte_name = nameNode.findValues("documento_fronte").get(0).get(0).get("originalName").asText();
 		String docFronte_url = nameNode.findValues("documento_fronte").get(0).get(0).get("url").asText();
 		docs.add(new FileDocument(docFronte_url, docFronte_name,false));
 		
@@ -88,7 +106,7 @@ public class SubmissionHelper
 		String docRetro_url = "";
 		if (nameNode.findValues("documento_retro").get(0).get(0)!=null)
 		{
-			docRetro_name = nameNode.findValues("documento_retro").get(0).get(0).get("name").asText();
+			docRetro_name = nameNode.findValues("documento_retro").get(0).get(0).get("OriginalName").asText();
 			docRetro_url = nameNode.findValues("documento_retro").get(0).get(0).get("url").asText();
 		}
 		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
@@ -107,7 +125,8 @@ public class SubmissionHelper
 		String email_segnalante = nameNode.get("email_soggetto_segnalante").asText();
 	
 		logger.debug("Controllo antivirus");
-		if (!av.checkVirusOnUrl(docFronte_url) && !av.checkVirusOnUrl(docRetro_url))
+		
+		if (!checkVirus(docs))
 		{
 			ProtocolloResponse pr = new ProtocolloResponse();
 			pr.setData("");
@@ -129,11 +148,11 @@ public class SubmissionHelper
 	
 		pr.setProtocolloOggetto("segnalazione-web da "+nome_segnalante+" "+cognome_segnalante);
 		pr.setProtocolloMittente(nome_segnalante+" "+cognome_segnalante);
-		
+	
 		pr.setProtcolloTipoDocumento("lettera");
 		
-		// TODO: Settare l'ufficio con l'agoritmo di Giancarlo
-		pr.setAssegnatarioUfficio("ufficio1");
+		RoutingRuleEngine router = new RoutingRuleEngine(res.toString());
+		pr.setAssegnatarioUfficio(router.getRoute());
 		
 		pr.setAssegnatarioCompetenza(1);
 
