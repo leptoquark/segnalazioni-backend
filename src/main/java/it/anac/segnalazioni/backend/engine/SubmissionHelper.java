@@ -2,6 +2,7 @@ package it.anac.segnalazioni.backend.engine;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -23,11 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fr.opensagres.xdocreport.core.XDocReportException;
 import fr.opensagres.xdocreport.document.json.JSONObject;
 import it.anac.segnalazioni.backend.domain.AntivirusServiceAdapter;
 import it.anac.segnalazioni.backend.engine.model.FileDocument;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloRequest;
 import it.anac.segnalazioni.backend.model.protocollo.ProtocolloResponse;
+import it.anac.segnalazioni.backend.report.util.ReportHelperPdf;
 import it.anac.segnalazioni.backend.rest.ProtocolloService;
 
 @RestController
@@ -158,13 +161,16 @@ public class SubmissionHelper
 							pr.getFileDocuments());
 		
 		// Invio della mail con allegato il pdf della segnalazione
-		try {	
+		try {
+			ReportHelperPdf rhp = new ReportHelperPdf();
+			String filePath = rhp.getPdfReport(res.toString(),submissionId+"_"+System.currentTimeMillis()+".pdf");
+			
 			msh.sendMessage(email_segnalante,
 					"Segnalazioni ANAC prot. "+ret.getNumeroProtocollo(),
 					"In allegato la segnalazione ANAC",
-					"template_appalti.odt",
-					"template_appalti.odt");
-		} catch (MessagingException e) {
+					"sottomissione_prot_"+ret.getNumeroProtocollo()+".pdf",
+					filePath);
+		} catch (MessagingException | ParseException | XDocReportException e) {
 			logger.error("Invio fallito per "+email_segnalante,e);
 		}
 

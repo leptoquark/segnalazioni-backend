@@ -1,6 +1,7 @@
 package it.anac.segnalazioni.backend.report.util;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -23,7 +24,7 @@ public class ReportHelperCorruzione extends ReportHelperJson {
 		Organizzazione org = createOrganizzazioneFromJson(); 
 		segnalante.setEnte(org);
 		
-		SegnalazioneCorruzione segnalazione = new SegnalazioneCorruzione(segnalante, dateformat.parse("07-12-2021"), org,
+		SegnalazioneCorruzione segnalazione = new SegnalazioneCorruzione(segnalante, new Date(), org,
 				"Altro");
 
 		segnalazione.setPersona(new Persona("Vincenzo", "Bonetti", "BNTVNC58D10F501K"));
