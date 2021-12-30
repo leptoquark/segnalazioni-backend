@@ -106,7 +106,7 @@ public class SubmissionHelper
 		String docRetro_url = "";
 		if (nameNode.findValues("documento_retro").get(0).get(0)!=null)
 		{
-			docRetro_name = nameNode.findValues("documento_retro").get(0).get(0).get("OriginalName").asText();
+			docRetro_name = nameNode.findValues("documento_retro").get(0).get(0).get("originalName").asText();
 			docRetro_url = nameNode.findValues("documento_retro").get(0).get(0).get("url").asText();
 		}
 		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
