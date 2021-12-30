@@ -73,7 +73,7 @@ public class SubmissionHelper
 		for(int i=0; i<docList.size(); i++)
 		{
 			if (docList.get(i).getUrl()!=null)
-				res = av.checkVirusOnUrl(docList.get(i).getUrl().getPath()); 
+				res = av.checkVirusOnUrl(docList.get(i).getUrl().toString()); 
 			
 			if (res)
 				return res;
