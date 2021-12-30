@@ -98,6 +98,7 @@ public class ProtocolloService {
     	{
         	ProtocolloTypeDocumenti documentoHandler = new ProtocolloTypeDocumenti();
 	    	DocumentoType documento = new DocumentoType();
+	    	documento.setNomeFile(fileDocuments[i].getFilename());
 	    	documento.setTipoDocumento(fileDocuments[i].getTipo());
 	    	URL url = fileDocuments[i].getUrl();
 	    	
