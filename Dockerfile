@@ -11,6 +11,7 @@ USER spring:spring
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 COPY istat.csv istat.csv
+COPY transcoding.csv transcoding.csv
 
 COPY template_appalti.odt template_appalti.odt
 COPY template_corruzione.odt template_corruzione.odt
