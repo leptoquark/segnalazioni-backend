@@ -1,7 +1,6 @@
 package it.anac.segnalazioni.backend.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,11 +75,11 @@ public class HealthRestController {
 		}
 
 		if (!res_appalti.equals("OK")) {
-			   status.setMessage("Il Servizio CIG non risponde correttamente!");
+			   status.setMessage("Il Servizio Appalti non risponde correttamente.");
 			   status.setStatusKO();
 		   } else
 		   if(res_pg.equals("")) {
-			   status.setMessage("Il Servizio Persona Giuridica non risponde correttamente!");
+			   status.setMessage(status.getMessage()+" Il Servizio Persona Giuridica non risponde correttamente.");
 			   status.setStatusKO();
 		   }
 	   

@@ -117,9 +117,7 @@ public class ProtocolloService {
 	    		protocollo.getDocumenti().add(documentoHandler);
 	    	}
     	}
-    	
-    	
-	
+
     	registraProtocolloRequest.setIdentificazione(identificazione);
     	registraProtocolloRequest.setProtocollo(protocollo);
     	    	   
