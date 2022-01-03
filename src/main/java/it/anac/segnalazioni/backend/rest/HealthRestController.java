@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import it.anac.segnalazioni.backend.domain.AppaltiServiceAdapter;
 import it.anac.segnalazioni.backend.domain.PersonaGiuridicaServiceAdapter;
 import it.anac.segnalazioni.backend.model.appalto.Appalto;
+import it.anac.segnalazioni.backend.model.health.ResponseHealth;
 import it.anac.segnalazioni.backend.model.pg.PersonaGiuridica;
 
 @RestController
@@ -61,17 +62,21 @@ public class HealthRestController {
 
    @CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
    @GetMapping("/health")
-   HttpStatus test() {
+   ResponseHealth test() {
 	   
-	   HttpStatus ret = null;
+	   ResponseHealth status = new ResponseHealth();
+	   status.setStatusOK();
 	   
-	   if (getAppaltoFromCIG("XA31927D46").codice_risposta.toString().equals("OK") &&
-			   !getPGFromDenominazione("laziocrea", 0, 10)[0].id.toString().equals(""))
-		   ret =  HttpStatus.ACCEPTED;
-       else
-    	   ret = HttpStatus.INTERNAL_SERVER_ERROR;
+	   if (!getAppaltoFromCIG("XA31927D46").codice_risposta.toString().equals("OK")) {
+		   status.setMessage("Il Servizio CIG non risponde correttamente!");
+		   status.setStatusKO();
+	   } else
+	   if(getPGFromDenominazione("laziocrea", 0, 10)[0].id.toString().equals("")) {
+		   status.setMessage("Il Servizio Persona Giuridica non risponde correttamente!");
+		   status.setStatusKO();
+	   }
 	   
-	   return ret;
+	   return status;
    }
 
 }
