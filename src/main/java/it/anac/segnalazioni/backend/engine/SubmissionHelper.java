@@ -163,7 +163,6 @@ public class SubmissionHelper
 				 FileDocument[].class);
 		pr.setFileDocuments(array);
 		
-		//TODO da aggiungere il report appena disponibile, prelevandolo dall'ID.
 		ProtocolloResponse ret = protocolloService.invio(
 							pr.getIdentificazioneAoo(),
 							pr.getIdentificazioneUfficio(),

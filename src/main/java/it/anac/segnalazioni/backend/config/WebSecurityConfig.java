@@ -91,7 +91,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
 		httpSecurity.cors();
-		httpSecurity.headers().addHeaderWriter((HeaderWriter) new XFrameOptionsHeaderWriter(XFrameOptionsMode.SAMEORIGIN));
+		httpSecurity.headers().frameOptions().disable();
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);	
 	}
 }
