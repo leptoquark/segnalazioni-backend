@@ -20,6 +20,9 @@ public class HealthRestController {
 	
 	@Autowired
 	private AppaltiServiceAdapter appaltiService;
+	
+	@Autowired
+	private ProtocolloService protocolloService;
 		
 	public Appalto getAppaltoFromCIG(String cig) throws JsonMappingException, JsonProcessingException
 	{
@@ -77,11 +80,17 @@ public class HealthRestController {
 		if (!res_appalti.equals("OK")) {
 			   status.setMessage("Il Servizio Appalti non risponde correttamente.");
 			   status.setStatusKO();
-		   } else
-		   if(res_pg.equals("")) {
+			   }
+		if(res_pg.equals("")) {
 			   status.setMessage(status.getMessage()+" Il Servizio Persona Giuridica non risponde correttamente.");
 			   status.setStatusKO();
-		   }
+			   }	
+		if (!protocolloService.health()){
+			   status.setMessage(status.getMessage()+" Il Servizio di protocollo non risponde correttamente.");
+			   status.setStatusKO();
+			   status.setProtocollo(false);
+			   }	
+			
 	   
 	   return status;
    }

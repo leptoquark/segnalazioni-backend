@@ -40,6 +40,37 @@ public class ProtocolloService {
 		return fh.file2byte(file);
 	}
 	
+	public boolean health()
+	{
+		ProtocolloWS_Service service = new ProtocolloWS_Service();
+    	ProtocolloWS client = service.getProtocolloWSSOAP();
+    	
+    	RegistraRequestType registraProtocolloRequest = new RegistraRequestType();    
+    	
+    	IdentificazioneType identificazione = new IdentificazioneType();
+    	identificazione.setAoo("ANAC");
+    	identificazione.setUfficio("ANAC");
+    	identificazione.setUtente(utente);
+    	identificazione.setPassword(password);
+    	
+    	ProtocolloType protocollo = new ProtocolloType();
+ 
+    	AssegnatarioType assegnatario = new AssegnatarioType();
+    	assegnatario.setUfficio("test");
+    	assegnatario.setCompetenza(1);
+    	
+    	ProtocolloTypeAssegnatari assegnatari = new ProtocolloTypeAssegnatari();
+    	assegnatari.setAssegnatario(assegnatario);
+    	protocollo.getAssegnatari().add(assegnatari);
+    	
+    	registraProtocolloRequest.setIdentificazione(identificazione);
+    	registraProtocolloRequest.setProtocollo(protocollo);
+    	    	   
+    	ResponseType aux = client.registraProtocollo(registraProtocolloRequest);
+
+    	return (aux.getEsito().equals("F004"));
+	}
+	
 	/**
 	 * 
 	 * Discutere con Pozzaglia e Cerniera

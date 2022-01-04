@@ -6,6 +6,7 @@ public class ResponseHealth {
 	
 	// default status OK
 	private String status = this.STATUS_OK;
+	private boolean protocollo = true;
 	
 	private String message  = "";
 	
@@ -34,4 +35,13 @@ public class ResponseHealth {
 		return status;
 	}
 	
+	public void setProtocollo(boolean protocollo)
+	{
+		this.protocollo = protocollo;
+	}
+	
+	public boolean getProtocollo()
+	{
+		return protocollo;
+	}
 }
