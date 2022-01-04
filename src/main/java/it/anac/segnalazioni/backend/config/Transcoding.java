@@ -48,11 +48,4 @@ public class Transcoding {
 	     
 	    return ""; 	    
 	}
-	
-	public static void main(String[] argv) throws FileNotFoundException, IOException, CsvException
-	{
-		Transcoding tc = new Transcoding();
-		System.out.println(tc.valueFromCode("a1"));
-	}
-
 }

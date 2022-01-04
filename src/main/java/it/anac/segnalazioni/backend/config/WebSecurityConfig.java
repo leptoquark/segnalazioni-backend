@@ -21,6 +21,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.header.HeaderWriter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter.XFrameOptionsMode;
 
 import it.anac.segnalazioni.backend.rest.security.JwtAuthenticationEntryPoint;
 import it.anac.segnalazioni.backend.rest.security.JwtRequestFilter;
@@ -88,11 +91,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
 		httpSecurity.cors();
-		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-		
-	
+		httpSecurity.headers().addHeaderWriter((HeaderWriter) new XFrameOptionsHeaderWriter(XFrameOptionsMode.SAMEORIGIN));
+		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);	
 	}
-	
-	
-	
 }
