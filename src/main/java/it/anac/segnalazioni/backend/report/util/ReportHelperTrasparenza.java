@@ -43,37 +43,39 @@ public class ReportHelperTrasparenza extends ReportHelperJson {
 		
 		// Amministrazione trasparente
 		JsonNode arrNode_sezione = nameNode.get("sezionesegnalazione");
-		logger.debug(arrNode_sezione.toPrettyString());
+		logger.info(arrNode_sezione.toPrettyString());
 		if (arrNode_sezione.isArray()) {
 		    for (JsonNode objNode : arrNode_sezione) {
 		    	String sottosezione_aux = "sottosezione_"+objNode.asText();
 		    	Carenza carenza = new Carenza(sottosezione_aux);
 		    	JsonNode arrNode_sottosezione = nameNode.get(sottosezione_aux);
-		    	if (arrNode_sottosezione.isArray())
-		    	{
-		    		 for (JsonNode objNodeSub : arrNode_sottosezione) {
-		    			 carenza.addSezione(objNodeSub.asText());
-		    		 }
-		    		 segnalazione.addCarenza(carenza);
-		    	}    		
+		    	if (arrNode_sottosezione!=null)
+			    	if (arrNode_sottosezione.isArray())
+			    	{
+			    		 for (JsonNode objNodeSub : arrNode_sottosezione) {
+			    			 carenza.addSezione(objNodeSub.asText());
+			    		 }
+			    		 segnalazione.addCarenza(carenza);
+			    	}    		
 		    }
 		}
 		
 		// Società trasparente		
 		arrNode_sezione = nameNode.get("sezionesegnalazione2");
-		logger.debug(arrNode_sezione.toPrettyString());
+		logger.info(arrNode_sezione.toPrettyString());
 		if (arrNode_sezione.isArray()) {
 		    for (JsonNode objNode : arrNode_sezione) {
 		    	String sottosezione_aux = "sottosezione2_"+objNode.asText();
 		    	Carenza carenza = new Carenza(sottosezione_aux);
 		    	JsonNode arrNode_sottosezione = nameNode.get(sottosezione_aux);
-		    	if (arrNode_sottosezione.isArray())
-		    	{
-		    		 for (JsonNode objNodeSub : arrNode_sottosezione) {
-		    			 carenza.addSezione(objNodeSub.asText());
-		    		 }
-		    		 segnalazione.addCarenza(carenza);
-		    	}    		
+		    	if (arrNode_sottosezione!=null)
+			    	if (arrNode_sottosezione.isArray())
+			    	{
+			    		 for (JsonNode objNodeSub : arrNode_sottosezione) {
+			    			 carenza.addSezione(objNodeSub.asText());
+			    		 }
+			    		 segnalazione.addCarenza(carenza);
+			    	}    		
 		    }
 		}
 		
