@@ -3,59 +3,79 @@ package it.anac.segnalazioni.backend.report.util;
 import java.text.ParseException;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import it.anac.segnalazioni.backend.report.model.Carenza;
-import it.anac.segnalazioni.backend.report.model.Contenzioso;
-import it.anac.segnalazioni.backend.report.model.ContenziosoType;
 import it.anac.segnalazioni.backend.report.model.Organizzazione;
 import it.anac.segnalazioni.backend.report.model.Segnalante;
 import it.anac.segnalazioni.backend.report.model.SegnalazioneTrasparenza;
 
 public class ReportHelperTrasparenza extends ReportHelperJson {
+	
+	private Logger logger = LoggerFactory.getLogger(ReportHelperTrasparenza.class);
+	
 	public ReportHelperTrasparenza(String json) throws JsonMappingException, JsonProcessingException {
 		super(json);
 	}
 
 	public SegnalazioneTrasparenza createTrasparenzaFromJson() throws JsonMappingException, JsonProcessingException, ParseException
 	{
+		
 		Segnalante segnalante = createSegnalanteFromJson();
 		Organizzazione org = createOrganizzazioneFromJson(); 
 		segnalante.setEnte(org);
+		
+		String sito_web = getValueFromJson(nameNode, "sito_web");
+		String contenuto_segnalazione = getValueFromJson(nameNode, "contenutosegnalazione");
+		
+		String contenuto_segnalazione_val = "Carenze sulla sezione Amministrazione/Società Trasparente";
+		if (contenuto_segnalazione.equals("assenza"))
+			contenuto_segnalazione_val = "Assenza sezione Amministrazione/Società Trasparente";
+
 				
 		SegnalazioneTrasparenza segnalazione = new SegnalazioneTrasparenza(segnalante, new Date(), org,
-				"LINK_AMM_TRASP", "CARENZA");
-
-		Carenza ca1 = new Carenza("Disposizioni generali");
-		ca1.addSezione("Piano triennale per la prevenzione della corruzione e della trasparenza");
-		ca1.addSezione("Atti generali");
-		ca1.setContenutoObbligo("Aenean volutpat lorem vel metus commodo condimentum congue eget urna.");
+				sito_web, contenuto_segnalazione_val);
 		
-		segnalazione.addCarenza(ca1);
-		
-		Carenza ca2 = new Carenza("Opere pubbliche");
-		ca2.addSezione("Atti di programmazione delle opere pubbliche");
-		ca2.addSezione("Tempi costi e indicatori di realizzazione delle opere pubbliche");
-		ca2.setContenutoObbligo("Aenean volutpat lorem vel metus commodo condimentum congue eget urna.");
-		
-		segnalazione.addCarenza(ca2);
-	
-		// Oggetto della segnalazione NOTA: IN QUESTO CASO OGGETTO SEGNALAZIONE NON utilizzato
-		// segnalazione.setOggetto(OGGETTO_SEGNALAZIONE);
-
-		// Aggiungi tutti i possibili contenziosi
-		segnalazione.setContenzioso(true);
-
-		for (ContenziosoType ctype : ContenziosoType.values()) {
-			Contenzioso cont = new Contenzioso(ctype);
-			cont.setEstremi("ac viverra felis nunc ut ipsum. Nunc condimentum lacus");
-			segnalazione.addContenzioso(cont);
+		// Amministrazione trasparente
+		JsonNode arrNode_sezione = nameNode.get("sezionesegnalazione");
+		logger.debug(arrNode_sezione.toPrettyString());
+		if (arrNode_sezione.isArray()) {
+		    for (JsonNode objNode : arrNode_sezione) {
+		    	String sottosezione_aux = "sottosezione_"+objNode.asText();
+		    	Carenza carenza = new Carenza(sottosezione_aux);
+		    	JsonNode arrNode_sottosezione = nameNode.get(sottosezione_aux);
+		    	if (arrNode_sottosezione.isArray())
+		    	{
+		    		 for (JsonNode objNodeSub : arrNode_sottosezione) {
+		    			 carenza.addSezione(objNodeSub.asText());
+		    		 }
+		    		 segnalazione.addCarenza(carenza);
+		    	}    		
+		    }
 		}
-
-		// Aggiungi altre segnalazioni
-		segnalazione.setAltreSegnalazioni(true);
-		segnalazione.setEstremiSegnalazioni("lorem vel metus commodo condimentum congue eget urna.");
+		
+		// Società trasparente		
+		arrNode_sezione = nameNode.get("sezionesegnalazione2");
+		logger.debug(arrNode_sezione.toPrettyString());
+		if (arrNode_sezione.isArray()) {
+		    for (JsonNode objNode : arrNode_sezione) {
+		    	String sottosezione_aux = "sottosezione2_"+objNode.asText();
+		    	Carenza carenza = new Carenza(sottosezione_aux);
+		    	JsonNode arrNode_sottosezione = nameNode.get(sottosezione_aux);
+		    	if (arrNode_sottosezione.isArray())
+		    	{
+		    		 for (JsonNode objNodeSub : arrNode_sottosezione) {
+		    			 carenza.addSezione(objNodeSub.asText());
+		    		 }
+		    		 segnalazione.addCarenza(carenza);
+		    	}    		
+		    }
+		}
 		
 		chiusura(segnalazione);
 		

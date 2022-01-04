@@ -147,6 +147,7 @@ public class SubmissionHelper
 		pr.setProtocolloOggetto("segnalazione-web da "+nome_segnalante+" "+cognome_segnalante);
 		pr.setProtocolloMittente(nome_segnalante+" "+cognome_segnalante);
 	
+		
 		pr.setProtcolloTipoDocumento("lettera");
 		
 		RoutingRuleEngine router = new RoutingRuleEngine(res.toString());
