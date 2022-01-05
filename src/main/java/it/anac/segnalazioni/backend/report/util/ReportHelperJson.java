@@ -19,7 +19,6 @@ public class ReportHelperJson {
 	
 	protected final String ND = "N.D.";
 
-	
 	public ReportHelperJson(String json) throws JsonMappingException, JsonProcessingException
 	{	
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -58,10 +57,6 @@ public class ReportHelperJson {
 		return ret_int;
 	}
 	
-	protected String firstUpperCase(String aux)
-	{
-		return (""+aux.charAt(0)).toUpperCase()+aux.substring(1, aux.length());		
-	}
 	
 	protected Segnalante createSegnalanteFromJson()
 	{
@@ -69,7 +64,7 @@ public class ReportHelperJson {
 		Segnalante segnalante = new Segnalante(getValueFromJson(nameNode,"nome_soggetto_segnalante"),
 											   getValueFromJson(nameNode,"cognome_soggetto_segnalante"),
 											   getValueFromJson(nameNode,"codiceFiscale_soggetto_segnalante"),
-											   firstUpperCase(getValueFromJson(nameNode,"qualifica")));		
+											   getValueFromJson(nameNode,"qualifica"));		
 		return segnalante;
 		
 	}

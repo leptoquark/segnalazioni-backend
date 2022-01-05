@@ -115,31 +115,31 @@ public class SubmissionHelper
 		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
 		
 		
-		/*String docTrasparenzaAttivita_name = "";
+		String docTrasparenzaAttivita_name = "";
 		String docTrasparenzaAttivita_url = "";
-		if (nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).get(0)!=null)
+		if (nameNode.findValues("documenti_attivita_rpct_trasparenza")!=null)
 		{
-			int size = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).size();
+			int size = nameNode.findValues("documenti_attivita_rpct_trasparenza").size();
 			for (int i=0; i<size; i++)
 			{
-				docTrasparenzaAttivita_name = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).get(i).get("originalName").asText();
-				docTrasparenzaAttivita_url = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).get(i).get("url").asText();
+				docTrasparenzaAttivita_name = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(i).get("originalName").asText();
+				docTrasparenzaAttivita_url = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(i).get("url").asText();
 				docs.add(new FileDocument(docTrasparenzaAttivita_name, docTrasparenzaAttivita_url,false));
 			}
 		}
 		
 		String docTrasparenzaOIV_name = "";
 		String docTrasparenzaOIV_url = "";
-		if (nameNode.findValues("documenti_oiv_trasparenza").get(0).get(0)!=null)
+		if (nameNode.findValues("documenti_oiv_trasparenza")!=null)
 		{
 			int size = nameNode.findValues("documenti_oiv_trasparenza").get(0).size();
 			for (int i=0; i<size; i++)
 			{
-				docTrasparenzaOIV_name = nameNode.findValues("documenti_oiv_trasparenza").get(0).get(i).get("originalName").asText();
-				docTrasparenzaOIV_url = nameNode.findValues("documenti_oiv_trasparenza").get(0).get(i).get("url").asText();
+				docTrasparenzaOIV_name = nameNode.findValues("documenti_oiv_trasparenza").get(i).get("originalName").asText();
+				docTrasparenzaOIV_url = nameNode.findValues("documenti_oiv_trasparenza").get(i).get("url").asText();
 				docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
 			}
-		}*/
+		}
 	
 		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
 		if (arrNode_cig.isArray()) {
