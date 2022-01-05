@@ -4,6 +4,8 @@ COPY anticorruzione.cer /usr/local/openjdk-11/lib/security
 RUN \
     cd /usr/local/openjdk-11/lib/security \
     && keytool -keystore cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias anticorruzione -file anticorruzione.cer
+    
+ADD fonts /usr/share/fonts
 
 RUN adduser --system --group spring
 USER spring:spring
