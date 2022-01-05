@@ -25,7 +25,7 @@ public class ReportHelperTrasparenza extends ReportHelperJson {
 	
 	private String getSezione(String val)
 	{
-		String ret = "N.D.";
+		String ret = ND;
 		
 		if (val.equals("disposizioniGenerali"))
 			ret = "Disposizioni Generali";
@@ -73,7 +73,9 @@ public class ReportHelperTrasparenza extends ReportHelperJson {
 			ret = "Altri Contenuti";
 		
 		else if (val.equals("selezioneDelPersonale"))
-			ret = "Altri Contenuti"; 
+			ret = "Selezione del Personale";
+		else if (val.equals("pagamenti"))
+			ret = "pagamenti"; 
 
 		return ret;
 	}

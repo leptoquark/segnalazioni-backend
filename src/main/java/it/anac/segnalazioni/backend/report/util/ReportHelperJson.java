@@ -16,6 +16,8 @@ public class ReportHelperJson {
 	
 	protected JsonNode nameNode;
 	protected SimpleDateFormat dateformat;
+	
+	protected final String ND = "N.D.";
 
 	
 	public ReportHelperJson(String json) throws JsonMappingException, JsonProcessingException
@@ -35,7 +37,12 @@ public class ReportHelperJson {
 	
 	protected String getValueFromJson(JsonNode nameNode, String prop)
 	{
-		String ret = "";
+		return getValueFromJson(nameNode, prop, "");
+	}
+	
+	private String getValueFromJson(JsonNode nameNode, String prop, String separator)
+	{
+		String ret = separator;
 		if (nameNode!=null)
 			if (nameNode.get(prop)!=null)
 				ret = nameNode.get(prop).asText();
@@ -65,34 +72,34 @@ public class ReportHelperJson {
 	protected Organizzazione createOrganizzazioneFromJson()
 	{
 							
-		Organizzazione org = new Organizzazione(getValueFromJson(nameNode,"denominazione"),
-				getValueFromJson(nameNode,"regione"),
-				getValueFromJson(nameNode,"provincia"),
-				getValueFromJson(nameNode,"comune"));
+		Organizzazione org = new Organizzazione(getValueFromJson(nameNode,"denominazione",ND),
+				getValueFromJson(nameNode,"regione",ND),
+				getValueFromJson(nameNode,"provincia",ND),
+				getValueFromJson(nameNode,"comune",ND));
 
-		String tipoEnte = getValueFromJson(nameNode,"tipologia_ente_amministrazione");
-		if (tipoEnte.trim().equals(""))
-		tipoEnte = getValueFromJson(nameNode,"tipologia_ente_amministrazione_rpct");
+		String tipoEnte = getValueFromJson(nameNode,"tipologia_ente_amministrazione",ND);
+		if (tipoEnte.trim().equals("") || tipoEnte.trim().equals(ND))
+		tipoEnte = getValueFromJson(nameNode,"tipologia_ente_amministrazione_rpct",ND);
 		org.setTipoEnte(tipoEnte);
 		
-		String mail =getValueFromJson(nameNode,"mail");
-		if (mail.trim().equals(""))
+		String mail = getValueFromJson(nameNode,"mail",ND);
+		if (mail.trim().equals("") || mail.trim().equals(ND))
 		mail = getValueFromJson(nameNode,"mail_rpct");	
 		org.setMail(mail);
 		
-		String pec = getValueFromJson(nameNode,"pec");
-		if (pec.trim().equals(""))
-		pec = getValueFromJson(nameNode,"pec_rpct");	
+		String pec = getValueFromJson(nameNode,"pec",ND);
+		if (pec.trim().equals("") || pec.trim().equals(ND))
+		pec = getValueFromJson(nameNode,"pec_rpct",ND);	
 		org.setPec(pec);
 		
-		String telefono = getValueFromJson(nameNode,"telefono");
-		if (telefono.trim().equals(""))
-		telefono = getValueFromJson(nameNode,"telefono_rpct");	
+		String telefono = getValueFromJson(nameNode,"telefono",ND);
+		if (telefono.trim().equals("") || telefono.trim().equals(""))
+		telefono = getValueFromJson(nameNode,"telefono_rpct",ND);	
 		org.setTelefono(telefono);
 		
-		String cf = getValueFromJson(nameNode,"cf");
-		if (telefono.trim().equals(""))
-		telefono = getValueFromJson(nameNode,"cf_rpct");	
+		String cf = getValueFromJson(nameNode,"cf",ND);
+		if (cf.trim().equals("") || cf.trim().equals(ND))
+		cf = getValueFromJson(nameNode,"cf_rpct",ND);	
 		org.setCodiceFiscale(cf);
 		
 		return org;
@@ -117,8 +124,6 @@ public class ReportHelperJson {
 		if (segnalazione.getAltriSoggetti().size()<=0)
 			segnalazione.addAltroSoggetto("Nessuno");
 
-				
-		// Aggiungiamo Dati sensibili di cui il richiedente chiede esclusione da pubblicazione
 		segnalazione.setEsclusione(getValueFromJson(nameNode,"dati_sensibili"));
 		
 		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
@@ -128,11 +133,11 @@ public class ReportHelperJson {
 		        Allegato allegato = new Allegato(nome_doc);
 		        
 		        String titolo_doc = getValueFromJson(objNode, "titolo_documento");
-		        if (titolo_doc.equals(""))
+		        if (!titolo_doc.equals(""))
 		        	allegato.setTitolo(titolo_doc);
 		        
 		        String note_doc = getValueFromJson(objNode,"note_documento");
-		        if (note_doc.equals(""))
+		        if (!note_doc.equals(""))
 		        	allegato.setDescrizione(note_doc);
 	        	
 				segnalazione.addAllegato(new Allegato(nome_doc, titolo_doc, note_doc));
