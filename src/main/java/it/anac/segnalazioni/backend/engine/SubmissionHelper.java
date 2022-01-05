@@ -117,7 +117,8 @@ public class SubmissionHelper
 		
 		String docTrasparenzaAttivita_name = "";
 		String docTrasparenzaAttivita_url = "";
-		if (nameNode.findValues("documenti_attivita_rpct_trasparenza")!=null)
+		if (nameNode.get("documenti_attivita_rpct_trasparenza")!=null &&
+				!nameNode.get("documenti_attivita_rpct_trasparenza").isEmpty())
 		{
 			int size = nameNode.findValues("documenti_attivita_rpct_trasparenza").size();
 			for (int i=0; i<size; i++)
@@ -130,9 +131,10 @@ public class SubmissionHelper
 		
 		String docTrasparenzaOIV_name = "";
 		String docTrasparenzaOIV_url = "";
-		if (nameNode.findValues("documenti_oiv_trasparenza")!=null)
+		if (nameNode.get("documenti_oiv_trasparenza")!=null &&
+				!nameNode.get("documenti_oiv_trasparenza").isEmpty())
 		{
-			int size = nameNode.findValues("documenti_oiv_trasparenza").get(0).size();
+			int size = nameNode.findValues("documenti_oiv_trasparenza").size();
 			for (int i=0; i<size; i++)
 			{
 				docTrasparenzaOIV_name = nameNode.findValues("documenti_oiv_trasparenza").get(i).get("originalName").asText();
