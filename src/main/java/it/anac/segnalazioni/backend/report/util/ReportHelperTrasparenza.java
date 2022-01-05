@@ -137,6 +137,7 @@ public class ReportHelperTrasparenza extends ReportHelperJson {
 			    			 carenza.addSezione(objNodeSub.asText());
 			    		 }
 			    		 segnalazione.addCarenza(carenza);
+			    		 
 			    	}    		
 			    }
 			}

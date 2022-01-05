@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -49,6 +50,10 @@ public class SubmissionHelper
 	
 	@Autowired
 	private MailSenderHelper msh;
+	
+	@Value("${protocollo.tipodocumento}")
+    private String tipoDocumento;
+
 		
 	@CrossOrigin(origins = {"http://segnalazioni-segnalazioni-ril.apps.ocp.premaster.local","http://localhost:4200"})
 	@GetMapping("/protocollo")
@@ -110,7 +115,7 @@ public class SubmissionHelper
 		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
 		
 		
-		String docTrasparenzaAttivita_name = "";
+		/*String docTrasparenzaAttivita_name = "";
 		String docTrasparenzaAttivita_url = "";
 		if (nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).get(0)!=null)
 		{
@@ -134,7 +139,7 @@ public class SubmissionHelper
 				docTrasparenzaOIV_url = nameNode.findValues("documenti_oiv_trasparenza").get(0).get(i).get("url").asText();
 				docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
 			}
-		}
+		}*/
 	
 		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
 		if (arrNode_cig.isArray()) {
@@ -182,8 +187,7 @@ public class SubmissionHelper
 		pr.setProtocolloOggetto("segnalazione-web da "+nome_segnalante+" "+cognome_segnalante);
 		pr.setProtocolloMittente(nome_segnalante+" "+cognome_segnalante);
 	
-		
-		pr.setProtcolloTipoDocumento("lettera");
+		pr.setProtcolloTipoDocumento(tipoDocumento);
 		
 		RoutingRuleEngine router = new RoutingRuleEngine(res.toString());
 		pr.setAssegnatarioUfficio(router.getRoute());
