@@ -177,7 +177,7 @@ public class SubmissionHelper
 		
 		if (ret.getEsito().equals("0000"))
 				msh.sendMessageBackground(email_segnalante,
-						"Segnalaziona ANAC prot. "+ret.getNumeroProtocollo(),
+						"Segnalazione ANAC prot. "+ret.getNumeroProtocollo(),
 						"Gentile utente,\n"+
 						"in allegato la segnalazione ANAC sottomessa in data "+ret.getData()+"\n"+
 						"Il protocollo assegnato alla segnalazione è "+ret.getNumeroProtocollo()+
