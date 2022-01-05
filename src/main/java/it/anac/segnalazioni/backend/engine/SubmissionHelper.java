@@ -109,6 +109,33 @@ public class SubmissionHelper
 		}
 		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
 		
+		
+		String docTrasparenzaAttivita_name = "";
+		String docTrasparenzaAttivita_url = "";
+		if (nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).get(0)!=null)
+		{
+			int size = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).size();
+			for (int i=0; i<size; i++)
+			{
+				docTrasparenzaAttivita_name = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).get(i).get("originalName").asText();
+				docTrasparenzaAttivita_url = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(0).get(i).get("url").asText();
+				docs.add(new FileDocument(docTrasparenzaAttivita_name, docTrasparenzaAttivita_url,false));
+			}
+		}
+		
+		String docTrasparenzaOIV_name = "";
+		String docTrasparenzaOIV_url = "";
+		if (nameNode.findValues("documenti_oiv_trasparenza").get(0).get(0)!=null)
+		{
+			int size = nameNode.findValues("documenti_oiv_trasparenza").get(0).size();
+			for (int i=0; i<size; i++)
+			{
+				docTrasparenzaOIV_name = nameNode.findValues("documenti_oiv_trasparenza").get(0).get(i).get("originalName").asText();
+				docTrasparenzaOIV_url = nameNode.findValues("documenti_oiv_trasparenza").get(0).get(i).get("url").asText();
+				docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
+			}
+		}
+	
 		JsonNode arrNode_cig = nameNode.get("documenti_allegati_chiusura");
 		if (arrNode_cig.isArray()) {
 		    for (JsonNode objNode : arrNode_cig) {
@@ -133,6 +160,14 @@ public class SubmissionHelper
 			pr.setNumeroProtocollo("");
 			
 			logger.debug("File con Virus!");
+			
+			msh.sendMessageBackground(email_segnalante,
+					"Segnalazione ANAC: errore nella sottomissione",
+					"Gentile utente,\n"+
+					"E' stato rilevato un virus nei file allegati al modulo di segnalazione,\n"+
+					"pertanto non è stato possibile procedere al completamento della sottomissione. \n"+
+					"Si prega di verificare il contenuto degli allegati e tentare nuovamente l'invio."+
+					"\n\nCordiali Saluti,\n Lo staff tecnico di ANAC","","");
 		
 			return pr;
 		}
@@ -184,6 +219,13 @@ public class SubmissionHelper
 						"\n\nCordiali Saluti,\n Lo staff tecnico di ANAC",
 						"sottomissione_prot_"+ret.getNumeroProtocollo()+".pdf",
 						filePath);
+		else
+			msh.sendMessageBackground(email_segnalante,
+					"Segnalazione ANAC: errore nella sottomissione",
+					"Gentile utente,\n"+
+					"La segnalazione non è stata sottomessa per un errore interno, si prega di tentare nuovamente."+
+					"\n\nCordiali Saluti,\n Lo staff tecnico di ANAC","","");
+			
 		return ret;
 	}
 }

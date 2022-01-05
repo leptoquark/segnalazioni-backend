@@ -34,8 +34,11 @@ public class MailSenderHelper {
     	helper.setTo(to);
     	helper.setSubject(subject);
     	helper.setText(text);
-    	FileSystemResource file = new FileSystemResource(new File(path));
-    	helper.addAttachment(name, file);
+    	if (!path.equals(""))
+    	{
+	    	FileSystemResource file = new FileSystemResource(new File(path));
+	    	helper.addAttachment(name, file);
+    	}
     	emailSender.send(message);
     }
 	
