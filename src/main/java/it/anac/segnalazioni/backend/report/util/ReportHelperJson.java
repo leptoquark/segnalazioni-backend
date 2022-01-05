@@ -58,13 +58,18 @@ public class ReportHelperJson {
 		return ret_int;
 	}
 	
+	protected String firstUpperCase(String aux)
+	{
+		return (""+aux.charAt(0)).toUpperCase()+aux.substring(1, aux.length());		
+	}
+	
 	protected Segnalante createSegnalanteFromJson()
 	{
 							
 		Segnalante segnalante = new Segnalante(getValueFromJson(nameNode,"nome_soggetto_segnalante"),
 											   getValueFromJson(nameNode,"cognome_soggetto_segnalante"),
 											   getValueFromJson(nameNode,"codiceFiscale_soggetto_segnalante"),
-											   getValueFromJson(nameNode,"qualifica"));		
+											   firstUpperCase(getValueFromJson(nameNode,"qualifica")));		
 		return segnalante;
 		
 	}
