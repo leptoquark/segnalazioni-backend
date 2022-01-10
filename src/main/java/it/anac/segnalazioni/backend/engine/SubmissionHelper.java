@@ -115,31 +115,31 @@ public class SubmissionHelper
 		docs.add(new FileDocument(docRetro_url, docRetro_name,false));
 		
 		
-		String docTrasparenzaAttivita_name = "";
-		String docTrasparenzaAttivita_url = "";
 		if (nameNode.get("documenti_attivita_rpct_trasparenza")!=null &&
 				!nameNode.get("documenti_attivita_rpct_trasparenza").isEmpty())
 		{
-			int size = nameNode.findValues("documenti_attivita_rpct_trasparenza").size();
-			for (int i=0; i<size; i++)
-			{
-				docTrasparenzaAttivita_name = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(i).get("originalName").asText();
-				docTrasparenzaAttivita_url = nameNode.findValues("documenti_attivita_rpct_trasparenza").get(i).get("url").asText();
-				docs.add(new FileDocument(docTrasparenzaAttivita_name, docTrasparenzaAttivita_url,false));
+			JsonNode arrNode = nameNode.get("documenti_attivita_rpct_trasparenza");
+			if (arrNode.isArray()) {
+			    for (JsonNode objNode : arrNode)
+			    {
+					String docTrasparenzaOIV_name = getValueFromJson(objNode,"originalName");
+					String docTrasparenzaOIV_url = getValueFromJson(objNode,"url");
+					docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
+				}
 			}
 		}
 		
-		String docTrasparenzaOIV_name = "";
-		String docTrasparenzaOIV_url = "";
 		if (nameNode.get("documenti_oiv_trasparenza")!=null &&
 				!nameNode.get("documenti_oiv_trasparenza").isEmpty())
 		{
-			int size = nameNode.findValues("documenti_oiv_trasparenza").size();
-			for (int i=0; i<size; i++)
-			{
-				docTrasparenzaOIV_name = nameNode.findValues("documenti_oiv_trasparenza").get(i).get("originalName").asText();
-				docTrasparenzaOIV_url = nameNode.findValues("documenti_oiv_trasparenza").get(i).get("url").asText();
-				docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
+			JsonNode arrNode = nameNode.get("documenti_oiv_trasparenza");
+			if (arrNode.isArray()) {
+			    for (JsonNode objNode : arrNode)
+				{
+					String docTrasparenzaOIV_name = getValueFromJson(objNode,"originalName");
+					String docTrasparenzaOIV_url = getValueFromJson(objNode,"url");
+					docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
+				}
 			}
 		}
 	
