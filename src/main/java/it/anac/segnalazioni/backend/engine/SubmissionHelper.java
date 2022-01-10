@@ -123,8 +123,8 @@ public class SubmissionHelper
 			    for (JsonNode objNode : arrNode)
 			    {
 			    	System.out.println("RPCT: "+objNode.toPrettyString());
-					String docTrasparenzaOIV_name = getValueFromJson(objNode,"originalName");
-					String docTrasparenzaOIV_url = getValueFromJson(objNode,"url");
+					String docTrasparenzaOIV_name = objNode.get("originalName").asText();
+					String docTrasparenzaOIV_url = objNode.get("url").asText();
 					docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
 				}
 			}
@@ -138,8 +138,8 @@ public class SubmissionHelper
 			    for (JsonNode objNode : arrNode)
 				{
 			    	System.out.println("OIV: "+objNode.toPrettyString());
-					String docTrasparenzaOIV_name = getValueFromJson(objNode,"originalName");
-					String docTrasparenzaOIV_url = getValueFromJson(objNode,"url");
+					String docTrasparenzaOIV_name = objNode.get("originalName").asText();
+					String docTrasparenzaOIV_url = objNode.get("url").asText();
 					docs.add(new FileDocument(docTrasparenzaOIV_name, docTrasparenzaOIV_url,false));
 				}
 			}
